@@ -12,7 +12,7 @@
 define('jquery', [], function () { return jQuery; });
 define('knockout', [], function () { return ko; });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'durandal/composition'], function (system, app, viewLocator, composition) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'durandal/composition', 'durandal/plugins/router'], function (system, app, viewLocator, composition, router) {
 
     //>>excludeStart("build", true);
     system.debug(true);
