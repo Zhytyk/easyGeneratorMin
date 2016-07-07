@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace EasyGeneratorMin.Controllers
 {
-    public class HomeController : Controller
+    public class CourseController : Controller
     {
-        // GET: Home
-        [Route("", Name = "Home")]
+        // GET: Course
+        [Route("course", Name = "Course")]
         public ActionResult Index()
         {
             return View();

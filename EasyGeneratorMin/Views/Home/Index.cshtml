@@ -6,15 +6,14 @@
 <html>
 <head>
     <title>Index</title>
+    @Styles.Render("~/Content/css")
 </head>
 <body>
-    <div id="applicationHost">
-        Loading app....
+    <div>
+        <span>
+            Welcome to EasyGeneratorMin!
+        </span>
     </div>
-
-    @Scripts.Render("~/Scripts/vendor")
-    <script type="text/javascript" src="~/scripts/require.js"
-            data-main="/App/main"></script>
-
+    @Html.RouteLink("Go to Courses", "Course")
 </body>
 </html>
