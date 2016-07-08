@@ -139,7 +139,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\main.js" />
+    <Content Include="App\viewmodels\addcoursepage.js" />
+    <Content Include="App\viewmodels\mainpage.js" />
     <Content Include="App\viewmodels\shell.js" />
+    <Content Include="App\views\addcoursepage.html" />
+    <Content Include="App\views\mainpage.html" />
     <Content Include="App\views\shell.html" />
     <Content Include="Content\durandal.css" />
     <Content Include="Content\images\icon.png" />
@@ -173,6 +177,8 @@
     <Content Include="scripts\knockout-3.1.0.js" />
     <Content Include="scripts\r.js" />
     <Content Include="scripts\require.js" />
+    <Content Include="scripts\sammy-0.7.4.js" />
+    <Content Include="scripts\sammy-0.7.4.min.js" />
     <Content Include="scripts\text.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
