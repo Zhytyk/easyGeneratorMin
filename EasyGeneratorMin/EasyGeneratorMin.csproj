@@ -142,7 +142,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\data\dataCourseInfoContext.js" />
+    <Content Include="App\http\httpWrapper.js" />
     <Content Include="App\main.js" />
+    <Content Include="App\models\course.js" />
     <Content Include="App\viewmodels\addcoursepage.js" />
     <Content Include="App\viewmodels\mainpage.js" />
     <Content Include="App\viewmodels\shell.js" />
@@ -190,6 +193,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShippingCoursesController.cs" />
     <Compile Include="Data_Base\Configurations\CourseDataConfiguration.cs" />
     <Compile Include="Data_Base\Configurations\QuestionSectionDataConfiguration.cs" />
     <Compile Include="Data_Base\Configurations\SectionCourseDataConfiguration.cs" />
@@ -221,6 +225,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ShippingCourses\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

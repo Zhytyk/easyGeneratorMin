@@ -10,9 +10,9 @@ namespace EasyGeneratorMin
 
         public string Owner { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public string CreatedDate { get; set; }
 
-        public DateTime LastModifiedDate { get; set; }
+        public string LastModifiedDate { get; set; }
 
     }
 }

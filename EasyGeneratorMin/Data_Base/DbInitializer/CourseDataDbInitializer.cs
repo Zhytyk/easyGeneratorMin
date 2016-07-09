@@ -8,6 +8,7 @@ namespace EasyGeneratorMin
     {
         protected override void Seed(CourseDataContext db)
         {
+            var format = @"MM\/dd\/yyyy HH:mm";
 
             db.CourseData.Add(new CourseData
             {
@@ -15,8 +16,8 @@ namespace EasyGeneratorMin
                 Title = "TestCourse1",
                 Description = "This is Test Course1",
                 Owner = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now,
-                LastModifiedDate = DateTime.Now
+                CreatedDate = DateTime.Now.ToString(format),
+                LastModifiedDate = DateTime.Now.ToString(format)
             });
 
             db.CourseData.Add(new CourseData
@@ -25,8 +26,8 @@ namespace EasyGeneratorMin
                 Title = "TestCourse2",
                 Description = "This is Test Course2",
                 Owner = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now,
-                LastModifiedDate = DateTime.Now
+                CreatedDate = DateTime.Now.ToString(format),
+                LastModifiedDate = DateTime.Now.ToString(format)
             });
 
             db.SectionCourseData.Add(new SectionCourseData
@@ -35,8 +36,8 @@ namespace EasyGeneratorMin
                 CourseId = "dasdasd",
                 SectionTitle = "First",
                 Owner = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now,
-                LastModifiedDate = DateTime.Now
+                CreatedDate = DateTime.Now.ToString(format),
+                LastModifiedDate = DateTime.Now.ToString(format)
             });
 
             db.SectionCourseData.Add(new SectionCourseData
@@ -45,8 +46,8 @@ namespace EasyGeneratorMin
                 CourseId = "dasdasd",
                 SectionTitle = "Second",
                 Owner = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now,
-                LastModifiedDate = DateTime.Now
+                CreatedDate = DateTime.Now.ToString(format),
+                LastModifiedDate = DateTime.Now.ToString(format)
             });
 
             db.QuestionSectionData.Add(new QuestionSectionData
@@ -55,8 +56,8 @@ namespace EasyGeneratorMin
                 SectionId ="dasdas",
                 QuestionTitle = "First Question",
                 Owner = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now,
-                LastModifiedDate = DateTime.Now
+                CreatedDate = DateTime.Now.ToString(format),
+                LastModifiedDate = DateTime.Now.ToString(format)
             });
             db.QuestionSectionData.Add(new QuestionSectionData
             {
@@ -64,8 +65,8 @@ namespace EasyGeneratorMin
                 SectionId = "assda",
                 QuestionTitle = "Second Question",
                 Owner = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now,
-                LastModifiedDate = DateTime.Now
+                CreatedDate = DateTime.Now.ToString(format),
+                LastModifiedDate = DateTime.Now.ToString(format)
             });
 
             db.SaveChanges();

@@ -1,6 +1,17 @@
 ﻿<section>
     <div>
         Hello! You!
-        <a href="#addcourse" data-bind="click: AddCourse">Add Course</a>
+        <a href="#addcourse" data-bind="click: AddCourse">
+            Add Course
+        </a>
+        <div data-bind="foreach: courses">
+            <div>
+                <span data-bind="text: title"></span>
+                <span data-bind="text: description"></span>
+                <span data-bind="text: owner"></span>
+                <span data-bind="text: lastModifiedDate"></span>
+                <span data-bind="text: createdDate"></span>  
+            </div>
+        </div>
     </div>
 </section>
