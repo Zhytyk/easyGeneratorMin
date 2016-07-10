@@ -199,6 +199,9 @@
     <Compile Include="Data_Base\Configurations\SectionCourseDataConfiguration.cs" />
     <Compile Include="Data_Base\Context\CourseDataContext.cs" />
     <Compile Include="Data_Base\DbInitializer\CourseDataDbInitializer.cs" />
+    <Compile Include="Data_Base\Interfaces\IRepositoryCourse.cs" />
+    <Compile Include="Data_Base\Interfaces\IRepositoryQuestion.cs" />
+    <Compile Include="Data_Base\Interfaces\IRepositorySection.cs" />
     <Compile Include="Data_Base\Models\CourseData.cs" />
     <Compile Include="Data_Base\Models\OwnerDataInfo.cs" />
     <Compile Include="Data_Base\Models\QuestionSectionData.cs" />
@@ -225,6 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data_Base\Repository\" />
     <Folder Include="Views\ShippingCourses\" />
   </ItemGroup>
   <PropertyGroup>
