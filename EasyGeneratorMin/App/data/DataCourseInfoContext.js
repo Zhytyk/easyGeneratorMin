@@ -1,4 +1,4 @@
-﻿define(['models/course', 'http/httpWrapper'], function (Course, http) {
+﻿define(['plugins/router','models/course', 'http/httpWrapper'], function (router, Course, http) {
 
     function mapCourse(course) {
         return new Course(course);
@@ -17,14 +17,18 @@
         self = this;
         return http.post('post/addCourse', course).then(function (course) {
             self.courses.push(mapCourse(course));
+            router.navigate("#");
         });
     }
 
     function removeCourseById(id) {
-        return http.get('get/removeCourse', { id: id }).then(function () {
-            self.courses = [];
-            initializeCourses();
+        self = this;
+        this.courses.forEach(function (course, index) {
+            if (course.id === id) {
+                self.courses.splice(index, 1);
+            }
         });
+        return http.get('get/removeCourse', { id: id });
     }
 
     return {
