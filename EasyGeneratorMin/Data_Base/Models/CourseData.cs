@@ -13,6 +13,11 @@ namespace EasyGeneratorMin
         public string Title { get; set; }
 
         public string Description { get; set; }
+
+        public CourseData()
+        {
+            Id = Guid.NewGuid().ToString();
+        }
         
     }
 }

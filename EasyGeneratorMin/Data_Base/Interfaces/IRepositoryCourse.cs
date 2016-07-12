@@ -15,7 +15,7 @@ namespace EasyGeneratorMin
 
         void ModifyCourse(CourseData Course);
 
-        void RemoveCourse(CourseData Course);
+        void RemoveCourse(string id);
 
     }
 }

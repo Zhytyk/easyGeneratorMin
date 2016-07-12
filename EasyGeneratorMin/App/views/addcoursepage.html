@@ -2,4 +2,9 @@
     <div>
         Add Course
     </div>
+    <form data-bind="submit: addCourse">
+        <input type="text" data-bind="value: title"/>
+        <input type="text" data-bind="value: description"/>
+        <input type="submit" />
+    </form>
 </section>

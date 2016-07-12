@@ -14,5 +14,12 @@ namespace EasyGeneratorMin
 
         public string LastModifiedDate { get; set; }
 
+        public OwnerDataInfo()
+        {
+            Owner = "Pavel Vaydalauskas";
+            CreatedDate = DateTime.Now.ToString();
+            LastModifiedDate = DateTime.Now.ToString();
+        }
+
     }
 }

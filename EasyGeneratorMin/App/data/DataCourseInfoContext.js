@@ -13,8 +13,24 @@
         });
     }
 
+    function addCourse(course) {
+        self = this;
+        return http.post('post/addCourse', course).then(function (course) {
+            self.courses.push(mapCourse(course));
+        });
+    }
+
+    function removeCourseById(id) {
+        return http.get('get/removeCourse', { id: id }).then(function () {
+            self.courses = [];
+            initializeCourses();
+        });
+    }
+
     return {
         initializeCourses: initializeCourses,
+        addCourse: addCourse,
+        removeCourseById: removeCourseById,
         courses: []
     }
 });

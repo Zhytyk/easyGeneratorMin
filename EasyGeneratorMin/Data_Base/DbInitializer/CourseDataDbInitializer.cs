@@ -6,72 +6,69 @@ namespace EasyGeneratorMin
 {
     public class CourseDataDbInitializer : DropCreateDatabaseIfModelChanges<CourseDataContext>
     {
-        protected override void Seed(CourseDataContext db)
+        protected override void Seed(CourseDataContext CourseDataContext)
         {
-            var format = @"MM\/dd\/yyyy HH:mm";
 
-            db.CourseData.Add(new CourseData
+            CourseDataContext.CourseData.Add(new CourseData
             {
                 Id = Guid.NewGuid().ToString(),
                 Title = "TestCourse1",
                 Description = "This is Test Course1",
                 Owner = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now.ToString(format),
-                LastModifiedDate = DateTime.Now.ToString(format)
+                CreatedDate = DateTime.Now.ToString(),
+                LastModifiedDate = DateTime.Now.ToString()
             });
 
-            db.CourseData.Add(new CourseData
+            CourseDataContext.CourseData.Add(new CourseData
             {
                 Id = Guid.NewGuid().ToString(),
                 Title = "TestCourse2",
                 Description = "This is Test Course2",
                 Owner = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now.ToString(format),
-                LastModifiedDate = DateTime.Now.ToString(format)
+                CreatedDate = DateTime.Now.ToString(),
+                LastModifiedDate = DateTime.Now.ToString()
             });
 
-            db.SectionCourseData.Add(new SectionCourseData
+            CourseDataContext.SectionCourseData.Add(new SectionCourseData
             {
                 Id = Guid.NewGuid().ToString(),
                 CourseId = "dasdasd",
                 SectionTitle = "First",
                 Owner = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now.ToString(format),
-                LastModifiedDate = DateTime.Now.ToString(format)
+                CreatedDate = DateTime.Now.ToString(),
+                LastModifiedDate = DateTime.Now.ToString()
             });
 
-            db.SectionCourseData.Add(new SectionCourseData
+            CourseDataContext.SectionCourseData.Add(new SectionCourseData
             {
                 Id = Guid.NewGuid().ToString(),
                 CourseId = "dasdasd",
                 SectionTitle = "Second",
                 Owner = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now.ToString(format),
-                LastModifiedDate = DateTime.Now.ToString(format)
+                CreatedDate = DateTime.Now.ToString(),
+                LastModifiedDate = DateTime.Now.ToString()
             });
 
-            db.QuestionSectionData.Add(new QuestionSectionData
+            CourseDataContext.QuestionSectionData.Add(new QuestionSectionData
             {
                 Id = Guid.NewGuid().ToString(),
                 SectionId ="dasdas",
                 QuestionTitle = "First Question",
                 Owner = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now.ToString(format),
-                LastModifiedDate = DateTime.Now.ToString(format)
+                CreatedDate = DateTime.Now.ToString(),
+                LastModifiedDate = DateTime.Now.ToString()
             });
-            db.QuestionSectionData.Add(new QuestionSectionData
+            CourseDataContext.QuestionSectionData.Add(new QuestionSectionData
             {
                 Id = Guid.NewGuid().ToString(),
                 SectionId = "assda",
                 QuestionTitle = "Second Question",
                 Owner = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now.ToString(format),
-                LastModifiedDate = DateTime.Now.ToString(format)
+                CreatedDate = DateTime.Now.ToString(),
+                LastModifiedDate = DateTime.Now.ToString()
             });
 
-            db.SaveChanges();
-
-            base.Seed(db);
+            base.Seed(CourseDataContext);
         }
     }
 }
