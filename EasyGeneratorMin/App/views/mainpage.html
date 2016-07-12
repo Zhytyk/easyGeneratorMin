@@ -11,6 +11,7 @@
                 <span data-bind="text: owner"></span>
                 <span data-bind="text: lastModifiedDate"></span>
                 <span data-bind="text: createdDate"></span> 
+                <button data-bind="click: function() { $root.editCourse($data) }">Edit</button>
                 <button data-bind="click: function() { $root.removeCourse($data.id) }">Delete</button>
             </div>
         </div>

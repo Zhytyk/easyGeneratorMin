@@ -17,7 +17,6 @@
         self = this;
         return http.post('post/addCourse', course).then(function (course) {
             self.courses.push(mapCourse(course));
-            router.navigate("#");
         });
     }
 
@@ -31,10 +30,20 @@
         return http.get('get/removeCourse', { id: id });
     }
 
+    function editCourse(course) {
+        self = this;
+        return http.post('post/editCourse', course).then(function (modifiedCourse) {
+            self.courses.forEach(function (course, index) {
+                self.courses[index] = course.id === modifiedCourse.Id ? mapCourse(modifiedCourse) : course;
+            });
+        });
+    }
+
     return {
         initializeCourses: initializeCourses,
         addCourse: addCourse,
         removeCourseById: removeCourseById,
+        editCourse: editCourse,
         courses: []
     }
 });

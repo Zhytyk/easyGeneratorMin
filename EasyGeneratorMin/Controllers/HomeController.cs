@@ -12,9 +12,7 @@ namespace EasyGeneratorMin.Controllers
         [Route("", Name = "Home")]
         public ActionResult Index()
         {
-            CourseDataContext CourseDataContext = new CourseDataContext();
-            IEnumerable<CourseData> courses = CourseDataContext.CourseData;
-            return View(courses);
+            return View();
         }
     }
 }

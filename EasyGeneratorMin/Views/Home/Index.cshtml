@@ -1,5 +1,4 @@
 ﻿@using System.Web.Optimization;
-@model IEnumerable<CourseData>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,16 +11,6 @@
             Welcome to EasyGeneratorMin!
         </span>
     </div>
-    @foreach (CourseData item in Model)
-    {
-        <div>
-            <span>@item.Title</span>
-            <span>@item.Description</span>
-            <span>@item.Owner</span>
-            <span>@item.LastModifiedDate</span>
-            <span>@item.CreatedDate</span>
-        </div>
-    }
     @Html.RouteLink("Go to Courses", "Course")
 </body>
 </html>

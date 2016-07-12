@@ -31,8 +31,15 @@ namespace EasyGeneratorMin.Controllers
         [Route("get/removeCourse", Name = "AjaxPostRemoveCourse")]
         public void RemoveCourse(string id)
         {
-            
             CourseRepository.RemoveCourse(id);
+        }
+
+        [HttpPost]
+        [Route("post/editCourse", Name = "AjaxPostEditCourse")]
+        public JsonResult ModifyCourse(CourseData Course)
+        {
+            CourseRepository.ModifyCourse(Course);
+            return Json(Course, JsonRequestBehavior.AllowGet);
         }
     }
 }
