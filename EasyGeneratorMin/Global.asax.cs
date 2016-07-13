@@ -9,11 +9,11 @@ using System.Web.Routing;
 
 namespace EasyGeneratorMin
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
-
+            AutofacConfig.ConfigureContainer();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer(new CourseDataDbInitializer());

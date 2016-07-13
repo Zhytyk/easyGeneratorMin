@@ -9,7 +9,13 @@ namespace EasyGeneratorMin.Controllers
     public class ShippingCoursesController : Controller
     {
 
-        CourseRepository CourseRepository = new CourseRepository();
+        IRepositoryCourse CourseRepository;
+
+        public ShippingCoursesController(IRepositoryCourse CourseRepository)
+        {
+            this.CourseRepository = CourseRepository;
+        }
+
 
         [HttpPost]
         [Route("post/getCourses", Name = "AjaxPostGetCourses")]

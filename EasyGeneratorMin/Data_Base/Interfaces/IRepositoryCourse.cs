@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EasyGeneratorMin
 {
-    interface IRepositoryCourse
+    public interface IRepositoryCourse
     {
 
         IEnumerable<CourseData> GetCourses();

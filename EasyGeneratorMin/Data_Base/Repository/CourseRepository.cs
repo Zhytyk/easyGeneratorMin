@@ -8,6 +8,7 @@ namespace EasyGeneratorMin
 {
     public class CourseRepository : IRepositoryCourse
     {
+
         CourseDataContext CourseDataContext = new CourseDataContext();
 
         public IEnumerable<CourseData> GetCourses()
@@ -38,5 +39,6 @@ namespace EasyGeneratorMin
         {
             return CourseDataContext.CourseData.Find(id);
         }
+        
     }
 }

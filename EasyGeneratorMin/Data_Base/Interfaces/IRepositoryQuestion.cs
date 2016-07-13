@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EasyGeneratorMin
 {
-    interface IRepositoryQuestion
+    public interface IRepositoryQuestion
     {
 
         IEnumerable<QuestionSectionData> GetSections();
