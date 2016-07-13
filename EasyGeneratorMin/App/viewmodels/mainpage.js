@@ -1,4 +1,4 @@
-﻿define(['plugins/router', 'data/dataCourseInfoContext'], function (router, dataCourseInfoContext) {
+﻿define(['plugins/router', 'data/dataCourseInfoContext', 'data/dataCourseInfoRepository'], function (router, dataCourseInfoContext, dataCourseInfoRepository) {
     return {
         courses: ko.observableArray([]),
         activate: function () {
@@ -11,7 +11,7 @@
             router.navigate("#editCourse/" + course.id);
         },
         removeCourse: function (id) {
-            dataCourseInfoContext.removeCourseById(id);
+            dataCourseInfoRepository.removeCourseById(id);
             this.courses(dataCourseInfoContext.courses);
         }
     }

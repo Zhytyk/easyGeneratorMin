@@ -1,4 +1,4 @@
-﻿define(['data/dataCourseInfoContext'], function (dataCourseInfoContext) {
+﻿define(['data/dataCourseInfoRepository'], function (dataCourseInfoRepository) {
     return {
         title: ko.observable(),
         description: ko.observable(),
@@ -7,7 +7,7 @@
         },
         addCourse: function () {
             var course = { Title: this.title, Description: this.description, CreatedDate: new Date().toLocaleString()};
-            dataCourseInfoContext.addCourse(course);
+            dataCourseInfoRepository.addCourse(course);
         }
 
     }

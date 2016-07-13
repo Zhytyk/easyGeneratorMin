@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\data\dataCourseInfoContext.js" />
+    <Content Include="App\data\dataCourseInfoRepository.js" />
     <Content Include="App\http\httpWrapper.js" />
     <Content Include="App\main.js" />
     <Content Include="App\models\course.js" />
