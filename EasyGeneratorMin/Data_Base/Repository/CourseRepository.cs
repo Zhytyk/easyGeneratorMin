@@ -8,8 +8,12 @@ namespace EasyGeneratorMin
 {
     public class CourseRepository : IRepositoryCourse
     {
+        private CourseDataContext CourseDataContext;
+        public CourseRepository(CourseDataContext CourseDataContext)
+        {
+            this.CourseDataContext = CourseDataContext;
+        }
 
-        CourseDataContext CourseDataContext = new CourseDataContext();
 
         public IEnumerable<CourseData> GetCourses()
         {
@@ -24,8 +28,13 @@ namespace EasyGeneratorMin
 
         public void ModifyCourse(CourseData Course)
         {
-            CourseDataContext.Entry(Course).State = EntityState.Modified;
-            CourseDataContext.SaveChanges();
+            var existedCourseId = CourseDataContext.CourseData.Find(Course.Id);
+
+            if (existedCourseId != null)
+            {
+                CourseDataContext.Entry(existedCourseId).CurrentValues.SetValues(Course);
+                CourseDataContext.SaveChanges();
+            }
         }
 
         public void RemoveCourse(string id)
