@@ -6,7 +6,7 @@
 
         },
         addCourse: function () {
-            var course = { Title: this.title, Description: this.description };
+            var course = { Title: this.title, Description: this.description, CreatedDate: new Date().toLocaleString()};
             dataCourseInfoContext.addCourse(course);
         }
 

@@ -17,7 +17,6 @@ namespace EasyGeneratorMin
         public OwnerDataInfo()
         {
             Owner = "Pavel Vaydalauskas";
-            CreatedDate = DateTime.Now.ToString();
             LastModifiedDate = DateTime.Now.ToString();
         }
 
