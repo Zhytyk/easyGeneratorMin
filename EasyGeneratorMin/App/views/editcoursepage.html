@@ -3,8 +3,10 @@
         Edit Course
     </div>
     <form data-bind="submit: editCourse">
-        <input type="text" data-bind="value: title" />
-        <input type="text" data-bind="value: description" />
+        <input type="text" data-bind="value: title, valueUpdate: 'afterkeydown'" />
+        <span data-bind="visible: title.hasError, text: title.validationMessage"></span>
+        <input type="text" data-bind="value: description, valueUpdate: 'afterkeydown'" />
+        <span data-bind="visible: description.hasError, text: description.validationMessage"></span>
         <input type="submit" />
     </form>
 </section>

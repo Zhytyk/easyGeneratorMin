@@ -20,7 +20,8 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'durandal/com
     app.title = "Courses";
 
     app.configurePlugins({
-        router: true
+        router: true,
+        dialog: true
     });
 
     app.start().then(function () {

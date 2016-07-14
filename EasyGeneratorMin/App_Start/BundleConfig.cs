@@ -12,6 +12,7 @@ namespace EasyGeneratorMin
                 .Include("~/Scripts/jquery-{version}.js")
                 .Include("~/Scripts/knockout-{version}.js")
                 .Include("~/Scripts/sammy-{version}.js")
+                .Include("~/Scripts/jquery.validate.js")
                 );
 
             bundles.Add(
