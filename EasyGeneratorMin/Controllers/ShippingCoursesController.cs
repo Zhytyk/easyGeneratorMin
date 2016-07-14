@@ -9,7 +9,7 @@ namespace EasyGeneratorMin.Controllers
     public class ShippingCoursesController : Controller
     {
 
-        IRepositoryCourse CourseRepository;
+        private IRepositoryCourse CourseRepository;
 
         public ShippingCoursesController(IRepositoryCourse CourseRepository)
         {
