@@ -12,7 +12,7 @@
 define('jquery', [], function () { return jQuery; });
 define('knockout', [], function () { return ko; });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'durandal/composition', 'data/dataCourseInfoRepository'], function (system, app, viewLocator, composition, dataCourseInfoRepository) {
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'durandal/composition', 'data/dataContext'], function (system, app, viewLocator, composition, dataContext) {
 
     //>>excludeStart("build", true);
     system.debug(true);
@@ -30,7 +30,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'durandal/com
         viewLocator.useConvention();
 
         //Show the app by setting the root view model for our application with a transition.
-        dataCourseInfoRepository.initializeCourses().then(function () {
+        dataContext.initializeCourses().then(function () {
             app.setRoot('viewmodels/shell', 'entrance');
         });
        

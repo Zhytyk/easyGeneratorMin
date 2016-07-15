@@ -150,11 +150,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App\data\dataCourseInfoContext.js" />
-    <Content Include="App\data\dataCourseInfoRepository.js" />
+    <Content Include="App\data\dataContext.js" />
+    <Content Include="App\data\dataRepository.js" />
     <Content Include="App\extenders\validationExtenders.js" />
     <Content Include="App\http\httpWrapper.js" />
     <Content Include="App\main.js" />
+    <Content Include="App\mapping\mapModel.js" />
     <Content Include="App\models\course.js" />
     <Content Include="App\models\ownerData.js" />
     <Content Include="App\models\question.js" />

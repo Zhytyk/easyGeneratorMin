@@ -8,45 +8,45 @@ namespace EasyGeneratorMin
 {
     public class CourseRepository : IRepositoryCourse
     {
-        private CourseDataContext CourseDataContext;
-        public CourseRepository(CourseDataContext CourseDataContext)
+        private CourseDataContext _courseDataContext;
+        public CourseRepository(CourseDataContext courseDataContext)
         {
-            this.CourseDataContext = CourseDataContext;
+            _courseDataContext = courseDataContext;
         }
 
 
         public IEnumerable<CourseData> GetCourses()
         {
-            return CourseDataContext.CourseData;
+            return _courseDataContext.CourseData;
         }
 
         public void AddCourse(CourseData Course)
         {
-            CourseDataContext.Entry(Course).State = EntityState.Added;
-            CourseDataContext.SaveChanges();
+            _courseDataContext.Entry(Course).State = EntityState.Added;
+            _courseDataContext.SaveChanges();
         }
 
         public void ModifyCourse(CourseData Course)
         {
-            var existedCourseId = CourseDataContext.CourseData.Find(Course.Id);
+            var existedCourseId = _courseDataContext.CourseData.Find(Course.Id);
 
             if (existedCourseId != null)
             {
-                CourseDataContext.Entry(existedCourseId).CurrentValues.SetValues(Course);
-                CourseDataContext.SaveChanges();
+                _courseDataContext.Entry(existedCourseId).CurrentValues.SetValues(Course);
+                _courseDataContext.SaveChanges();
             }
         }
 
         public void RemoveCourse(string id)
         {
             CourseData Course = GetCourseById(id);
-            CourseDataContext.Entry(Course).State = EntityState.Deleted;
-            CourseDataContext.SaveChanges();
+            _courseDataContext.Entry(Course).State = EntityState.Deleted;
+            _courseDataContext.SaveChanges();
         }
 
         public CourseData GetCourseById(string id)
         {
-            return CourseDataContext.CourseData.Find(id);
+            return _courseDataContext.CourseData.Find(id);
         }
         
     }
