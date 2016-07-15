@@ -1,0 +1,2 @@
+# easyGeneratorMin
+easyGenerator test project
