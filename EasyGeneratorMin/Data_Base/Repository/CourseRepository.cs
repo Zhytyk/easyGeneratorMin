@@ -20,6 +20,11 @@ namespace EasyGeneratorMin
             return _courseDataContext.CourseData;
         }
 
+        public CourseData GetCourseById(string id)
+        {
+            return _courseDataContext.CourseData.Find(id);
+        }
+
         public void AddCourse(CourseData Course)
         {
             _courseDataContext.Entry(Course).State = EntityState.Added;
@@ -42,11 +47,6 @@ namespace EasyGeneratorMin
             CourseData Course = GetCourseById(id);
             _courseDataContext.Entry(Course).State = EntityState.Deleted;
             _courseDataContext.SaveChanges();
-        }
-
-        public CourseData GetCourseById(string id)
-        {
-            return _courseDataContext.CourseData.Find(id);
         }
         
     }

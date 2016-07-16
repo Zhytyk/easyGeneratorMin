@@ -14,15 +14,17 @@
     };
 
     function addCourse(course) {
-         return http.post('post/addCourse', course).then(function (course) {
+        return http.get('get/addCourse', course)
+            .then(function (course) {
             dataContext.courses.push(mapModel.mapCourse(course));
         });
     }
 
     function removeCourse(id) {   
-        return http.get('get/removeCourse', { id: id }).then(function () {
-            removeCourseFromContext(id);
-        });
+        return http.get('get/removeCourse', { id: id })
+            .then(function (id) {
+                removeCourseFromContext(id);
+            });
     }
 
     function removeCourseFromContext(id) {
@@ -34,9 +36,10 @@
     }
 
     function updateCourse(course) {
-        return http.post('post/updateCourse', course).then(function (updatedCourse) {
-            dataContext.courses.forEach(function (course, index) {
-                dataContext.courses[index] = course.id === updatedCourse.Id ? mapModel.mapCourse(updatedCourse) : course;
+        return http.get('get/updateCourse', course)
+            .then(function (updatedCourse) {
+                dataContext.courses.forEach(function (course, index) {
+                    dataContext.courses[index] = course.id === updatedCourse.Id ? mapModel.mapCourse(updatedCourse) : course;
             });
         });
     }

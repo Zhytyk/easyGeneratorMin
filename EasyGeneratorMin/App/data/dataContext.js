@@ -2,7 +2,7 @@
 
     function initializeCourses() {
         self = this;
-        return http.post('post/getCourses').then(function (data) {
+        return http.get('get/getCourses').then(function (data) {
             data.forEach(function (course) {
                self.courses.push(mapModel.mapCourse(course));
             });
