@@ -161,11 +161,11 @@
     <Content Include="App\models\question.js" />
     <Content Include="App\models\section.js" />
     <Content Include="App\viewmodels\addcoursepage.js" />
-    <Content Include="App\viewmodels\editcoursepage.js" />
+    <Content Include="App\viewmodels\updatecoursepage.js" />
     <Content Include="App\viewmodels\mainpage.js" />
     <Content Include="App\viewmodels\shell.js" />
     <Content Include="App\views\addcoursepage.html" />
-    <Content Include="App\views\editcoursepage.html" />
+    <Content Include="App\views\updatecoursepage.html" />
     <Content Include="App\views\mainpage.html" />
     <Content Include="App\views\shell.html" />
     <Content Include="Content\style.css" />

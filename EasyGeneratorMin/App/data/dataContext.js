@@ -8,6 +8,7 @@
             });
         });
     }
+
     return {
         initializeCourses: initializeCourses,
         courses: []

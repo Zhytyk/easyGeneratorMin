@@ -18,7 +18,7 @@ namespace EasyGeneratorMin.Controllers
 
 
         [HttpPost]
-        [Route("post/getCourses", Name = "AjaxPostGetCourses")]
+        [Route("post/getCourses")]
         public JsonResult GetCoursesData()
         {
             IEnumerable<CourseData> Courses = _courseRepository.GetCourses();
@@ -26,7 +26,7 @@ namespace EasyGeneratorMin.Controllers
         }
 
         [HttpPost]
-        [Route("post/addCourse", Name =  "AjaxPostAddCourse")]
+        [Route("post/addCourse")]
         public JsonResult AddCourse(CourseData Course)
         {
             _courseRepository.AddCourse(Course);
@@ -34,15 +34,15 @@ namespace EasyGeneratorMin.Controllers
         }
 
         [HttpGet]
-        [Route("get/removeCourse", Name = "AjaxPostRemoveCourse")]
+        [Route("get/removeCourse")]
         public void RemoveCourse(string id)
         {
             _courseRepository.RemoveCourse(id);
         }
 
         [HttpPost]
-        [Route("post/editCourse", Name = "AjaxPostEditCourse")]
-        public JsonResult ModifyCourse(CourseData Course)
+        [Route("post/updateCourse")]
+        public JsonResult UpdateCourse(CourseData Course)
         {
             _courseRepository.ModifyCourse(Course);
             return Json(Course, JsonRequestBehavior.AllowGet);

@@ -5,7 +5,7 @@
             router.map([
                { route: '', title: 'Main View', moduleId: 'viewmodels/mainpage', nav: true },
                { route: 'addcourse', title: 'Add course', moduleId: 'viewmodels/addcoursepage', nav: true },
-               { route: 'editcourse/:id', title: 'Edit course', moduleId: 'viewmodels/editcoursepage', nav: true }
+               { route: 'updatecourse/:id', title: 'Update course', moduleId: 'viewmodels/updatecoursepage', nav: true }
             ]).buildNavigationModel();
 
             return router.activate();

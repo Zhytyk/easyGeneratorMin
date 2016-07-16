@@ -1,11 +1,6 @@
 ﻿define(['data/dataRepository', 'extenders/validationExtenders', 'plugins/router'], function (dataRepository, validationExtenders, router) {
-    function getCourseById(id) {
-        return dataRepository.getCourses().filter(function (course) {
-            return course.id == id
-        })[0];
-    };
     function initializeFormPage(id, self) {
-        self.currentCourse = getCourseById(id);
+        self.currentCourse = dataRepository.getCourseById(id);
         self.title(self.currentCourse.title);
         self.description(self.currentCourse.description);
     };
@@ -16,9 +11,9 @@
         activate: function (id) {
             initializeFormPage(id, this);
         },
-        editCourse: function () {
+        updateCourse: function () {
             var course = { Id: this.currentCourse.id, Title: this.title, Description: this.description, CreatedDate: this.currentCourse.createdDate };
-            dataRepository.editCourse(course).then(function () {
+            dataRepository.updateCourse(course).then(function () {
                 router.navigate("#");
             });
         },

@@ -7,8 +7,8 @@
         addCourse: function () {
             router.navigate("#addCourse");
         },
-        editCourse: function(course) {
-            router.navigate("#editCourse/" + course.id);
+        updateCourse: function(course) {
+            router.navigate("#updatecourse/" + course.id);
         },
         removeCourse: function (id) {
             self = this;

@@ -7,6 +7,12 @@
         return dataContext.courses;
     }
 
+    function getCourseById(id) {
+        return getCourses().filter(function (course) {
+            return course.id == id
+        })[0];
+    };
+
     function addCourse(course) {
          return http.post('post/addCourse', course).then(function (course) {
             dataContext.courses.push(mapModel.mapCourse(course));
@@ -27,17 +33,19 @@
         });
     }
 
-    function editCourse(course) {
-        return http.post('post/editCourse', course).then(function (modifiedCourse) {
+    function updateCourse(course) {
+        return http.post('post/updateCourse', course).then(function (updatedCourse) {
             dataContext.courses.forEach(function (course, index) {
-                dataContext.courses[index] = course.id === modifiedCourse.Id ? mapModel.mapCourse(modifiedCourse) : course;
+                dataContext.courses[index] = course.id === updatedCourse.Id ? mapModel.mapCourse(updatedCourse) : course;
             });
         });
     }
+
     return {
         getCourses: getCourses,
+        getCourseById: getCourseById,
         addCourse: addCourse,
         removeCourse: removeCourse,
-        editCourse: editCourse,
+        updateCourse: updateCourse,
     }
 })
