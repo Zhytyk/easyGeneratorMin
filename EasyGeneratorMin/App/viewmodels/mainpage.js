@@ -4,15 +4,15 @@
         activate: function () {
             this.courses(dataContext.courses);
         },
-        AddCourse: function () {
+        addCourse: function () {
             router.navigate("#addCourse");
         },
         editCourse: function(course) {
             router.navigate("#editCourse/" + course.id);
         },
         removeCourse: function (id) {
-            dataRepository.removeCourseById(id);
-            this.courses(dataContext.courses);
+            self = this;
+            dataRepository.removeCourse(id).then(function () { self.courses(dataRepository.getCourses()); });
         }
     }
 })

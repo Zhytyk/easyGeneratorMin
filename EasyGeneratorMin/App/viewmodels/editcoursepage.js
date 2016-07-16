@@ -1,6 +1,6 @@
-﻿define(['data/dataContext', 'data/dataRepository', 'extenders/validationExtenders'], function (dataContext, dataRepository, validationExtenders) {
+﻿define(['data/dataRepository', 'extenders/validationExtenders', 'plugins/router'], function (dataRepository, validationExtenders, router) {
     function getCourseById(id) {
-        return dataContext.courses.filter(function (course) {
+        return dataRepository.getCourses().filter(function (course) {
             return course.id == id
         })[0];
     };
@@ -18,7 +18,9 @@
         },
         editCourse: function () {
             var course = { Id: this.currentCourse.id, Title: this.title, Description: this.description, CreatedDate: this.currentCourse.createdDate };
-            dataRepository.editCourse(course);
+            dataRepository.editCourse(course).then(function () {
+                router.navigate("#");
+            });
         },
     }
 

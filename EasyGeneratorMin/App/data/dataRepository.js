@@ -1,18 +1,30 @@
 ﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/mapModel'], function (dataContext, http, mapModel) {
 
+    function getCourses() {
+        if (!dataContext.courses) {
+            dataContext.initializeCourses();
+        }
+        return dataContext.courses;
+    }
+
     function addCourse(course) {
-        return http.post('post/addCourse', course).then(function (course) {
+         return http.post('post/addCourse', course).then(function (course) {
             dataContext.courses.push(mapModel.mapCourse(course));
         });
     }
 
-    function removeCourseById(id) {
+    function removeCourse(id) {   
+        return http.get('get/removeCourse', { id: id }).then(function () {
+            removeCourseFromContext(id);
+        });
+    }
+
+    function removeCourseFromContext(id) {
         dataContext.courses.forEach(function (course, index) {
             if (course.id === id) {
                 dataContext.courses.splice(index, 1);
             }
         });
-        return http.get('get/removeCourse', { id: id });
     }
 
     function editCourse(course) {
@@ -23,8 +35,9 @@
         });
     }
     return {
+        getCourses: getCourses,
         addCourse: addCourse,
-        removeCourseById: removeCourseById,
+        removeCourse: removeCourse,
         editCourse: editCourse,
     }
 })
