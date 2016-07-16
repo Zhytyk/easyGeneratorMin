@@ -35,10 +35,9 @@ namespace EasyGeneratorMin.Controllers
 
         [HttpGet]
         [Route("get/removeCourse")]
-        public JsonResult RemoveCourse(string id)
+        public void RemoveCourse(string id)
         {
             _courseRepository.RemoveCourse(id);
-            return Json(id, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

@@ -22,7 +22,7 @@
 
     function removeCourse(id) {   
         return http.get('get/removeCourse', { id: id })
-            .then(function (id) {
+            .then(function () {
                 removeCourseFromContext(id);
             });
     }
