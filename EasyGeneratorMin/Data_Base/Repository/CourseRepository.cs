@@ -20,31 +20,31 @@ namespace EasyGeneratorMin
             return _db.Courses;
         }
 
-        public CourseModel GetCourseById(string id)
+        public CourseModel GetValueById(string id)
         {
             return _db.Courses.Find(id);
         }
 
-        public void Create(CourseModel сourse)
+        public void Create(CourseModel course)
         {
-            _db.Entry(сourse).State = EntityState.Added;
+            _db.Entry(course).State = EntityState.Added;
             _db.SaveChanges();
         }
 
         public void Update(CourseModel сourse)
         {
-            var existedCourseId = _db.Courses.Find(сourse.Id);
+            var existedCourse = GetValueById(сourse.Id);
 
-            if (existedCourseId != null)
+            if (existedCourse != null)
             {
-                _db.Entry(existedCourseId).CurrentValues.SetValues(сourse);
+                _db.Entry(existedCourse).CurrentValues.SetValues(сourse);
                 _db.SaveChanges();
             }
         }
 
         public void Remove(string id)
         {
-            CourseModel сourse = GetCourseById(id);
+            CourseModel сourse = GetValueById(id);
             _db.Entry(сourse).State = EntityState.Deleted;
             _db.SaveChanges();
         }

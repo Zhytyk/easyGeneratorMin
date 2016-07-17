@@ -12,8 +12,7 @@
             initializeFormPage(id, this);
         },
         updateCourse: function () {
-            var course = { Id: this.currentCourse.id, Title: this.title, Description: this.description, CreatedDate: this.currentCourse.createdDate };
-            dataRepository.updateCourse(course).then(function () {
+            dataRepository.updateCourse(this.currentCourse.id, this.title, this.description).then(function () {
                 router.navigate("#");
             });
         },

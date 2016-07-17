@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace EasyGeneratorMin
 {
-    public interface IRepository<TModel> where TModel : class
+    public interface IRepository<TModel> where TModel : EducationModel
     {
 
         IEnumerable<TModel> GetCollection();
 
-        void Create(TModel Course);
+        TModel GetValueById(string id);
 
-        void Update(TModel Course);
+        void Create(TModel course);
+
+        void Update(TModel course);
 
         void Remove(string id);
 

@@ -4,11 +4,11 @@
         activate: function () {
             this.courses(dataContext.courses);
         },
-        addCourse: function () {
-            router.navigate("#addCourse");
+        createCourse: function () {
+            router.navigate("#create");
         },
         updateCourse: function(id) {
-            router.navigate("#updatecourse/" + id);
+            router.navigate("#update/" + id);
         },
         removeCourse: function (id) {
             self = this;

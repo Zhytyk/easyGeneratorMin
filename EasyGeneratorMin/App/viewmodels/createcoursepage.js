@@ -6,9 +6,8 @@
             this.title("SomeCourse");
             this.description("SomeDescription");
         },
-        addCourse: function () {
-            var course = { Title: this.title, Description: this.description, CreatedDate: new Date().toLocaleString()};
-            dataRepository.addCourse(course).then(function () {
+        createCourse: function () {
+            dataRepository.createCourse(this.title, this.description).then(function () {
                 router.navigate("#");
             });
         }

@@ -26,10 +26,18 @@ namespace EasyGeneratorMin.Controllers
         }
 
         [HttpGet]
-        [Route("get/addCourse")]
-        public JsonResult CreateCourse(CourseModel course)
+        [Route("get/createCourse")]
+        public JsonResult CreateCourse(string title, string description)
         {
+            var course = new CourseModel
+            {
+                Title = title,
+                Description = description,
+                CreatedDate = DateTime.Now.ToString()
+            };
+
             _courseRepository.Create(course);
+
             return Json(course, JsonRequestBehavior.AllowGet);
         }
 
@@ -42,9 +50,15 @@ namespace EasyGeneratorMin.Controllers
 
         [HttpGet]
         [Route("get/updateCourse")]
-        public JsonResult UpdateCourse(CourseModel course)
+        public JsonResult UpdateCourse(string id, string title, string description)
         {
+            var course = _courseRepository.GetValueById(id);
+            course.Title = title;
+            course.Description = description;
+            course.LastModifiedDate = DateTime.Now.ToString();
+
             _courseRepository.Update(course);
+
             return Json(course, JsonRequestBehavior.AllowGet);
         }
     }

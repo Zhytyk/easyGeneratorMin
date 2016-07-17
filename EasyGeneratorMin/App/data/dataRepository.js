@@ -13,10 +13,10 @@
         })[0];
     };
 
-    function addCourse(course) {
-        return http.get('get/addCourse', course)
-            .then(function (course) {
-            dataContext.courses.push(mapModel.mapCourse(course));
+    function createCourse(title, description) {
+        return http.get('get/createCourse', { title: title, description: description })
+            .then(function (createdCourse) {
+            dataContext.courses.push(mapModel.mapCourse(createdCourse));
         });
     }
 
@@ -35,8 +35,8 @@
         });
     }
 
-    function updateCourse(course) {
-        return http.get('get/updateCourse', course)
+    function updateCourse(id, title, description) {
+        return http.get('get/updateCourse', {id: id, title: title, description: description})
             .then(function (updatedCourse) {
                 dataContext.courses.forEach(function (course, index) {
                     dataContext.courses[index] = course.id === updatedCourse.Id ? mapModel.mapCourse(updatedCourse) : course;
@@ -47,7 +47,7 @@
     return {
         getCourses: getCourses,
         getCourseById: getCourseById,
-        addCourse: addCourse,
+        createCourse: createCourse,
         removeCourse: removeCourse,
         updateCourse: updateCourse,
     }
