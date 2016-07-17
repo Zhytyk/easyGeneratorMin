@@ -8,7 +8,7 @@ namespace EasyGeneratorMin.Controllers
 {
     public class CourseController : Controller
     {
-        // GET: Course
+        
         [Route("course", Name = "Course")]
         public ActionResult Index()
         {

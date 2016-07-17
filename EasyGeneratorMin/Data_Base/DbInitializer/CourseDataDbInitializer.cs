@@ -6,69 +6,69 @@ namespace EasyGeneratorMin
 {
     public class CourseDataDbInitializer : DropCreateDatabaseIfModelChanges<CourseDataContext>
     {
-        protected override void Seed(CourseDataContext CourseDataContext)
+        protected override void Seed(CourseDataContext db)
         {
 
-            CourseDataContext.CourseData.Add(new CourseData
+            db.Courses.Add(new CourseModel
             {
                 Id = Guid.NewGuid().ToString(),
                 Title = "TestCourse1",
                 Description = "This is Test Course1",
-                Owner = "Pavel Vaydalauskas",
+                Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now.ToString(),
                 LastModifiedDate = DateTime.Now.ToString()
             });
 
-            CourseDataContext.CourseData.Add(new CourseData
+            db.Courses.Add(new CourseModel
             {
                 Id = Guid.NewGuid().ToString(),
                 Title = "TestCourse2",
                 Description = "This is Test Course2",
-                Owner = "Pavel Vaydalauskas",
+                Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now.ToString(),
                 LastModifiedDate = DateTime.Now.ToString()
             });
 
-            CourseDataContext.SectionCourseData.Add(new SectionCourseData
+            db.Sections.Add(new SectionModel
             {
                 Id = Guid.NewGuid().ToString(),
                 CourseId = "dasdasd",
-                SectionTitle = "First",
-                Owner = "Pavel Vaydalauskas",
+                Title = "First",
+                Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now.ToString(),
                 LastModifiedDate = DateTime.Now.ToString()
             });
 
-            CourseDataContext.SectionCourseData.Add(new SectionCourseData
+            db.Sections.Add(new SectionModel
             {
                 Id = Guid.NewGuid().ToString(),
                 CourseId = "dasdasd",
-                SectionTitle = "Second",
-                Owner = "Pavel Vaydalauskas",
+                Title = "Second",
+                Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now.ToString(),
                 LastModifiedDate = DateTime.Now.ToString()
             });
 
-            CourseDataContext.QuestionSectionData.Add(new QuestionSectionData
+            db.Questions.Add(new QuestionModel
             {
                 Id = Guid.NewGuid().ToString(),
                 SectionId ="dasdas",
-                QuestionTitle = "First Question",
-                Owner = "Pavel Vaydalauskas",
+                Title = "First Question",
+                Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now.ToString(),
                 LastModifiedDate = DateTime.Now.ToString()
             });
-            CourseDataContext.QuestionSectionData.Add(new QuestionSectionData
+            db.Questions.Add(new QuestionModel
             {
                 Id = Guid.NewGuid().ToString(),
                 SectionId = "assda",
-                QuestionTitle = "Second Question",
-                Owner = "Pavel Vaydalauskas",
+                Title = "Second Question",
+                Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now.ToString(),
                 LastModifiedDate = DateTime.Now.ToString()
             });
 
-            base.Seed(CourseDataContext);
+            base.Seed(db);
         }
     }
 }

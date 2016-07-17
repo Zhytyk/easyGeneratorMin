@@ -6,47 +6,47 @@ using System.Web;
 
 namespace EasyGeneratorMin
 {
-    public class CourseRepository : IRepositoryCourse
+    public class CourseRepository : IRepository<CourseModel>
     {
-        private CourseDataContext _courseDataContext;
-        public CourseRepository(CourseDataContext courseDataContext)
+        private CourseDataContext _db;
+        public CourseRepository(CourseDataContext db)
         {
-            _courseDataContext = courseDataContext;
+            _db = db;
         }
 
 
-        public IEnumerable<CourseData> GetCourses()
+        public IEnumerable<CourseModel> GetCollection()
         {
-            return _courseDataContext.CourseData;
+            return _db.Courses;
         }
 
-        public CourseData GetCourseById(string id)
+        public CourseModel GetCourseById(string id)
         {
-            return _courseDataContext.CourseData.Find(id);
+            return _db.Courses.Find(id);
         }
 
-        public void AddCourse(CourseData Course)
+        public void Create(CourseModel сourse)
         {
-            _courseDataContext.Entry(Course).State = EntityState.Added;
-            _courseDataContext.SaveChanges();
+            _db.Entry(сourse).State = EntityState.Added;
+            _db.SaveChanges();
         }
 
-        public void ModifyCourse(CourseData Course)
+        public void Update(CourseModel сourse)
         {
-            var existedCourseId = _courseDataContext.CourseData.Find(Course.Id);
+            var existedCourseId = _db.Courses.Find(сourse.Id);
 
             if (existedCourseId != null)
             {
-                _courseDataContext.Entry(existedCourseId).CurrentValues.SetValues(Course);
-                _courseDataContext.SaveChanges();
+                _db.Entry(existedCourseId).CurrentValues.SetValues(сourse);
+                _db.SaveChanges();
             }
         }
 
-        public void RemoveCourse(string id)
+        public void Remove(string id)
         {
-            CourseData Course = GetCourseById(id);
-            _courseDataContext.Entry(Course).State = EntityState.Deleted;
-            _courseDataContext.SaveChanges();
+            CourseModel сourse = GetCourseById(id);
+            _db.Entry(сourse).State = EntityState.Deleted;
+            _db.SaveChanges();
         }
         
     }

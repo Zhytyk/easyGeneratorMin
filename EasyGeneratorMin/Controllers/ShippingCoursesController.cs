@@ -9,9 +9,9 @@ namespace EasyGeneratorMin.Controllers
     public class ShippingCoursesController : Controller
     {
 
-        private readonly IRepositoryCourse _courseRepository;
+        private readonly IRepository<CourseModel> _courseRepository;
 
-        public ShippingCoursesController(IRepositoryCourse courseRepository)
+        public ShippingCoursesController(IRepository<CourseModel> courseRepository)
         {
             _courseRepository = courseRepository;
         }
@@ -21,31 +21,31 @@ namespace EasyGeneratorMin.Controllers
         [Route("get/getCourses")]
         public JsonResult GetCoursesData()
         {
-            IEnumerable<CourseData> Courses = _courseRepository.GetCourses();
-            return Json(Courses ,JsonRequestBehavior.AllowGet);
+            IEnumerable<CourseModel> сourses = _courseRepository.GetCollection();
+            return Json(сourses ,JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         [Route("get/addCourse")]
-        public JsonResult AddCourse(CourseData Course)
+        public JsonResult CreateCourse(CourseModel course)
         {
-            _courseRepository.AddCourse(Course);
-            return Json(Course, JsonRequestBehavior.AllowGet);
+            _courseRepository.Create(course);
+            return Json(course, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         [Route("get/removeCourse")]
         public void RemoveCourse(string id)
         {
-            _courseRepository.RemoveCourse(id);
+            _courseRepository.Remove(id);
         }
 
         [HttpGet]
         [Route("get/updateCourse")]
-        public JsonResult UpdateCourse(CourseData Course)
+        public JsonResult UpdateCourse(CourseModel course)
         {
-            _courseRepository.ModifyCourse(Course);
-            return Json(Course, JsonRequestBehavior.AllowGet);
+            _courseRepository.Update(course);
+            return Json(course, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -157,7 +157,7 @@
     <Content Include="App\main.js" />
     <Content Include="App\mapping\mapModel.js" />
     <Content Include="App\models\course.js" />
-    <Content Include="App\models\ownerData.js" />
+    <Content Include="App\models\education.js" />
     <Content Include="App\models\question.js" />
     <Content Include="App\models\section.js" />
     <Content Include="App\viewmodels\addcoursepage.js" />
@@ -211,18 +211,16 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShippingCoursesController.cs" />
-    <Compile Include="Data_Base\Configurations\CourseDataConfiguration.cs" />
-    <Compile Include="Data_Base\Configurations\QuestionSectionDataConfiguration.cs" />
-    <Compile Include="Data_Base\Configurations\SectionCourseDataConfiguration.cs" />
+    <Compile Include="Data_Base\Configurations\CourseConfiguration.cs" />
+    <Compile Include="Data_Base\Configurations\QuestionConfiguration.cs" />
+    <Compile Include="Data_Base\Configurations\SectionConfiguration.cs" />
     <Compile Include="Data_Base\Context\CourseDataContext.cs" />
     <Compile Include="Data_Base\DbInitializer\CourseDataDbInitializer.cs" />
-    <Compile Include="Data_Base\Interfaces\IRepositoryCourse.cs" />
-    <Compile Include="Data_Base\Interfaces\IRepositoryQuestion.cs" />
-    <Compile Include="Data_Base\Interfaces\IRepositorySection.cs" />
-    <Compile Include="Data_Base\Models\CourseData.cs" />
-    <Compile Include="Data_Base\Models\OwnerDataInfo.cs" />
-    <Compile Include="Data_Base\Models\QuestionSectionData.cs" />
-    <Compile Include="Data_Base\Models\SectionCourseData.cs" />
+    <Compile Include="Data_Base\Interfaces\IRepository.cs" />
+    <Compile Include="Data_Base\Models\CourseModel.cs" />
+    <Compile Include="Data_Base\Models\EducationModel.cs" />
+    <Compile Include="Data_Base\Models\QuestionModel.cs" />
+    <Compile Include="Data_Base\Models\SectionModel.cs" />
     <Compile Include="Data_Base\Repository\CourseRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
