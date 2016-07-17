@@ -15,12 +15,12 @@ namespace EasyGeneratorMin
 
         public string CreatedDate { get; set; }
 
-        public string LastModifiedDate { get; set; }
+        public string LastUpdatedDate { get; set; }
 
         public EducationModel()
         {
             Id = Guid.NewGuid().ToString();
-            LastModifiedDate = DateTime.Now.ToString();
+            LastUpdatedDate = DateTime.Now.ToString();
             Creater = "Pavel Vaydalauskas";
         }
 

@@ -16,7 +16,7 @@ namespace EasyGeneratorMin
                 Description = "This is Test Course1",
                 Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now.ToString(),
-                LastModifiedDate = DateTime.Now.ToString()
+                LastUpdatedDate = DateTime.Now.ToString()
             });
 
             db.Courses.Add(new CourseModel
@@ -26,7 +26,7 @@ namespace EasyGeneratorMin
                 Description = "This is Test Course2",
                 Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now.ToString(),
-                LastModifiedDate = DateTime.Now.ToString()
+                LastUpdatedDate = DateTime.Now.ToString()
             });
 
             db.Sections.Add(new SectionModel
@@ -36,7 +36,7 @@ namespace EasyGeneratorMin
                 Title = "First",
                 Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now.ToString(),
-                LastModifiedDate = DateTime.Now.ToString()
+                LastUpdatedDate = DateTime.Now.ToString()
             });
 
             db.Sections.Add(new SectionModel
@@ -46,7 +46,7 @@ namespace EasyGeneratorMin
                 Title = "Second",
                 Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now.ToString(),
-                LastModifiedDate = DateTime.Now.ToString()
+                LastUpdatedDate = DateTime.Now.ToString()
             });
 
             db.Questions.Add(new QuestionModel
@@ -56,7 +56,7 @@ namespace EasyGeneratorMin
                 Title = "First Question",
                 Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now.ToString(),
-                LastModifiedDate = DateTime.Now.ToString()
+                LastUpdatedDate = DateTime.Now.ToString()
             });
             db.Questions.Add(new QuestionModel
             {
@@ -65,7 +65,7 @@ namespace EasyGeneratorMin
                 Title = "Second Question",
                 Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now.ToString(),
-                LastModifiedDate = DateTime.Now.ToString()
+                LastUpdatedDate = DateTime.Now.ToString()
             });
 
             base.Seed(db);

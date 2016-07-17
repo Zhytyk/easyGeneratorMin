@@ -5,7 +5,7 @@
         this.title = param.Title;
         this.creater = param.Creater;
         this.createdDate = param.CreatedDate;
-        this.lastModifiedDate = param.LastModifiedDate;
+        this.lastUpdatedDate = param.LastUpdatedDate;
     }
     return Education;
 })

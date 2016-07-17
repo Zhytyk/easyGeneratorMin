@@ -14,7 +14,7 @@ namespace EasyGeneratorMin
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-            builder.RegisterType<CourseRepository>().As<IRepository<CourseModel>>().WithParameter("db", new CourseDataContext());
+            builder.RegisterType<CourseRepository>().As<ICourseRepository<CourseModel>>().WithParameter("db", new CourseDataContext());
 
             var container = builder.Build();
 

@@ -6,14 +6,13 @@ using System.Web;
 
 namespace EasyGeneratorMin
 {
-    public class CourseRepository : IRepository<CourseModel>
+    public class CourseRepository : ICourseRepository<CourseModel>
     {
         private CourseDataContext _db;
         public CourseRepository(CourseDataContext db)
         {
             _db = db;
         }
-
 
         public IEnumerable<CourseModel> GetCollection()
         {
@@ -23,6 +22,17 @@ namespace EasyGeneratorMin
         public CourseModel GetValueById(string id)
         {
             return _db.Courses.Find(id);
+        }
+
+        public CourseModel GetUpdatedCourse(string id, string title, string description)
+        {
+            var course = GetValueById(id);
+
+            course.Title = title;
+            course.Description = description;
+            course.LastUpdatedDate = DateTime.Now.ToString();
+
+            return course;
         }
 
         public void Create(CourseModel course)
@@ -42,7 +52,7 @@ namespace EasyGeneratorMin
             }
         }
 
-        public void Remove(string id)
+        public void RemoveFromDb(string id)
         {
             CourseModel сourse = GetValueById(id);
             _db.Entry(сourse).State = EntityState.Deleted;

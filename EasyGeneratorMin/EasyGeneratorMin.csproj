@@ -216,6 +216,7 @@
     <Compile Include="Data_Base\Configurations\SectionConfiguration.cs" />
     <Compile Include="Data_Base\Context\CourseDataContext.cs" />
     <Compile Include="Data_Base\DbInitializer\CourseDataDbInitializer.cs" />
+    <Compile Include="Data_Base\Interfaces\ICourseRepository.cs" />
     <Compile Include="Data_Base\Interfaces\IRepository.cs" />
     <Compile Include="Data_Base\Models\CourseModel.cs" />
     <Compile Include="Data_Base\Models\EducationModel.cs" />
