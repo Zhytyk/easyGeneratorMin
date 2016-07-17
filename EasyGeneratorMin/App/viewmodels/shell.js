@@ -4,8 +4,8 @@
         activate: function () {
             router.map([
                { route: '', title: 'Main View', moduleId: 'viewmodels/mainpage', nav: true },
-               { route: 'addcourse', title: 'Add course', moduleId: 'viewmodels/addcoursepage', nav: true },
-               { route: 'editcourse/:id', title: 'Edit course', moduleId: 'viewmodels/editcoursepage', nav: true }
+               { route: 'create', title: 'Add course', moduleId: 'viewmodels/createcoursepage', nav: true },
+               { route: 'update/:id', title: 'Update course', moduleId: 'viewmodels/updatecoursepage', nav: true }
             ]).buildNavigationModel();
 
             return router.activate();

@@ -9,43 +9,50 @@ namespace EasyGeneratorMin.Controllers
     public class ShippingCoursesController : Controller
     {
 
-        private IRepositoryCourse CourseRepository;
+        private readonly ICourseRepository<CourseModel> _courseRepository;
 
-        public ShippingCoursesController(IRepositoryCourse CourseRepository)
+        public ShippingCoursesController(ICourseRepository<CourseModel> courseRepository)
         {
-            this.CourseRepository = CourseRepository;
+            _courseRepository = courseRepository;
         }
 
 
-        [HttpPost]
-        [Route("post/getCourses", Name = "AjaxPostGetCourses")]
+        [HttpGet]
+        [Route("get/getCourses")]
         public JsonResult GetCoursesData()
         {
-            IEnumerable<CourseData> Courses = CourseRepository.GetCourses();
-            return Json(Courses ,JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        [Route("post/addCourse", Name =  "AjaxPostAddCourse")]
-        public JsonResult AddCourse(CourseData Course)
-        {
-            CourseRepository.AddCourse(Course);
-            return Json(Course, JsonRequestBehavior.AllowGet);
+            IEnumerable<CourseModel> сourses = _courseRepository.GetCollection();
+            return Json(сourses ,JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        [Route("get/removeCourse", Name = "AjaxPostRemoveCourse")]
-        public void RemoveCourse(string id)
+        [Route("get/createCourse")]
+        public JsonResult CreateCourse(string title, string description)
         {
-            CourseRepository.RemoveCourse(id);
+            var course = new CourseModel(title, description);
+
+            _courseRepository.Create(course);
+
+            return Json(course, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpPost]
-        [Route("post/editCourse", Name = "AjaxPostEditCourse")]
-        public JsonResult ModifyCourse(CourseData Course)
+        [HttpGet]
+        [Route("get/updateCourse")]
+        public JsonResult UpdateCourse(string id, string title, string description)
         {
-            CourseRepository.ModifyCourse(Course);
-            return Json(Course, JsonRequestBehavior.AllowGet);
+            var course = _courseRepository.GetUpdatedCourse(id, title, description);
+
+            _courseRepository.Update(course);
+
+            return Json(course, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        [Route("get/removeCourse")]
+        public void RemoveCourse(string id)
+        {
+            _courseRepository.RemoveFromDb(id);
+        }
+
     }
 }

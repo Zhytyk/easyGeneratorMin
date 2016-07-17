@@ -1,10 +1,8 @@
-﻿define(['models/ownerData'], function (ownerData) {
+﻿define(['models/education'], function (education) {
 
     function Question(param) {
-        ownerData.call(this, param);
-        this.id = param.Id;
+        education.call(this, param);
         this.sectionId = param.SectionId;
-        this.questionTitle = param.QuestionTitle;
     }
 
     return Question;

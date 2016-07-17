@@ -6,17 +6,17 @@ namespace EasyGeneratorMin
     public class CourseDataContext : DbContext
     {
 
-        public DbSet<CourseData> CourseData { get; set; }
+        public DbSet<CourseModel> Courses { get; set; }
 
-        public DbSet<SectionCourseData> SectionCourseData { get; set; }
+        public DbSet<SectionModel> Sections { get; set; }
 
-        public DbSet<QuestionSectionData> QuestionSectionData { get; set; }
+        public DbSet<QuestionModel> Questions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new CourseDataConfiguration());
-            modelBuilder.Configurations.Add(new SectionCourseDataConfiguration());
-            modelBuilder.Configurations.Add(new QuestionSectionDataConfiguration());
+            modelBuilder.Configurations.Add(new CourseConfiguration());
+            modelBuilder.Configurations.Add(new SectionConfiguration());
+            modelBuilder.Configurations.Add(new QuestionConfiguration());
         }
     }
 }

@@ -150,21 +150,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App\data\dataCourseInfoContext.js" />
-    <Content Include="App\data\dataCourseInfoRepository.js" />
+    <Content Include="App\data\dataContext.js" />
+    <Content Include="App\data\dataRepository.js" />
     <Content Include="App\extenders\validationExtenders.js" />
     <Content Include="App\http\httpWrapper.js" />
     <Content Include="App\main.js" />
+    <Content Include="App\mapping\mapModel.js" />
     <Content Include="App\models\course.js" />
-    <Content Include="App\models\ownerData.js" />
+    <Content Include="App\models\education.js" />
     <Content Include="App\models\question.js" />
     <Content Include="App\models\section.js" />
-    <Content Include="App\viewmodels\addcoursepage.js" />
-    <Content Include="App\viewmodels\editcoursepage.js" />
+    <Content Include="App\viewmodels\createcoursepage.js" />
+    <Content Include="App\viewmodels\updatecoursepage.js" />
     <Content Include="App\viewmodels\mainpage.js" />
     <Content Include="App\viewmodels\shell.js" />
-    <Content Include="App\views\addcoursepage.html" />
-    <Content Include="App\views\editcoursepage.html" />
+    <Content Include="App\views\createcoursepage.html" />
+    <Content Include="App\views\updatecoursepage.html" />
     <Content Include="App\views\mainpage.html" />
     <Content Include="App\views\shell.html" />
     <Content Include="Content\style.css" />
@@ -210,18 +211,17 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShippingCoursesController.cs" />
-    <Compile Include="Data_Base\Configurations\CourseDataConfiguration.cs" />
-    <Compile Include="Data_Base\Configurations\QuestionSectionDataConfiguration.cs" />
-    <Compile Include="Data_Base\Configurations\SectionCourseDataConfiguration.cs" />
+    <Compile Include="Data_Base\Configurations\CourseConfiguration.cs" />
+    <Compile Include="Data_Base\Configurations\QuestionConfiguration.cs" />
+    <Compile Include="Data_Base\Configurations\SectionConfiguration.cs" />
     <Compile Include="Data_Base\Context\CourseDataContext.cs" />
     <Compile Include="Data_Base\DbInitializer\CourseDataDbInitializer.cs" />
-    <Compile Include="Data_Base\Interfaces\IRepositoryCourse.cs" />
-    <Compile Include="Data_Base\Interfaces\IRepositoryQuestion.cs" />
-    <Compile Include="Data_Base\Interfaces\IRepositorySection.cs" />
-    <Compile Include="Data_Base\Models\CourseData.cs" />
-    <Compile Include="Data_Base\Models\OwnerDataInfo.cs" />
-    <Compile Include="Data_Base\Models\QuestionSectionData.cs" />
-    <Compile Include="Data_Base\Models\SectionCourseData.cs" />
+    <Compile Include="Data_Base\Interfaces\ICourseRepository.cs" />
+    <Compile Include="Data_Base\Interfaces\IRepository.cs" />
+    <Compile Include="Data_Base\Models\CourseModel.cs" />
+    <Compile Include="Data_Base\Models\EducationModel.cs" />
+    <Compile Include="Data_Base\Models\QuestionModel.cs" />
+    <Compile Include="Data_Base\Models\SectionModel.cs" />
     <Compile Include="Data_Base\Repository\CourseRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

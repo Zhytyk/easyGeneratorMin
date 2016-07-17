@@ -8,7 +8,7 @@ namespace EasyGeneratorMin.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        
         [Route("", Name = "Home")]
         public ActionResult Index()
         {

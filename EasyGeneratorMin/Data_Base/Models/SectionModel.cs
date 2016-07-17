@@ -6,14 +6,10 @@ using System.Threading.Tasks;
 
 namespace EasyGeneratorMin
 {
-    public class SectionCourseData : OwnerDataInfo
+    public class SectionModel : EducationModel
     {
 
-        public string Id { get; set; }
-
         public string CourseId { get; set; }
-
-        public string SectionTitle { get; set; }
 
     }
 }
