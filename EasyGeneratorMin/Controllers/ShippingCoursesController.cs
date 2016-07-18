@@ -25,27 +25,34 @@ namespace EasyGeneratorMin.Controllers
             return Json(сourses ,JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        [Route("get/createCourse")]
+        [HttpPost]
+        [Route("post/createCourse")]
+        [ArgumentException]
         public JsonResult CreateCourse(CourseModel course)
         {
-            _courseRepository.Create(course);
-            return Json(course, JsonRequestBehavior.AllowGet);
+            _courseRepository.Insert(course);
+            _courseRepository.Save();
+            return Json(course, JsonRequestBehavior.DenyGet);
         }
 
-        [HttpGet]
-        [Route("get/updateCourse")]
-        public JsonResult UpdateCourse(CourseModel course)
+        [HttpPost]
+        [Route("post/updateCourse")]
+        [ArgumentException]
+        public JsonResult UpdateCourse(string id, CourseModel course)
         {
             _courseRepository.Update(course);
-            return Json(course, JsonRequestBehavior.AllowGet);
+            _courseRepository.Save();
+            return Json(course, JsonRequestBehavior.DenyGet);
         }
 
-        [HttpGet]
-        [Route("get/removeCourse")]
-        public void RemoveCourse(string id)
+        [HttpPost]
+        [Route("post/removeCourse")]
+        public JsonResult RemoveCourse(string id)
         {
-            _courseRepository.Remove(id);
+            _courseRepository.Delete(id);
+            _courseRepository.Save();
+
+            return Json(new { success = true }, JsonRequestBehavior.DenyGet);
         }
 
     }

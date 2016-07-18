@@ -13,6 +13,7 @@ namespace EasyGeneratorMin
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
+
             var valueProvider = bindingContext.ValueProvider;
 
             
@@ -35,6 +36,7 @@ namespace EasyGeneratorMin
             course.UpdateCourse(title, description);
 
             return course;
+
         }
 
         private string GetValue(ModelBindingContext context, string name)

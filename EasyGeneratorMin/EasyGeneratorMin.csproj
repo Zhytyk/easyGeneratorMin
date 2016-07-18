@@ -223,6 +223,7 @@
     <Compile Include="Data_Base\Models\QuestionModel.cs" />
     <Compile Include="Data_Base\Models\SectionModel.cs" />
     <Compile Include="Data_Base\Repository\CourseRepository.cs" />
+    <Compile Include="Filters\ArgumentException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

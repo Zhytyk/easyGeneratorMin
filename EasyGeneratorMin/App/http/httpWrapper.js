@@ -1,12 +1,21 @@
 ﻿define(['plugins/http'], function (http) {
 
-    function get(url, data) {
-        return http.get(url, data).fail(function () {
+    function get(url) {
+        return http.get(url).fail(function (e) {
+            console.log(e);
             alert('Get Request failed :(');
         });
     }
 
+    function post(url, data) {
+        return http.post(url, data).fail(function (e) {
+            console.log(e);
+            alert('Post Request failed :(');
+        });
+    }
+
     return {
-        get: get
+        get: get,
+        post: post
     };
 });

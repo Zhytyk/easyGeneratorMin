@@ -13,11 +13,13 @@ namespace EasyGeneratorMin
 
         TModel GetValueById(string id);
 
-        void Create(TModel course);
+        void Insert(TModel course);
 
         void Update(TModel course);
 
-        void Remove(string id);
+        void Delete(string id);
+
+        void Save();
 
     }
 }

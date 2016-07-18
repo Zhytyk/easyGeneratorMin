@@ -26,10 +26,9 @@ namespace EasyGeneratorMin
             return _db.Courses.Find(id);
         }
 
-        public void Create(CourseModel course)
+        public void Insert(CourseModel course)
         { 
             _db.Courses.Add(course);
-            _db.SaveChanges();
         }
 
         public void Update(CourseModel сourse)
@@ -37,16 +36,17 @@ namespace EasyGeneratorMin
             var existedCourse = GetValueById(сourse.Id);
 
             if (existedCourse != null)
-            {
                 _db.Entry(existedCourse).CurrentValues.SetValues(сourse);
-                _db.SaveChanges();
-            }
         }
 
-        public void Remove(string id)
+        public void Delete(string id)
         {
             CourseModel сourse = GetValueById(id);
             _db.Entry(сourse).State = EntityState.Deleted;
+        }
+
+        public void Save()
+        {
             _db.SaveChanges();
         }
         
