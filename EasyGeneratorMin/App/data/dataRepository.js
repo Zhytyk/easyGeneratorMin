@@ -1,22 +1,29 @@
 ﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/mapModel'], function (dataContext, http, mapModel) {
 
     function getCourses() {
-        if (!dataContext.courses) {
-            dataContext.initializeCourses();
-        }
-        return dataContext.courses;
+        return new Promise(function (resolve, reject) {
+            self = this;
+            if (dataContext.courses.length == 0) {
+                return dataContext.initializeCourses().then(function () {
+                    resolve(dataContext.courses);
+                });
+            }
+            else resolve(dataContext.courses);
+        });
     }
 
     function getCourseById(id) {
-        return getCourses().filter(function (course) {
-            return course.id == id
-        })[0];
+        return getCourses().then(function (courses) {
+            return courses.filter(function (course) {
+                return course.id == id;
+            })[0];
+        });
     };
 
     function createCourse(title, description) {
         return http.get('get/createCourse', { title: title, description: description })
             .then(function (createdCourse) {
-            dataContext.courses.push(mapModel.mapCourse(createdCourse));
+                dataContext.courses.push(mapModel.mapCourse(createdCourse));
         });
     }
 

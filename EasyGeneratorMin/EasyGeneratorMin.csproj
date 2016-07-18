@@ -208,6 +208,7 @@
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Binders\CourseModelBinder.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShippingCoursesController.cs" />
@@ -216,7 +217,6 @@
     <Compile Include="Data_Base\Configurations\SectionConfiguration.cs" />
     <Compile Include="Data_Base\Context\CourseDataContext.cs" />
     <Compile Include="Data_Base\DbInitializer\CourseDataDbInitializer.cs" />
-    <Compile Include="Data_Base\Interfaces\ICourseRepository.cs" />
     <Compile Include="Data_Base\Interfaces\IRepository.cs" />
     <Compile Include="Data_Base\Models\CourseModel.cs" />
     <Compile Include="Data_Base\Models\EducationModel.cs" />
