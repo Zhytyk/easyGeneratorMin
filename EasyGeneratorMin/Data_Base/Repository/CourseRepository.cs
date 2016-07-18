@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
+using System.Web.ModelBinding;
 
 namespace EasyGeneratorMin
 {
-    public class CourseRepository : ICourseRepository<CourseModel>
+    public class CourseRepository : IRepository<CourseModel>
     {
         private CourseDataContext _db;
         public CourseRepository(CourseDataContext db)
@@ -24,20 +26,9 @@ namespace EasyGeneratorMin
             return _db.Courses.Find(id);
         }
 
-        public CourseModel GetUpdatedCourse(string id, string title, string description)
-        {
-            var course = GetValueById(id);
-
-            course.Title = title;
-            course.Description = description;
-            course.LastUpdatedDate = DateTime.Now.ToString();
-
-            return course;
-        }
-
         public void Create(CourseModel course)
-        {
-            _db.Entry(course).State = EntityState.Added;
+        { 
+            _db.Courses.Add(course);
             _db.SaveChanges();
         }
 
@@ -52,7 +43,7 @@ namespace EasyGeneratorMin
             }
         }
 
-        public void RemoveFromDb(string id)
+        public void Remove(string id)
         {
             CourseModel сourse = GetValueById(id);
             _db.Entry(сourse).State = EntityState.Deleted;

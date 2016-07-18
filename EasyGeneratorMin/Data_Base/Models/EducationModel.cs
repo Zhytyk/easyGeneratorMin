@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -22,6 +23,11 @@ namespace EasyGeneratorMin
             Id = Guid.NewGuid().ToString();
             LastUpdatedDate = DateTime.Now.ToString();
             Creater = "Pavel Vaydalauskas";
+        }
+
+        public void UpdateLastUpdatedDate()
+        {
+            LastUpdatedDate = DateTime.Now.ToString();
         }
 
     }

@@ -12,7 +12,13 @@
         },
         removeCourse: function (id) {
             self = this;
-            dataRepository.removeCourse(id).then(function () { self.courses(dataRepository.getCourses()); });
+            dataRepository.removeCourse(id).then(function () {
+                self2 = self;
+                dataRepository.getCourses()
+                    .then(function (courses) {
+                        self2.courses(courses);
+                    });
+            });
         }
     }
 })

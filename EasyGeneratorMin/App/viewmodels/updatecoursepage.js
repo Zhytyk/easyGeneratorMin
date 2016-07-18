@@ -1,8 +1,11 @@
 ﻿define(['data/dataRepository', 'extenders/validationExtenders', 'plugins/router'], function (dataRepository, validationExtenders, router) {
     function initializeFormPage(id, self) {
-        self.currentCourse = dataRepository.getCourseById(id);
-        self.title(self.currentCourse.title);
-        self.description(self.currentCourse.description);
+        dataRepository.getCourseById(id)
+            .then(function (course) {
+                self.currentCourse = course;
+                self.title(self.currentCourse.title);
+                self.description(self.currentCourse.description);
+            });
     };
     return {
         currentCourse: '',

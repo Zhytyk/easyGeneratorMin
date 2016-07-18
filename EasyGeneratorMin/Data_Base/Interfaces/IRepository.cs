@@ -17,7 +17,7 @@ namespace EasyGeneratorMin
 
         void Update(TModel course);
 
-        void RemoveFromDb(string id);
+        void Remove(string id);
 
     }
 }
