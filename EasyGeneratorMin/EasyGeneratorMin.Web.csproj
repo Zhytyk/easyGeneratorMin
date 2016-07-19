@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EasyGeneratorMin</RootNamespace>
-    <AssemblyName>EasyGeneratorMin</AssemblyName>
+    <RootNamespace>EasyGeneratorMin.Web</RootNamespace>
+    <AssemblyName>EasyGeneratorMin.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -168,6 +168,10 @@
     <Content Include="App\views\updatecoursepage.html" />
     <Content Include="App\views\mainpage.html" />
     <Content Include="App\views\shell.html" />
+    <Content Include="App_Data\EasyGeneratorMin.mdf" />
+    <Content Include="App_Data\EasyGeneratorMin_log.ldf">
+      <DependentUpon>EasyGeneratorMin.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\style.css" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
@@ -212,17 +216,6 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShippingCoursesController.cs" />
-    <Compile Include="Data_Base\Configurations\CourseConfiguration.cs" />
-    <Compile Include="Data_Base\Configurations\QuestionConfiguration.cs" />
-    <Compile Include="Data_Base\Configurations\SectionConfiguration.cs" />
-    <Compile Include="Data_Base\Context\CourseDataContext.cs" />
-    <Compile Include="Data_Base\DbInitializer\CourseDataDbInitializer.cs" />
-    <Compile Include="Data_Base\Interfaces\IRepository.cs" />
-    <Compile Include="Data_Base\Models\CourseModel.cs" />
-    <Compile Include="Data_Base\Models\EducationModel.cs" />
-    <Compile Include="Data_Base\Models\QuestionModel.cs" />
-    <Compile Include="Data_Base\Models\SectionModel.cs" />
-    <Compile Include="Data_Base\Repository\CourseRepository.cs" />
     <Compile Include="Filters\ArgumentException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -247,8 +240,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\ShippingCourses\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EasyGeneratorMin.DataAccess\EasyGeneratorMin.DataAccess.csproj">
+      <Project>{9e1f8118-361b-4ae9-ac64-308d52095269}</Project>
+      <Name>EasyGeneratorMin.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EasyGeneratorMin.Models\EasyGeneratorMin.Models.csproj">
+      <Project>{a438ac75-b3dd-4acb-8314-da35496a13c2}</Project>
+      <Name>EasyGeneratorMin.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

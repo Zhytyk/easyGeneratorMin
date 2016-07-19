@@ -1,6 +1,7 @@
-﻿using System.Data.Entity.ModelConfiguration;
+﻿using EasyGeneratorMin.Models;
+using System.Data.Entity.ModelConfiguration;
 
-namespace EasyGeneratorMin
+namespace EasyGeneratorMin.DataAccess
 {
 
     public class CourseConfiguration : EntityTypeConfiguration<CourseModel>

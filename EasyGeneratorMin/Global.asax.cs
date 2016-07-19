@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EasyGeneratorMin.DataAccess;
+using EasyGeneratorMin.Models;
 using System.Data.Entity;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace EasyGeneratorMin
+namespace EasyGeneratorMin.Web
 {
     public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
+            ModelBinders.Binders.Add(typeof(CourseModel), new CourseModelBinder());
             AutofacConfig.ConfigureContainer();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

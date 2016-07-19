@@ -1,10 +1,10 @@
-﻿using System;
+﻿using EasyGeneratorMin.DataAccess;
+using EasyGeneratorMin.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
-namespace EasyGeneratorMin.Controllers
+namespace EasyGeneratorMin.Web.Controllers
 {
     public class ShippingCoursesController : Controller
     {
@@ -27,21 +27,27 @@ namespace EasyGeneratorMin.Controllers
 
         [HttpPost]
         [Route("post/createCourse")]
-        [ArgumentException]
-        public JsonResult CreateCourse(CourseModel course)
+        [OutOfRangeException]
+        public JsonResult CreateCourse(string title, string description)
         {
+            var course = new CourseModel(title, description);
+
             _courseRepository.Insert(course);
             _courseRepository.Save();
+
             return Json(course, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
         [Route("post/updateCourse")]
-        [ArgumentException]
-        public JsonResult UpdateCourse(string id, CourseModel course)
+        [OutOfRangeException]
+        public JsonResult UpdateCourse(CourseModel course, string title, string description)
         {
+            course.UpdateCourse(title, description);
+
             _courseRepository.Update(course);
             _courseRepository.Save();
+
             return Json(course, JsonRequestBehavior.DenyGet);
         }
 

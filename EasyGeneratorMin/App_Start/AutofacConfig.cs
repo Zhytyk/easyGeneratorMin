@@ -1,9 +1,10 @@
 ﻿using Autofac;
-using Autofac.Core;
 using Autofac.Integration.Mvc;
+using EasyGeneratorMin.DataAccess;
+using EasyGeneratorMin.Models;
 using System.Web.Mvc;
 
-namespace EasyGeneratorMin
+namespace EasyGeneratorMin.Web
 {
     public class AutofacConfig
     {

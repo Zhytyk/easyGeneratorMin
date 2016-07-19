@@ -1,7 +1,7 @@
-﻿using System.Data.Entity;
-using System.Data.Entity.ModelConfiguration;
+﻿using EasyGeneratorMin.Models;
+using System.Data.Entity;
 
-namespace EasyGeneratorMin
+namespace EasyGeneratorMin.DataAccess
 {
     public class CourseDataContext : DbContext
     {

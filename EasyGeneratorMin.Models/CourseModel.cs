@@ -1,17 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
-namespace EasyGeneratorMin
+namespace EasyGeneratorMin.Models
 {
-    [ModelBinder(typeof(CourseModelBinder))]
+
     public class CourseModel : EducationModel
     {
         public string Description { get; set; }
 
+        public CourseModel() { }
+
+        public CourseModel(string title, string description)
+        {
+
+            ThrowIfTitleInvalid(title);
+            ThrowIfDescriptionInvalid(description);
+
+            Title = title;
+            Description = description;
+
+            SetCreatedDate();
+        }
 
         public void UpdateCourse(string title, string description)
         {
@@ -22,7 +31,7 @@ namespace EasyGeneratorMin
             Title = title;
             Description = description;
 
-            UpdateLastUpdatedDate();
+            SetLastUpdatedDate();
 
         }
 

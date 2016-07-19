@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
-namespace EasyGeneratorMin
+namespace EasyGeneratorMin.Models
 {
     public class EducationModel
     {
@@ -25,9 +21,14 @@ namespace EasyGeneratorMin
             Creater = "Pavel Vaydalauskas";
         }
 
-        public void UpdateLastUpdatedDate()
+        protected void SetLastUpdatedDate()
         {
             LastUpdatedDate = DateTime.Now.ToString();
+        }
+
+        protected void SetCreatedDate()
+        {
+            CreatedDate = DateTime.Now.ToString();
         }
 
     }

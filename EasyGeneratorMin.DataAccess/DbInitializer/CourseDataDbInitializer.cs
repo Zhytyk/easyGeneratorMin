@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using EasyGeneratorMin.Models;
+using System;
 using System.Data.Entity;
 
-namespace EasyGeneratorMin
+namespace EasyGeneratorMin.DataAccess
 {
     public class CourseDataDbInitializer : DropCreateDatabaseIfModelChanges<CourseDataContext>
     {
