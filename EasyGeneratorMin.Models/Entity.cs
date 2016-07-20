@@ -2,7 +2,7 @@
 
 namespace EasyGeneratorMin.Models
 {
-    public class EducationModel
+    public class Entity
     {
         public string Id { get; set; }
 
@@ -14,7 +14,7 @@ namespace EasyGeneratorMin.Models
 
         public string LastUpdatedDate { get; set; }
 
-        public EducationModel()
+        public Entity()
         {
             Id = Guid.NewGuid().ToString();
             LastUpdatedDate = DateTime.Now.ToString();

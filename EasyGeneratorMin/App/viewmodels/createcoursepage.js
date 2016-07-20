@@ -7,8 +7,9 @@
             this.description("SomeDescription");
         },
         createCourse: function () {
-            dataRepository.createCourse(this.title, this.description).then(function () {
-                router.navigate("#");
+            dataRepository.createCourse(this.title, this.description).then(function (error) {
+                if (error) alert(error);
+                else router.navigate("#");
             });
         }
 

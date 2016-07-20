@@ -1,9 +1,10 @@
 ﻿using EasyGeneratorMin.Models;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace EasyGeneratorMin.DataAccess
 {
-    public class CourseDataContext : DbContext
+    public class CourseDataContext : DbContext, IDatabaseContext, IUnitOfWork
     {
 
         public DbSet<CourseModel> Courses { get; set; }
@@ -17,6 +18,26 @@ namespace EasyGeneratorMin.DataAccess
             modelBuilder.Configurations.Add(new CourseConfiguration());
             modelBuilder.Configurations.Add(new SectionConfiguration());
             modelBuilder.Configurations.Add(new QuestionConfiguration());
+        }
+
+        public IDbSet<TEntity> GetSet<TEntity>() where TEntity : Entity
+        {
+            return Set<TEntity>();
+        }
+
+        public DbEntityEntry<TEntity> GetEntry<TEntity>(TEntity entity) where TEntity : Entity
+        {
+            return Entry(entity);
+        }
+
+        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : Entity
+        {
+            return new Repository<TEntity>(this);
+        }
+        
+        public void Save()
+        {
+            SaveChanges();
         }
     }
 }

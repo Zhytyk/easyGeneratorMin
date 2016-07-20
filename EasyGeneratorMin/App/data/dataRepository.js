@@ -1,36 +1,30 @@
 ﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/mapModel'], function (dataContext, http, mapModel) {
 
     function getCourses() {
-        return new Promise(function (resolve, reject) {
-            self = this;
-            if (dataContext.courses.length == 0) {
-                return dataContext.initializeCourses().then(function () {
-                    resolve(dataContext.courses);
-                });
-            }
-            else resolve(dataContext.courses);
+        return new Promise(function (resolve) {
+            resolve(dataContext.courses);
         });
     }
 
     function getCourseById(id) {
         return getCourses().then(function (courses) {
-            return courses.filter(function (course) {
+            return courses.find(function (course) {
                 return course.id == id;
-            })[0];
+            });
         });
     };
 
     function createCourse(title, description) {
-        return http.post('post/createCourse', { title: title, description: description })
+        return http.post('create/course', { title: title, description: description })
             .then(function (createdCourse) {
-                if(createdCourse.Message == undefined)
+                if (createdCourse.error == undefined)
                     dataContext.courses.push(mapModel.mapCourse(createdCourse));
-                else alert(createdCourse.Message)
+                else return createdCourse.error;
         });
     }
 
     function removeCourse(id) {   
-        return http.post('post/removeCourse', { id: id })
+        return http.post('remove/course', { id: id })
             .then(function () {
                 removeCourseFromContext(id);
             });
@@ -45,14 +39,14 @@
     }
 
     function updateCourse(id, title, description) {
-        return http.post('post/updateCourse', {id: id, title: title, description: description})
+        return http.post('update/course', {id: id, title: title, description: description})
             .then(function (updatedCourse) {
-                if (updatedCourse.Message == undefined) {
+                if (updatedCourse.error == undefined) {
                     dataContext.courses.forEach(function (course, index) {
                         dataContext.courses[index] = course.id === updatedCourse.Id ? mapModel.mapCourse(updatedCourse) : course;
                     });
                 }
-                else alert(updatedCourse.Message)
+                else return updatedCourse.error;
         });
     }
 

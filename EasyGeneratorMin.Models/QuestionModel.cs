@@ -2,7 +2,7 @@
 
 namespace EasyGeneratorMin.Models
 {
-    public class QuestionModel : EducationModel
+    public class QuestionModel : Entity
     {
 
         public string SectionId { get; set; }

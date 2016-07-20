@@ -1,6 +1,5 @@
 ﻿using EasyGeneratorMin.DataAccess;
 using EasyGeneratorMin.Models;
-using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -9,57 +8,60 @@ namespace EasyGeneratorMin.Web.Controllers
     public class ShippingCoursesController : Controller
     {
 
+        private readonly IUnitOfWork _unitOWork;
         private readonly IRepository<CourseModel> _courseRepository;
 
-        public ShippingCoursesController(IRepository<CourseModel> courseRepository)
+        public ShippingCoursesController(IUnitOfWork unitOfWork)
         {
-            _courseRepository = courseRepository;
+            _unitOWork = unitOfWork;
+            _courseRepository = unitOfWork.GetRepository<CourseModel>();
         }
 
-
         [HttpGet]
-        [Route("get/getCourses")]
+        [Route("get/courses")]
         public JsonResult GetCoursesData()
         {
             IEnumerable<CourseModel> сourses = _courseRepository.GetCollection();
-            return Json(сourses ,JsonRequestBehavior.AllowGet);
+            return Json(сourses, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
-        [Route("post/createCourse")]
+        [Route("create/course")]
         [OutOfRangeException]
         public JsonResult CreateCourse(string title, string description)
         {
             var course = new CourseModel(title, description);
 
             _courseRepository.Insert(course);
-            _courseRepository.Save();
 
             return Json(course, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
-        [Route("post/updateCourse")]
+        [Route("update/course")]
         [OutOfRangeException]
         public JsonResult UpdateCourse(CourseModel course, string title, string description)
         {
             course.UpdateCourse(title, description);
 
             _courseRepository.Update(course);
-            _courseRepository.Save();
 
             return Json(course, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
-        [Route("post/removeCourse")]
+        [Route("remove/course")]
         public JsonResult RemoveCourse(string id)
         {
             _courseRepository.Delete(id);
-            _courseRepository.Save();
 
             return Json(new { success = true }, JsonRequestBehavior.DenyGet);
         }
 
+        protected override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            _unitOWork.Save();
+            base.OnActionExecuted(filterContext);
+        }
     }
 }

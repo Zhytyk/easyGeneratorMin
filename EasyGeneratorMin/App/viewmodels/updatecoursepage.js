@@ -15,10 +15,11 @@
             initializeFormPage(id, this);
         },
         updateCourse: function () {
-            dataRepository.updateCourse(this.currentCourse.id, this.title, this.description).then(function () {
-                router.navigate("#");
+            dataRepository.updateCourse(this.currentCourse.id, this.title, this.description).then(function (error) {
+                if (error) alert(error);
+                else router.navigate("#");
             });
         },
-    }
+    };
 
 })

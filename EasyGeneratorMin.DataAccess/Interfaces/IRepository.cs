@@ -3,20 +3,17 @@ using System.Collections.Generic;
 
 namespace EasyGeneratorMin.DataAccess
 {
-    public interface IRepository<TModel> where TModel : EducationModel
+    public interface IRepository<TEntity> where TEntity : Entity
     {
 
-        IEnumerable<TModel> GetCollection();
+        IEnumerable<TEntity> GetCollection();
 
-        TModel GetValueById(string id);
+        TEntity GetValueById(string id);
 
-        void Insert(TModel course);
+        void Insert(TEntity course);
 
-        void Update(TModel course);
+        void Update(TEntity course);
 
         void Delete(string id);
-
-        void Save();
-
     }
 }

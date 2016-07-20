@@ -4,7 +4,7 @@ using System.Web.Mvc;
 namespace EasyGeneratorMin.Models
 {
 
-    public class CourseModel : EducationModel
+    public class CourseModel : Entity
     {
         public string Description { get; set; }
 

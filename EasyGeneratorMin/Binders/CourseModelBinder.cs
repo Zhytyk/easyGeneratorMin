@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using EasyGeneratorMin.DataAccess;
 using EasyGeneratorMin.Models;
 
@@ -7,7 +6,7 @@ namespace EasyGeneratorMin.Web
 {
     public class CourseModelBinder : IModelBinder
     {
-        private readonly IRepository<CourseModel> _courseRepository = new CourseRepository(new CourseDataContext());
+        private readonly IRepository<CourseModel> _courseRepository = new Repository<CourseModel>(new CourseDataContext());
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {

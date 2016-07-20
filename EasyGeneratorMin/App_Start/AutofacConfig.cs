@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using EasyGeneratorMin.DataAccess;
-using EasyGeneratorMin.Models;
 using System.Web.Mvc;
 
 namespace EasyGeneratorMin.Web
@@ -15,7 +14,7 @@ namespace EasyGeneratorMin.Web
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-            builder.RegisterType<CourseRepository>().As<IRepository<CourseModel>>().WithParameter("db", new CourseDataContext());
+            builder.RegisterType<CourseDataContext>().As<IUnitOfWork>();
 
             var container = builder.Build();
 

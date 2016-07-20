@@ -10,7 +10,7 @@ namespace EasyGeneratorMin.Web
             if (!exceptionContext.ExceptionHandled && exceptionContext.Exception is ArgumentOutOfRangeException)
             {
                 exceptionContext.Result = new JsonResult {
-                    Data = new ArgumentOutOfRangeException("You have inputed invalid data to fields!")
+                    Data = new {error = "You have inputed invalid data to fields!"}
                 };
                 exceptionContext.ExceptionHandled = true;
             }
