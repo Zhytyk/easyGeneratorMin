@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using EasyGeneratorMin.DataAccess;
 using EasyGeneratorMin.Models;
+using System;
 
 namespace EasyGeneratorMin.Web
 {
@@ -13,7 +14,7 @@ namespace EasyGeneratorMin.Web
 
             var valueProvider = bindingContext.ValueProvider;
 
-            var id = (string)valueProvider.GetValue("id").ConvertTo(typeof(string));
+            var id = (Guid)valueProvider.GetValue("id").ConvertTo(typeof(Guid));
 
             return _courseRepository.GetValueById(id);
 

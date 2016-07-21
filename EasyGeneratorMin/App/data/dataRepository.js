@@ -32,9 +32,8 @@
 
     function removeCourseFromContext(id) {
         dataContext.courses.forEach(function (course, index) {
-            if (course.id === id) {
+            if (course.id === id) 
                 dataContext.courses.splice(index, 1);
-            }
         });
     }
 

@@ -1,8 +1,8 @@
 ﻿define(['models/education'], function (educationa) {
 
-    function Section(param) {
-        education.call(this, param);
-        this.courseId = param.CourseId;
+    function Section(spec) {
+        education.call(this, spec);
+        this.courseId = spec.courseId;
     }
 
     return Section;

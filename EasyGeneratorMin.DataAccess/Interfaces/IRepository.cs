@@ -1,4 +1,5 @@
 ﻿using EasyGeneratorMin.Models;
+using System;
 using System.Collections.Generic;
 
 namespace EasyGeneratorMin.DataAccess
@@ -8,12 +9,12 @@ namespace EasyGeneratorMin.DataAccess
 
         IEnumerable<TEntity> GetCollection();
 
-        TEntity GetValueById(string id);
+        TEntity GetValueById(Guid id);
 
         void Insert(TEntity course);
 
         void Update(TEntity course);
 
-        void Delete(string id);
+        void Delete(Guid id);
     }
 }

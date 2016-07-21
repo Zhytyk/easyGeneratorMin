@@ -1,11 +1,11 @@
 ﻿define(function () {
 
-    function Education(param) {
-        this.id = param.Id;
-        this.title = param.Title;
-        this.creater = param.Creater;
-        this.createdDate = param.CreatedDate;
-        this.lastUpdatedDate = param.LastUpdatedDate;
+    function Education(spec) {
+        this.id = spec.id;
+        this.title = spec.title;
+        this.creater = spec.creater;
+        this.createdDate = spec.createdDate;
+        this.lastUpdatedDate = spec.lastUpdatedDate;
     }
     return Education;
 })

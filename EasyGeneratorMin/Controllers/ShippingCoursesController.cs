@@ -1,5 +1,6 @@
 ﻿using EasyGeneratorMin.DataAccess;
 using EasyGeneratorMin.Models;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -51,7 +52,7 @@ namespace EasyGeneratorMin.Web.Controllers
 
         [HttpPost]
         [Route("remove/course")]
-        public JsonResult RemoveCourse(string id)
+        public JsonResult RemoveCourse(Guid id)
         {
             _courseRepository.Delete(id);
 

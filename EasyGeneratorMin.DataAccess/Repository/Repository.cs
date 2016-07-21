@@ -1,4 +1,5 @@
 ﻿using EasyGeneratorMin.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 
@@ -17,7 +18,7 @@ namespace EasyGeneratorMin.DataAccess
             return _db.GetSet<TEntity>();
         }
 
-        public TEntity GetValueById(string id)
+        public TEntity GetValueById(Guid id)
         {
             return _db.GetSet<TEntity>().Find(id);
         }
@@ -35,7 +36,7 @@ namespace EasyGeneratorMin.DataAccess
                 _db.GetEntry(existedCourse).CurrentValues.SetValues(сourse);
         }
 
-        public void Delete(string id)
+        public void Delete(Guid id)
         {
             TEntity сourse = GetValueById(id);
             _db.GetEntry(сourse).State = EntityState.Deleted;

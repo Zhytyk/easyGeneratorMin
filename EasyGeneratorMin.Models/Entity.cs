@@ -4,31 +4,31 @@ namespace EasyGeneratorMin.Models
 {
     public class Entity
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         public string Title { get; set; }
 
         public string Creater { get; set; }
 
-        public string CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
 
-        public string LastUpdatedDate { get; set; }
+        public DateTime LastUpdatedDate { get; set; }
 
         public Entity()
         {
-            Id = Guid.NewGuid().ToString();
-            LastUpdatedDate = DateTime.Now.ToString();
+            Id = Guid.NewGuid();
+            LastUpdatedDate = DateTime.Now;
             Creater = "Pavel Vaydalauskas";
         }
 
         protected void SetLastUpdatedDate()
         {
-            LastUpdatedDate = DateTime.Now.ToString();
+            LastUpdatedDate = DateTime.Now;
         }
 
         protected void SetCreatedDate()
         {
-            CreatedDate = DateTime.Now.ToString();
+            CreatedDate = DateTime.Now;
         }
 
     }
