@@ -12,5 +12,5 @@
     return {
         initializeCourses: initializeCourses,
         courses: []
-    }
+    };
 });

@@ -24,5 +24,5 @@
     return {
         required: required,
         rangeRequired: rangeRequired
-    }
+    };
 })

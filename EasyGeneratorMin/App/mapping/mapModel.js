@@ -1,5 +1,6 @@
 ﻿define(['models/course'], function (Course) {
     function mapCourse(course) {
+        console.log();
         return new Course({
             id: course.Id,
             title: course.Title,

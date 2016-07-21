@@ -6,6 +6,7 @@
         this.creater = spec.creater;
         this.createdDate = spec.createdDate;
         this.lastUpdatedDate = spec.lastUpdatedDate;
-    }
+    };
+
     return Education;
 })

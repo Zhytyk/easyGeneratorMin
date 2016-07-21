@@ -55,5 +55,5 @@
         createCourse: createCourse,
         removeCourse: removeCourse,
         updateCourse: updateCourse,
-    }
+    };
 })
