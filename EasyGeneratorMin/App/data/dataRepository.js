@@ -40,12 +40,14 @@
     function updateCourse(id, title, description) {
         return http.post('update/course', {id: id, title: title, description: description})
             .then(function (updatedCourse) {
-                if (updatedCourse.error == undefined) {
-                    dataContext.courses.forEach(function (course, index) {
-                        dataContext.courses[index] = course.id === updatedCourse.Id ? mapModel.mapCourse(updatedCourse) : course;
-                    });
-                }
-                else return updatedCourse.error;
+                if (updatedCourse.error !== undefined)
+                    return updatedCourse.error;
+
+                var index = dataContext.courses.findIndex(function (course) {
+                    return course.id === updatedCourse.Id;
+                });
+
+                dataContext.courses[index] = mapModel.mapCourse(updatedCourse);
         });
     }
 

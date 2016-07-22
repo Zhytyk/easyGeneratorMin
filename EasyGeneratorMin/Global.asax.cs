@@ -12,7 +12,6 @@ namespace EasyGeneratorMin.Web
     {
         protected void Application_Start()
         {
-            ModelBinders.Binders.Add(typeof(CourseModel), new CourseModelBinder());
             AutofacConfig.ConfigureContainer();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

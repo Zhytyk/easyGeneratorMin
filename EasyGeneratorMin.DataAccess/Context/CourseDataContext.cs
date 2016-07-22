@@ -29,11 +29,6 @@ namespace EasyGeneratorMin.DataAccess
         {
             return Entry(entity);
         }
-
-        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : Entity
-        {
-            return new Repository<TEntity>(this);
-        }
         
         public void Save()
         {

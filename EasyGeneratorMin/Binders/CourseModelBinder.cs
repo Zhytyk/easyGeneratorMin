@@ -2,12 +2,21 @@
 using EasyGeneratorMin.DataAccess;
 using EasyGeneratorMin.Models;
 using System;
+using Autofac.Integration.Mvc;
 
 namespace EasyGeneratorMin.Web
 {
+
+    [ModelBinderType(typeof(CourseModel))]
     public class CourseModelBinder : IModelBinder
     {
-        private readonly IRepository<CourseModel> _courseRepository = new Repository<CourseModel>(new CourseDataContext());
+
+        private IRepository<CourseModel> _courseRepository;
+
+        public CourseModelBinder(IRepository<CourseModel> courseRepository)
+        {
+            _courseRepository = courseRepository;
+        }
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {

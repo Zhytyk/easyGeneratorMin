@@ -1,7 +1,4 @@
-﻿define(['plugins/router', 'data/dataContext', 'data/dataRepository'], function (router, dataContext, dataRepository) {
-    function removeCourse(self) {
-        
-    };
+﻿define(['durandal/app', 'plugins/router', 'data/dataContext', 'data/dataRepository'], function (app, router, dataContext, dataRepository) {
     return {
         courses: ko.observableArray([]),
         activate: function () {
@@ -17,7 +14,7 @@
             var self = this;
             dataRepository.removeCourse(id)
                 .then(function () {
-                    self.courses(self.courses());
+                    self.courses.valuehasmutated();
                 });
         }
     };

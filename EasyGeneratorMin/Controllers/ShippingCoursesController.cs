@@ -12,10 +12,10 @@ namespace EasyGeneratorMin.Web.Controllers
         private readonly IUnitOfWork _unitOWork;
         private readonly IRepository<CourseModel> _courseRepository;
 
-        public ShippingCoursesController(IUnitOfWork unitOfWork)
+        public ShippingCoursesController(IUnitOfWork unitOfWork, IRepository<CourseModel> courseRepository)
         {
             _unitOWork = unitOfWork;
-            _courseRepository = unitOfWork.GetRepository<CourseModel>();
+            _courseRepository = courseRepository;
         }
 
         [HttpGet]
