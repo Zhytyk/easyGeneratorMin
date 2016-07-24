@@ -16,11 +16,15 @@
             var self = this;
             dataRepository.removeCourse(id)
                 .then(function () {
-                    self.courses.valuehasmutated();
-                });
+                    self.courses.valueHasMutated();
+            });
         },
-        courseSection: function (id) {
-
+        removeSection: function (id) {
+            var self = this;
+            dataRepository.removeSection(id)
+                .then(function () {
+                    self.courses.valueHasMutated();
+            })
         }
     };
 })

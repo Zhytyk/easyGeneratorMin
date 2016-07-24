@@ -6,7 +6,6 @@ namespace EasyGeneratorMin.DataAccess
 {
     public class CourseDataContext : DbContext, IDatabaseContext, IUnitOfWork
     {
-
         public DbSet<CourseModel> Courses { get; set; }
 
         public DbSet<SectionModel> Sections { get; set; }

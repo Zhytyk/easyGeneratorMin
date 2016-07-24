@@ -1,5 +1,11 @@
 ﻿define(['models/course', 'models/section'], function (Course, Section) {
     function mapCourse(course) {
+        var sections = [];
+        if (course.Sections) {
+            course.Sections.forEach(function (section) {
+                sections.push(mapSection(section));
+            });
+        }
         return new Course({
             id: course.Id,
             title: course.Title,
@@ -7,6 +13,7 @@
             creater: course.Creater,
             createdDate: new Date(parseInt(course.CreatedDate.replace(/\/Date\((-?\d+)\)\//, '$1'))).toLocaleString(),
             lastUpdatedDate: new Date(parseInt(course.LastUpdatedDate.replace(/\/Date\((-?\d+)\)\//, '$1'))).toLocaleString(),
+            sections: sections
         });
     };
 

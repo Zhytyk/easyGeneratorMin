@@ -23,23 +23,23 @@ namespace EasyGeneratorMin.DataAccess
             return _db.GetSet<TEntity>().Find(id);
         }
 
-        public void Insert(TEntity course)
+        public void Insert(TEntity entity)
         { 
-            _db.GetSet<TEntity>().Add(course);
+            _db.GetSet<TEntity>().Add(entity);
         }
 
-        public void Update(TEntity сourse)
+        public void Update(TEntity entity)
         {
-            var existedCourse = GetValueById(сourse.Id);
+            var existedCourse = GetValueById(entity.Id);
 
             if (existedCourse != null)
-                _db.GetEntry(existedCourse).CurrentValues.SetValues(сourse);
+                _db.GetEntry(existedCourse).CurrentValues.SetValues(entity);
         }
 
         public void Delete(Guid id)
         {
-            TEntity сourse = GetValueById(id);
-            _db.GetEntry(сourse).State = EntityState.Deleted;
+            TEntity entity = GetValueById(id);
+            _db.GetEntry(entity).State = EntityState.Deleted;
         }
 
     }

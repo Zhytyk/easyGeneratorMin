@@ -9,7 +9,6 @@ namespace EasyGeneratorMin.DataAccess
     {
         protected override void Seed(CourseDataContext db)
         {
-
             db.Courses.Add(new CourseModel
             {
                 Id = Guid.NewGuid(),
@@ -31,43 +30,6 @@ namespace EasyGeneratorMin.DataAccess
                 LastUpdatedDate = DateTime.Now,
                 Sections = new List<SectionModel>()
             });
-
-            //db.Sections.Add(new SectionModel
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Title = "First",
-            //    Creater = "Pavel Vaydalauskas",
-            //    CreatedDate = DateTime.Now,
-            //    LastUpdatedDate = DateTime.Now
-            //});
-
-            //db.Sections.Add(new SectionModel
-            //{
-            //    Id = Guid.NewGuid(),
-            //    Title = "Second",
-            //    Creater = "Pavel Vaydalauskas",
-            //    CreatedDate = DateTime.Now,
-            //    LastUpdatedDate = DateTime.Now
-            //});
-
-            //db.Questions.Add(new QuestionModel
-            //{
-            //    Id = Guid.NewGuid(),
-            //    SectionId ="dasdas",
-            //    Title = "First Question",
-            //    Creater = "Pavel Vaydalauskas",
-            //    CreatedDate = DateTime.Now,
-            //    LastUpdatedDate = DateTime.Now
-            //});
-            //db.Questions.Add(new QuestionModel
-            //{
-            //    Id = Guid.NewGuid(),
-            //    SectionId = "assda",
-            //    Title = "Second Question",
-            //    Creater = "Pavel Vaydalauskas",
-            //    CreatedDate = DateTime.Now,
-            //    LastUpdatedDate = DateTime.Now
-            //});
 
             base.Seed(db);
         }

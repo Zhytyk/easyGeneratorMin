@@ -12,7 +12,7 @@ namespace EasyGeneratorMin.Models
         public List<SectionModel> Sections { get; set; }
 
         public CourseModel() {
-            //Sections = new List<SectionModel>();
+            Sections = new List<SectionModel>();
         }
 
         public CourseModel(string title, string description)

@@ -10,10 +10,10 @@ namespace EasyGeneratorMin.Web.Controllers
     {
 
         private readonly IUnitOfWork _unitOWork;
-        private readonly ICourseRepository<CourseModel> _courseRepository;
+        private readonly IRepository<CourseModel> _courseRepository;
         private readonly IRepository<SectionModel> _sectionRepository;
 
-        public ShippingCoursesController(IUnitOfWork unitOfWork, ICourseRepository<CourseModel> courseRepository, IRepository<SectionModel> sectionRepository)
+        public ShippingCoursesController(IUnitOfWork unitOfWork, IRepository<CourseModel> courseRepository, IRepository<SectionModel> sectionRepository)
         {
             _unitOWork = unitOfWork;
             _courseRepository = courseRepository;
@@ -24,7 +24,10 @@ namespace EasyGeneratorMin.Web.Controllers
         [Route("get/courses")]
         public JsonResult GetCourses()
         {
-            IEnumerable<CourseModel> сourses = _courseRepository.GetCollection();
+            var сourses = _courseRepository.GetCollection();
+
+            var sections = _sectionRepository.GetCollection();
+
             return Json(сourses, JsonRequestBehavior.AllowGet);
         }
 
@@ -42,15 +45,15 @@ namespace EasyGeneratorMin.Web.Controllers
 
         [HttpPost]
         [Route("create/section")]
-        [OutOfRangeException]
+        //[OutOfRangeException]
         public JsonResult CreateSection(Guid courseId, string title)
         {
             var section = new SectionModel
             {
                 Title = title,
                 CreatedDate = DateTime.Now,
-                CourseModel = _courseRepository.GetValueById(courseId)
             };
+            section.CourseModelId = courseId;
 
             _sectionRepository.Insert(section);
 
@@ -70,10 +73,34 @@ namespace EasyGeneratorMin.Web.Controllers
         }
 
         [HttpPost]
+        [Route("update/course")]
+        [OutOfRangeException]
+        public JsonResult UpdateSection(Guid id, string title)
+        {
+            var section = _sectionRepository.GetValueById(id);
+
+            section.UpdateSection(title);
+
+            _sectionRepository.Update(section);
+
+            return Json(section, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
         [Route("remove/course")]
         public JsonResult RemoveCourse(Guid id)
         {
             _courseRepository.Delete(id);
+
+            return Json(new { success = true }, JsonRequestBehavior.DenyGet);
+        }
+
+
+        [HttpPost]
+        [Route("remove/section")]
+        public JsonResult RemoveSection(Guid id)
+        {
+            _sectionRepository.Delete(id);
 
             return Json(new { success = true }, JsonRequestBehavior.DenyGet);
         }

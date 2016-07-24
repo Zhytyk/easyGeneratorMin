@@ -60,6 +60,41 @@
         });
     };
 
+    function removeSection(id) {
+        return http.post('remove/section', { id: id })
+            .then(function () {
+                removeSectionFromContext(id);
+            });
+    };
+
+    function removeSectionFromContext(id) {
+        dataContext.courses.forEach(function (course, index) {
+            var courseIndex = index;
+            course.sections.forEach(function (section, index) {
+                if (section.id === id)
+                    dataContext.courses[courseIndex].sections.splice(index, 1);
+            }); 
+        });
+    };
+
+    function updateSection(sectionId, title) {
+        return http.post('update/section', { id: sectionId, title: title})
+            .then(function (updatedSection) {
+                if (updatedCourse.error !== undefined)
+                    return updatedCourse.error;
+
+                dataContext.courses.forEach(function (course, index) {
+                    var courseIndex = index;
+                    index = course.sections.findIndex(function (course) {
+                        return course.id === updatedCourse.Id;
+                    });
+                    if (index) {
+                        dataContext.courses[courseIndex].sections[index] = mapper.mapSection(updatedSection);
+                    }
+                });
+            });
+    };
+
     return {
         getCourses: getCourses,
         getCourseById: getCourseById,
@@ -67,5 +102,7 @@
         removeCourse: removeCourse,
         updateCourse: updateCourse,
         createSection: createSection,
+        removeSection: removeSection,
+        updateSection: updateSection
     };
 })
