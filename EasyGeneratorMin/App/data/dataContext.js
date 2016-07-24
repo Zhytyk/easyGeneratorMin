@@ -1,16 +1,22 @@
-﻿define(['http/httpWrapper', 'mapping/mapModel'], function (http, mapModel) {
+﻿define(['http/httpWrapper', 'mapping/mapper'], function (http, mapper) {
 
-    function initializeCourses() {
+    function initialize() {
         var self = this;
-        return http.get('get/courses').then(function (data) {
-            data.forEach(function (course) {
-               self.courses.push(mapModel.mapCourse(course));
+        return http.get('get/courses').then(function (courses) {
+            courses.forEach(function (course) {
+                self.courses.push(mapper.mapCourse(course));
             });
+            //return http.get('get/sections').then(function (sections) {
+            //    sections.forEach(function (course) {
+            //        self.sections.push(mapper.mapSection);
+            //    });
+            //});
         });
-    }
+    };
 
     return {
-        initializeCourses: initializeCourses,
-        courses: []
+        initialize: initialize,
+        courses: [],
+        sections: []
     };
 });

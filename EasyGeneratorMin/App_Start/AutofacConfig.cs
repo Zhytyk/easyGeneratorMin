@@ -25,8 +25,11 @@ namespace EasyGeneratorMin.Web
                 .As<IDatabaseContext>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<Repository<CourseModel>>()
-                .As<IRepository<CourseModel>>();
+            builder.RegisterType<CourseRepository<CourseModel>>()
+                .As<ICourseRepository<CourseModel>>();
+
+            builder.RegisterType<Repository<SectionModel>>()
+                .As<IRepository<SectionModel>>();
 
             var container = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace EasyGeneratorMin.Models
@@ -8,7 +9,11 @@ namespace EasyGeneratorMin.Models
     {
         public string Description { get; set; }
 
-        public CourseModel() { }
+        public List<SectionModel> Sections { get; set; }
+
+        public CourseModel() {
+            //Sections = new List<SectionModel>();
+        }
 
         public CourseModel(string title, string description)
         {

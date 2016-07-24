@@ -1,8 +1,10 @@
 ﻿define(['durandal/app', 'plugins/router', 'data/dataContext', 'data/dataRepository'], function (app, router, dataContext, dataRepository) {
     return {
         courses: ko.observableArray([]),
+        sections: ko.observableArray([]),
         activate: function () {
             this.courses(dataContext.courses);
+            this.sections(dataContext.sections);
         },
         createCourse: function () {
             router.navigate("#create");
@@ -16,6 +18,9 @@
                 .then(function () {
                     self.courses.valuehasmutated();
                 });
+        },
+        courseSection: function (id) {
+
         }
     };
 })

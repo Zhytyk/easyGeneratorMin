@@ -1,4 +1,4 @@
-﻿define(['models/education'], function (educationa) {
+﻿define(['models/education'], function (education) {
 
     function Section(spec) {
         education.call(this, spec);

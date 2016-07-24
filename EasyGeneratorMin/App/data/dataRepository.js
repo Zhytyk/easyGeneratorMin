@@ -1,10 +1,10 @@
-﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/mapModel'], function (dataContext, http, mapModel) {
+﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/mapper'], function (dataContext, http, mapper) {
 
     function getCourses() {
         return new Promise(function (resolve) {
             resolve(dataContext.courses);
         });
-    }
+    };
 
     function getCourseById(id) {
         return getCourses().then(function (courses) {
@@ -18,27 +18,27 @@
         return http.post('create/course', { title: title, description: description })
             .then(function (createdCourse) {
                 if (createdCourse.error == undefined)
-                    dataContext.courses.push(mapModel.mapCourse(createdCourse));
+                    dataContext.courses.push(mapper.mapCourse(createdCourse));
                 else return createdCourse.error;
-        });
-    }
+            });
+    };
 
-    function removeCourse(id) {   
+    function removeCourse(id) {
         return http.post('remove/course', { id: id })
             .then(function () {
                 removeCourseFromContext(id);
             });
-    }
+    };
 
     function removeCourseFromContext(id) {
         dataContext.courses.forEach(function (course, index) {
-            if (course.id === id) 
+            if (course.id === id)
                 dataContext.courses.splice(index, 1);
         });
-    }
+    };
 
     function updateCourse(id, title, description) {
-        return http.post('update/course', {id: id, title: title, description: description})
+        return http.post('update/course', { id: id, title: title, description: description })
             .then(function (updatedCourse) {
                 if (updatedCourse.error !== undefined)
                     return updatedCourse.error;
@@ -47,9 +47,18 @@
                     return course.id === updatedCourse.Id;
                 });
 
-                dataContext.courses[index] = mapModel.mapCourse(updatedCourse);
+                dataContext.courses[index] = mapper.mapCourse(updatedCourse);
         });
-    }
+    };
+
+    function createSection(courseId, title) {
+        return http.post('create/section', { courseId: courseId, title: title })
+            .then(function (createdSection) {
+                if (createdSection.error == undefined)
+                    dataContext.sections.push(mapper.mapSection(createdSection));
+                else return createdSection.error;
+        });
+    };
 
     return {
         getCourses: getCourses,
@@ -57,5 +66,6 @@
         createCourse: createCourse,
         removeCourse: removeCourse,
         updateCourse: updateCourse,
+        createSection: createSection,
     };
 })

@@ -10,17 +10,19 @@ namespace EasyGeneratorMin.Web.Controllers
     {
 
         private readonly IUnitOfWork _unitOWork;
-        private readonly IRepository<CourseModel> _courseRepository;
+        private readonly ICourseRepository<CourseModel> _courseRepository;
+        private readonly IRepository<SectionModel> _sectionRepository;
 
-        public ShippingCoursesController(IUnitOfWork unitOfWork, IRepository<CourseModel> courseRepository)
+        public ShippingCoursesController(IUnitOfWork unitOfWork, ICourseRepository<CourseModel> courseRepository, IRepository<SectionModel> sectionRepository)
         {
             _unitOWork = unitOfWork;
             _courseRepository = courseRepository;
+            _sectionRepository = sectionRepository;
         }
 
         [HttpGet]
         [Route("get/courses")]
-        public JsonResult GetCoursesData()
+        public JsonResult GetCourses()
         {
             IEnumerable<CourseModel> сourses = _courseRepository.GetCollection();
             return Json(сourses, JsonRequestBehavior.AllowGet);
@@ -36,6 +38,23 @@ namespace EasyGeneratorMin.Web.Controllers
             _courseRepository.Insert(course);
 
             return Json(course, JsonRequestBehavior.DenyGet);
+        }
+
+        [HttpPost]
+        [Route("create/section")]
+        [OutOfRangeException]
+        public JsonResult CreateSection(Guid courseId, string title)
+        {
+            var section = new SectionModel
+            {
+                Title = title,
+                CreatedDate = DateTime.Now,
+                CourseModel = _courseRepository.GetValueById(courseId)
+            };
+
+            _sectionRepository.Insert(section);
+
+            return Json(section, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]

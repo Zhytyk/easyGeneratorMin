@@ -13,7 +13,6 @@ namespace EasyGeneratorMin.DataAccess
             HasKey(o => o.Id);
 
             Property(o => o.Title).IsRequired();
-            Property(o => o.CourseId).IsRequired();
             Property(o => o.Creater).IsRequired();
             Property(o => o.LastUpdatedDate).IsRequired();
             Property(o => o.CreatedDate).IsRequired();

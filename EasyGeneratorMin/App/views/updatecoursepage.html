@@ -9,4 +9,11 @@
         <span data-bind="visible: description.hasError, text: description.validationMessage"></span>
         <input type="submit" />
     </form>
+    <div>
+        Create Section
+    </div>
+    <form data-bind="submit: createSection">
+        <input type="text" data-bind="value: sectionTitle"/>
+        <input type="submit"/>
+    </form>
 </section>

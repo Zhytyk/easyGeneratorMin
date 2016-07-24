@@ -11,6 +11,7 @@
         currentCourse: '',
         title: ko.observable().extend({ rangeRequired: "" }),
         description: ko.observable().extend({ required: "" }),
+        sectionTitle: ko.observable(),
         activate: function (id) {
             initializeFormPage(id, this);
         },
@@ -18,6 +19,11 @@
             dataRepository.updateCourse(this.currentCourse.id, this.title, this.description).then(function (error) {
                 if (error) alert(error);
                 else router.navigate("#");
+            });
+        },
+        createSection: function () {
+            dataRepository.createSection(this.currentCourse.id, this.sectionTitle).then(function (error) {
+                if (error) alert(error);
             });
         },
     };
