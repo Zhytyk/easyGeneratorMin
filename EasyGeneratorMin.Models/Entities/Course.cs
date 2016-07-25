@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace EasyGeneratorMin.Models
+namespace EasyGeneratorMin
 {
-
-    public class CourseModel : Entity
+    public class Course : Entity
     {
+
         public string Description { get; set; }
 
-        public List<SectionModel> Sections { get; set; }
+        public List<Section> Sections { get; set; }
 
-        public CourseModel() {
-            Sections = new List<SectionModel>();
+        public Course()
+        {
+            Sections = new List<Section>();
         }
 
-        public CourseModel(string title, string description)
+        public Course(string title, string description)
         {
 
             ThrowIfTitleInvalid(title);

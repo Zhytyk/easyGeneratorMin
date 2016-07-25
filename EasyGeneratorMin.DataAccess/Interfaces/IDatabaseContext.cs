@@ -8,6 +8,6 @@ namespace EasyGeneratorMin
     {
         IDbSet<TEntity> GetSet<TEntity>() where TEntity : Entity;
 
-        DbEntityEntry<TEntity> GetEntry<TEntity>(TEntity entity) where TEntity : Entity;
+        DbEntityEntry<TEntity> GetEntry<TEntity>(TEntity Entity) where TEntity : Entity;
     }
 }

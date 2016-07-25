@@ -23775,7 +23775,7 @@ function (esprima, parse, logger, lang) {
                             depAction = 'skip';
                         }
                     } else {
-                        //Unknown define entity, keep looking, even
+                        //Unknown define Entity, keep looking, even
                         //in the subtree for this node.
                         return;
                     }

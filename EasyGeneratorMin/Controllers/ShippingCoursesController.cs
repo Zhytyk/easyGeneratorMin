@@ -2,6 +2,7 @@
 using EasyGeneratorMin.Models;
 using System;
 using System.Collections.Generic;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace EasyGeneratorMin.Web.Controllers
@@ -10,10 +11,10 @@ namespace EasyGeneratorMin.Web.Controllers
     {
 
         private readonly IUnitOfWork _unitOWork;
-        private readonly IRepository<CourseModel> _courseRepository;
-        private readonly IRepository<SectionModel> _sectionRepository;
+        private readonly IRepository<Course> _courseRepository;
+        private readonly IRepository<Section> _sectionRepository;
 
-        public ShippingCoursesController(IUnitOfWork unitOfWork, IRepository<CourseModel> courseRepository, IRepository<SectionModel> sectionRepository)
+        public ShippingCoursesController(IUnitOfWork unitOfWork, IRepository<Course> courseRepository, IRepository<Section> sectionRepository)
         {
             _unitOWork = unitOfWork;
             _courseRepository = courseRepository;
@@ -24,11 +25,9 @@ namespace EasyGeneratorMin.Web.Controllers
         [Route("get/courses")]
         public JsonResult GetCourses()
         {
-            var сourses = _courseRepository.GetCollection();
+            var courses = _courseRepository.GetCollection();
 
-            var sections = _sectionRepository.GetCollection();
-
-            return Json(сourses, JsonRequestBehavior.AllowGet);
+            return Json(courses, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -36,11 +35,22 @@ namespace EasyGeneratorMin.Web.Controllers
         [OutOfRangeException]
         public JsonResult CreateCourse(string title, string description)
         {
-            var course = new CourseModel(title, description);
+            var course = new Course(title, description);
 
             _courseRepository.Insert(course);
 
-            return Json(course, JsonRequestBehavior.DenyGet);
+            var mapCourse = new CourseModel
+            {
+                CreatedDate = course.CreatedDate,
+                Creater = course.Creater,
+                Description = course.Description,
+                Id = course.Id,
+                LastUpdatedDate = course.LastUpdatedDate,
+                Sections = course.Sections.ConvertAll<SectionModel>(Converter<Section, SectionModel> converter),
+                Title = course.Title
+            };
+
+            return Json(mapCourse, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
@@ -53,7 +63,6 @@ namespace EasyGeneratorMin.Web.Controllers
                 Title = title,
                 CreatedDate = DateTime.Now,
             };
-            section.CourseModelId = courseId;
 
             _sectionRepository.Insert(section);
 
@@ -63,7 +72,7 @@ namespace EasyGeneratorMin.Web.Controllers
         [HttpPost]
         [Route("update/course")]
         [OutOfRangeException]
-        public JsonResult UpdateCourse(CourseModel course, string title, string description)
+        public JsonResult UpdateCourse(Course course, string title, string description)
         {
             course.UpdateCourse(title, description);
 

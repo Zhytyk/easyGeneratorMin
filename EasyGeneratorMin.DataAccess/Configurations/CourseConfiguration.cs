@@ -4,7 +4,7 @@ using System.Data.Entity.ModelConfiguration;
 namespace EasyGeneratorMin.DataAccess
 {
 
-    public class CourseConfiguration : EntityTypeConfiguration<CourseModel>
+    public class CourseConfiguration : EntityTypeConfiguration<Course>
     {
         public CourseConfiguration()
         {
@@ -13,8 +13,7 @@ namespace EasyGeneratorMin.DataAccess
             HasKey(o => o.Id);
 
             HasMany(c => c.Sections)
-            .WithOptional()
-            .HasForeignKey(o => o.CourseModelId);
+                .WithOptional(c => c.Course);
 
             Property(o => o.Title).IsRequired();
             Property(o => o.Description).IsRequired();

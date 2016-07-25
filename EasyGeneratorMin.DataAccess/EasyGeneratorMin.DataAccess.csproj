@@ -82,7 +82,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\CourseConfiguration.cs" />
-    <Compile Include="Configurations\QuestionConfiguration.cs" />
     <Compile Include="Configurations\SectionConfiguration.cs" />
     <Compile Include="Context\CourseDataContext.cs" />
     <Compile Include="DbInitializer\CourseDataDbInitializer.cs" />

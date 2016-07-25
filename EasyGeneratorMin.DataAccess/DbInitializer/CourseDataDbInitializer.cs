@@ -9,7 +9,7 @@ namespace EasyGeneratorMin.DataAccess
     {
         protected override void Seed(CourseDataContext db)
         {
-            db.Courses.Add(new CourseModel
+            db.Courses.Add(new Course
             {
                 Id = Guid.NewGuid(),
                 Title = "TestCourse1",
@@ -17,10 +17,10 @@ namespace EasyGeneratorMin.DataAccess
                 Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now,
                 LastUpdatedDate = DateTime.Now,
-                Sections = new List<SectionModel>()
+                Sections = new List<Section>()
             });
 
-            db.Courses.Add(new CourseModel
+            db.Courses.Add(new Course
             {
                 Id = Guid.NewGuid(),
                 Title = "TestCourse2",
@@ -28,7 +28,7 @@ namespace EasyGeneratorMin.DataAccess
                 Creater = "Pavel Vaydalauskas",
                 CreatedDate = DateTime.Now,
                 LastUpdatedDate = DateTime.Now,
-                Sections = new List<SectionModel>()
+                Sections = new List<Section>()
             });
 
             base.Seed(db);

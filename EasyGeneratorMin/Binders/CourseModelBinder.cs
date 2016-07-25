@@ -7,13 +7,13 @@ using Autofac.Integration.Mvc;
 namespace EasyGeneratorMin.Web
 {
 
-    [ModelBinderType(typeof(CourseModel))]
+    [ModelBinderType(typeof(Course))]
     public class CourseModelBinder : IModelBinder
     {
 
-        private IRepository<CourseModel> _courseRepository;
+        private IRepository<Course> _courseRepository;
 
-        public CourseModelBinder(IRepository<CourseModel> courseRepository)
+        public CourseModelBinder(IRepository<Course> courseRepository)
         {
             _courseRepository = courseRepository;
         }
