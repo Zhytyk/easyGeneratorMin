@@ -39,7 +39,7 @@ namespace EasyGeneratorMin.DataAccess
         public void Delete(Guid id)
         {
             TEntity Entity = GetValueById(id);
-            _db.GetEntry(Entity).State = EntityState.Deleted;
+            _db.GetSet<TEntity>().Remove(Entity);
         }
 
     }

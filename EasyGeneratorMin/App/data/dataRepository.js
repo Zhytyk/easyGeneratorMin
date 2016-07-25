@@ -55,7 +55,10 @@
         return http.post('create/section', { courseId: courseId, title: title })
             .then(function (createdSection) {
                 if (createdSection.error == undefined)
-                    dataContext.sections.push(mapper.mapSection(createdSection));
+                    dataContext.courses.forEach(function (course) {
+                        if(course.id === courseId)
+                            course.sections.push(mapper.mapSection(createdSection));
+                    })
                 else return createdSection.error;
         });
     };
@@ -69,10 +72,10 @@
 
     function removeSectionFromContext(id) {
         dataContext.courses.forEach(function (course, index) {
-            var courseIndex = index;
-            course.sections.forEach(function (section, index) {
-                if (section.id === id)
-                    dataContext.courses[courseIndex].sections.splice(index, 1);
+            course.sections.forEach(function (section, i) {
+                if (section.id === id) {
+                    dataContext.courses[index].sections.splice(i, 1);
+                }
             }); 
         });
     };
@@ -80,18 +83,20 @@
     function updateSection(sectionId, title) {
         return http.post('update/section', { id: sectionId, title: title})
             .then(function (updatedSection) {
-                if (updatedCourse.error !== undefined)
+
+                if (updatedSection.error !== undefined)
                     return updatedCourse.error;
 
                 dataContext.courses.forEach(function (course, index) {
-                    var courseIndex = index;
-                    index = course.sections.findIndex(function (course) {
-                        return course.id === updatedCourse.Id;
-                    });
-                    if (index) {
-                        dataContext.courses[courseIndex].sections[index] = mapper.mapSection(updatedSection);
-                    }
+                     var i = course.sections.findIndex(function (section) {
+                        return section.id === updatedSection.Id;
+                     });
+                     if (i >= 0) {
+                         dataContext.courses[index].sections[i] = mapper.mapSection(updatedSection);
+                         console.log(dataContext.courses);
+                     }
                 });
+
             });
     };
 

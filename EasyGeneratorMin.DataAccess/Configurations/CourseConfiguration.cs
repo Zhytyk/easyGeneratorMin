@@ -8,6 +8,7 @@ namespace EasyGeneratorMin.DataAccess
     {
         public CourseConfiguration()
         {
+            
             ToTable("t_course_data");
 
             HasKey(o => o.Id);
@@ -22,6 +23,7 @@ namespace EasyGeneratorMin.DataAccess
             Property(o => o.CreatedDate).IsRequired();
 
             Property(o => o.Title).HasMaxLength(255);
+
         }
     }
 }

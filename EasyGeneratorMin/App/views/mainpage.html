@@ -15,12 +15,14 @@
                 <button data-bind="click: function() { $root.removeCourse($data.id) }">Delete</button>
                 <br />
                 <div data-bind="foreach: sections">
-                    <span data-bind="text: title"></span>
-                    <span data-bind="text: creater"></span>
-                    <span data-bind="text: lastUpdatedDate"></span>
-                    <span data-bind="text: createdDate"></span>
-                    <button data-bind="click: function() { $root.updateSection($data.id) }">Update</button>
-                    <button data-bind="click: function() { $root.removeSection($data.id) }">Delete</button>
+                    <div style="margin-left: 30px">
+                        <span data-bind="text: title"></span>
+                        <span data-bind="text: creater"></span>
+                        <span data-bind="text: lastUpdatedDate"></span>
+                        <span data-bind="text: createdDate"></span>
+                        <button data-bind="click: function() { $root.updateSection($data.id) }">Update</button>
+                        <button data-bind="click: function() { $root.removeSection($data.id) }">Delete</button>
+                    </div>
                 </div>
             </div>
         </div>

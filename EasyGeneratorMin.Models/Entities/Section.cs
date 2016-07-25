@@ -11,5 +11,12 @@ namespace EasyGeneratorMin
 
         public Course Course { get; set; }
 
+        public void UpdateSection(string title)
+        {
+            Title = title;
+
+            SetLastUpdatedDate();
+        }
+
     }
 }

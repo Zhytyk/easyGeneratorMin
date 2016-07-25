@@ -24,6 +24,7 @@
         createSection: function () {
             dataRepository.createSection(this.currentCourse.id, this.sectionTitle).then(function (error) {
                 if (error) alert(error);
+                else router.navigate("#");
             });
         },
     };

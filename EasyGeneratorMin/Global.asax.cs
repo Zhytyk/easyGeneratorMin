@@ -12,10 +12,12 @@ namespace EasyGeneratorMin.Web
     {
         protected void Application_Start()
         {
+            AutoMapperConfig.RegisterMappings();
             AutofacConfig.ConfigureContainer();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer(new CourseDataDbInitializer());
+            
 
             AreaRegistration.RegisterAllAreas();
         }

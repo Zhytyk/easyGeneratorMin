@@ -8,7 +8,7 @@ namespace EasyGeneratorMin.DataAccess
     {
         public DbSet<Course> Courses { get; set; }
 
-        public DbSet<Section> Sections { get; set; }
+        public DbSet<Section> Sections { get; set; } 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -1,7 +1,9 @@
-﻿using EasyGeneratorMin.DataAccess;
+﻿using AutoMapper;
+using EasyGeneratorMin.DataAccess;
 using EasyGeneratorMin.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Configuration;
 using System.Web.Mvc;
 
@@ -13,12 +15,14 @@ namespace EasyGeneratorMin.Web.Controllers
         private readonly IUnitOfWork _unitOWork;
         private readonly IRepository<Course> _courseRepository;
         private readonly IRepository<Section> _sectionRepository;
+        private readonly IMapper _mapper;
 
-        public ShippingCoursesController(IUnitOfWork unitOfWork, IRepository<Course> courseRepository, IRepository<Section> sectionRepository)
+        public ShippingCoursesController(IUnitOfWork unitOfWork, IRepository<Course> courseRepository, IRepository<Section> sectionRepository, IMapper mapper)
         {
             _unitOWork = unitOfWork;
             _courseRepository = courseRepository;
             _sectionRepository = sectionRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -27,7 +31,9 @@ namespace EasyGeneratorMin.Web.Controllers
         {
             var courses = _courseRepository.GetCollection();
 
-            return Json(courses, JsonRequestBehavior.AllowGet);
+            var mapCourses = courses.Select(item => _mapper.Map<CourseModel>(item)).ToList();
+
+            return Json(mapCourses, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -39,34 +45,28 @@ namespace EasyGeneratorMin.Web.Controllers
 
             _courseRepository.Insert(course);
 
-            var mapCourse = new CourseModel
-            {
-                CreatedDate = course.CreatedDate,
-                Creater = course.Creater,
-                Description = course.Description,
-                Id = course.Id,
-                LastUpdatedDate = course.LastUpdatedDate,
-                Sections = course.Sections.ConvertAll<SectionModel>(Converter<Section, SectionModel> converter),
-                Title = course.Title
-            };
+            var mapCourse = _mapper.Map<CourseModel>(course);
 
             return Json(mapCourse, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
         [Route("create/section")]
-        //[OutOfRangeException]
+        [OutOfRangeException]
         public JsonResult CreateSection(Guid courseId, string title)
         {
-            var section = new SectionModel
+            var section = new Section
             {
                 Title = title,
                 CreatedDate = DateTime.Now,
+                Course = _courseRepository.GetValueById(courseId),
             };
 
             _sectionRepository.Insert(section);
 
-            return Json(section, JsonRequestBehavior.DenyGet);
+            var mapSection = _mapper.Map<SectionModel>(section);
+
+            return Json(mapSection, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
@@ -74,15 +74,18 @@ namespace EasyGeneratorMin.Web.Controllers
         [OutOfRangeException]
         public JsonResult UpdateCourse(Course course, string title, string description)
         {
+
             course.UpdateCourse(title, description);
 
             _courseRepository.Update(course);
 
-            return Json(course, JsonRequestBehavior.DenyGet);
+            var mapCourse = _mapper.Map<CourseModel>(course);
+
+            return Json(mapCourse, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
-        [Route("update/course")]
+        [Route("update/section")]
         [OutOfRangeException]
         public JsonResult UpdateSection(Guid id, string title)
         {
@@ -92,7 +95,9 @@ namespace EasyGeneratorMin.Web.Controllers
 
             _sectionRepository.Update(section);
 
-            return Json(section, JsonRequestBehavior.DenyGet);
+            var mapSection = _mapper.Map<SectionModel>(section);
+
+            return Json(mapSection, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
@@ -118,6 +123,14 @@ namespace EasyGeneratorMin.Web.Controllers
         {
             _unitOWork.Save();
             base.OnActionExecuted(filterContext);
+        }
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            var sections = _sectionRepository.GetCollection();
+
+            foreach (var section in sections) { }
+
+            base.OnActionExecuting(filterContext);
         }
     }
 }

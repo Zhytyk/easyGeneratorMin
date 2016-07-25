@@ -49,11 +49,15 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.Mvc5.3.3.4\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+      <HintPath>..\packages\Autofac.Mvc5.3.3.3\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=5.0.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.0.2\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -164,10 +168,12 @@
     <Content Include="App\viewmodels\updatecoursepage.js" />
     <Content Include="App\viewmodels\mainpage.js" />
     <Content Include="App\viewmodels\shell.js" />
+    <Content Include="App\viewmodels\updatesectionpage.js" />
     <Content Include="App\views\createcoursepage.html" />
     <Content Include="App\views\updatecoursepage.html" />
     <Content Include="App\views\mainpage.html" />
     <Content Include="App\views\shell.html" />
+    <Content Include="App\views\updatesectionpage.html" />
     <Content Include="App_Data\EasyGeneratorMin.mdf" />
     <Content Include="App_Data\EasyGeneratorMin_log.ldf">
       <DependentUpon>EasyGeneratorMin.mdf</DependentUpon>
@@ -210,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Binders\CourseModelBinder.cs" />

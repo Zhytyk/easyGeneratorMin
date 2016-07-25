@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using AutoMapper;
 using EasyGeneratorMin.DataAccess;
 using EasyGeneratorMin.Models;
 using System.Reflection;
@@ -30,6 +31,8 @@ namespace EasyGeneratorMin.Web
 
             builder.RegisterType<Repository<Section>>()
                 .As<IRepository<Section>>();
+
+            builder.Register(c => Mapper.Instance).As<IMapper>();
 
             var container = builder.Build();
 
