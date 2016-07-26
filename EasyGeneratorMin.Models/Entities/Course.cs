@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EasyGeneratorMin
+namespace EasyGeneratorMin.Models
 {
     public class Course : Entity
     {

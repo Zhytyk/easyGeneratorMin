@@ -1,4 +1,4 @@
-﻿define(['data/dataRepository', 'plugins/router'], function(dataRepository, router){
+﻿define(['data/sectionRepository', 'plugins/router'], function(sectionRepository, router){
     return {
         courseId: '',
         sectionId: '',
@@ -8,7 +8,7 @@
             this.sectionId = sectionId;
         },
         updateSection: function () {
-            dataRepository.updateSection(this.sectionId, this.courseId, this.sectionTitle).then(function () {
+            sectionRepository.updateSection(this.sectionId, this.courseId, this.sectionTitle).then(function () {
                 router.navigate("#");
             });
         }

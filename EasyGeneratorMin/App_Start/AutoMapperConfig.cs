@@ -5,7 +5,7 @@ using System.Web;
 using AutoMapper;
 using EasyGeneratorMin.Models;
 
-namespace EasyGeneratorMin
+namespace EasyGeneratorMin.Web
 {
     public class AutoMapperConfig
     {

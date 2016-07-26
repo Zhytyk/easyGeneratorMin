@@ -1,4 +1,4 @@
-﻿define(['data/dataRepository', 'extenders/validationExtenders', 'plugins/router'], function (dataRepository, validationExtenders, router) {
+﻿define(['data/courseRepository', 'extenders/validationExtenders', 'plugins/router'], function (courseRepository, validationExtenders, router) {
     return {
         title: ko.observable().extend({ rangeRequired: "" }),
         description: ko.observable().extend({ required: "" }),
@@ -7,9 +7,13 @@
             this.description("SomeDescription");
         },
         createCourse: function () {
-            dataRepository.createCourse(this.title, this.description).then(function (error) {
-                if (error) alert(error);
-                else router.navigate("#");
+            courseRepository.createCourse(this.title, this.description).then(function (error) {
+                if (error) {
+                    alert(error);
+                }
+                else {
+                    router.navigate("#");
+                }
             });
         }
 
