@@ -10,8 +10,8 @@
         updateCourse: function (id) {
             router.navigate("#update/" + id);
         },
-        updateSection: function(id) {
-            router.navigate("#updateSection/" + id);
+        updateSection: function(sectionId, courseId) {
+            router.navigate("#updateSection/" + courseId + "/" + sectionId);
         },
         removeCourse: function (id) {
             var self = this;
@@ -20,9 +20,9 @@
                     self.courses.valueHasMutated();
             });
         },
-        removeSection: function (id) {
+        removeSection: function (sectionId, courseId) {
             var self = this;
-            dataRepository.removeSection(id)
+            dataRepository.removeSection(sectionId, courseId)
                 .then(function () {
                     self.courses([]);
                     self.courses(dataContext.courses);

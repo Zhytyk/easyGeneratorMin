@@ -6,7 +6,7 @@
                { route: '', title: 'Main View', moduleId: 'viewmodels/mainpage', nav: true },
                { route: 'create', title: 'Create course', moduleId: 'viewmodels/createcoursepage', nav: true },
                { route: 'update/:id', title: 'Update course', moduleId: 'viewmodels/updatecoursepage', nav: true },
-               { route: 'updateSection/:id', title: 'Update section', moduleId: 'viewmodels/updatesectionpage', nav: true }
+               { route: 'updateSection/:courseId/:sectionId', title: 'Update section', moduleId: 'viewmodels/updatesectionpage', nav: true }
             ]).buildNavigationModel();
 
             return router.activate();

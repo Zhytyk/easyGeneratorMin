@@ -1,12 +1,14 @@
 ﻿define(['data/dataRepository', 'plugins/router'], function(dataRepository, router){
     return {
-        id: '',
+        courseId: '',
+        sectionId: '',
         sectionTitle: ko.observable(),
-        activate: function (id) {
-            this.id = id;
+        activate: function (courseId, sectionId) {
+            this.courseId = courseId;
+            this.sectionId = sectionId;
         },
         updateSection: function () {
-            dataRepository.updateSection(this.id, this.sectionTitle).then(function () {
+            dataRepository.updateSection(this.sectionId, this.courseId, this.sectionTitle).then(function () {
                 router.navigate("#");
             });
         }
