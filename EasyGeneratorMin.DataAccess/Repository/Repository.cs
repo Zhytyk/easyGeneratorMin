@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 
 namespace EasyGeneratorMin.DataAccess
 {
@@ -13,12 +14,12 @@ namespace EasyGeneratorMin.DataAccess
             _db = db;
         }
 
-        public IEnumerable<TEntity> GetCollection()
+        public virtual IEnumerable<TEntity> GetCollection()
         {
             return _db.GetSet<TEntity>();
         }
 
-        public TEntity GetValueById(Guid id)
+        public virtual TEntity GetValueById(Guid id)
         {
             return _db.GetSet<TEntity>().Find(id);
         }

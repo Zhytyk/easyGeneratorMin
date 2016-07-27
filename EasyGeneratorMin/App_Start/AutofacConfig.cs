@@ -17,16 +17,13 @@ namespace EasyGeneratorMin.Web
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-            builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
-            builder.RegisterModelBinderProvider();
-
 
             builder.RegisterType<CourseDataContext>()
                 .As<IUnitOfWork>()
                 .As<IDatabaseContext>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<Repository<Course>>()
+            builder.RegisterType<CourseRepository<Course>>()
                 .As<IRepository<Course>>();
 
             builder.RegisterType<Repository<Section>>()

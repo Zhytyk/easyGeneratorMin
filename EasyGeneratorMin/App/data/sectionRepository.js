@@ -1,7 +1,7 @@
 ﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/mapper'], function (dataContext, http, mapper) {
 
     function createSection(courseId, title) {
-        return http.post('create/section', { courseId: courseId, title: title })
+        return http.post('create/section', { id: courseId, title: title })
             .then(function (createdSection) {
                 if (createdSection.error) {
                     return createdSection.error;

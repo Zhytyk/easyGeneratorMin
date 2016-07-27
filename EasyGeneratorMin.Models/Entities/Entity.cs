@@ -21,18 +21,15 @@ namespace EasyGeneratorMin.Models
         public Entity()
         {
             Id = Guid.NewGuid();
-            LastUpdatedDate = DateTime.Now;
+            LastUpdatedDate = DateTime.UtcNow;
+            CreatedDate = DateTime.UtcNow;
             Creater = "Pavel Vaydalauskas";
         }
 
         protected void SetLastUpdatedDate()
         {
-            LastUpdatedDate = DateTime.Now;
+            LastUpdatedDate = DateTime.UtcNow;
         }
 
-        protected void SetCreatedDate()
-        {
-            CreatedDate = DateTime.Now;
-        }
     }
 }

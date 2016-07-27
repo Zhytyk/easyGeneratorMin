@@ -1,8 +1,8 @@
-﻿define(['data/sectionRepository', 'plugins/router'], function(sectionRepository, router){
+﻿define(['data/sectionRepository', 'plugins/router', 'extenders/validationExtenders'], function (sectionRepository, router, validationExtenders) {
     return {
         courseId: '',
         sectionId: '',
-        sectionTitle: ko.observable(),
+        sectionTitle: ko.observable().extend({ required: ''}),
         activate: function (courseId, sectionId) {
             this.courseId = courseId;
             this.sectionId = sectionId;

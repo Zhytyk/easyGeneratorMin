@@ -26,8 +26,6 @@ namespace EasyGeneratorMin.Models
 
             Title = title;
             Description = description;
-
-            SetCreatedDate();
         }
 
         public void UpdateCourse(string title, string description)

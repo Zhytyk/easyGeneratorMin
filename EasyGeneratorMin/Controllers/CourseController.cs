@@ -85,13 +85,5 @@ namespace EasyGeneratorMin.Web
             base.OnActionExecuted(filterContext);
         }
 
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            var sections = _sectionRepository.GetCollection();
-
-            foreach (var section in sections) { }
-
-            base.OnActionExecuting(filterContext);
-        }
     }
 }

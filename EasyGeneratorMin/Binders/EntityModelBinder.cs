@@ -6,21 +6,13 @@ using Autofac.Integration.Mvc;
 
 namespace EasyGeneratorMin.Web
 {
-
-    [ModelBinderType(typeof(Course))]
-    [ModelBinderType(typeof(Section))]
-    public class CourseModelBinder<T> : IModelBinder where T : Entity
+    public class EntityModelBinder<T> : IModelBinder where T : Entity
     {
-
-        private IRepository<T> _repository;
-
-        public CourseModelBinder(IRepository<T> repository)
-        {
-            _repository = repository;
-        }
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
+
+            var _repository = DependencyResolver.Current.GetService<IRepository<T>>();
 
             var valueProvider = bindingContext.ValueProvider;
 

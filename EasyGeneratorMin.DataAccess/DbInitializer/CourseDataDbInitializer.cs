@@ -15,8 +15,8 @@ namespace EasyGeneratorMin.DataAccess
                 Title = "TestCourse1",
                 Description = "This is Test Course1",
                 Creater = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now,
-                LastUpdatedDate = DateTime.Now,
+                CreatedDate = DateTime.UtcNow,
+                LastUpdatedDate = DateTime.UtcNow,
                 Sections = new List<Section>()
             });
 
@@ -26,8 +26,8 @@ namespace EasyGeneratorMin.DataAccess
                 Title = "TestCourse2",
                 Description = "This is Test Course2",
                 Creater = "Pavel Vaydalauskas",
-                CreatedDate = DateTime.Now,
-                LastUpdatedDate = DateTime.Now,
+                CreatedDate = DateTime.UtcNow,
+                LastUpdatedDate = DateTime.UtcNow,
                 Sections = new List<Section>()
             });
 

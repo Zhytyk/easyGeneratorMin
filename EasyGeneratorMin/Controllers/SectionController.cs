@@ -26,14 +26,9 @@ namespace EasyGeneratorMin.Web
         [HttpPost]
         [Route("create/section")]
         [OutOfRangeException]
-        public JsonResult CreateSection(Guid courseId, string title)
+        public JsonResult CreateSection(Course course, string title)
         {
-            var section = new Section
-            {
-                Title = title,
-                CreatedDate = DateTime.Now,
-                Course = _courseRepository.GetValueById(courseId),
-            };
+            var section = new Section(title, course);
 
             _sectionRepository.Insert(section);
 
@@ -45,10 +40,8 @@ namespace EasyGeneratorMin.Web
         [HttpPost]
         [Route("update/section")]
         [OutOfRangeException]
-        public JsonResult UpdateSection(Guid id, string title)
+        public JsonResult UpdateSection(Section section, string title)
         {
-            var section = _sectionRepository.GetValueById(id);
-
             section.UpdateSection(title);
 
             _sectionRepository.Update(section);
@@ -57,8 +50,6 @@ namespace EasyGeneratorMin.Web
 
             return Json(mapSection, JsonRequestBehavior.DenyGet);
         }
-
-
 
 
         [HttpPost]
@@ -74,15 +65,6 @@ namespace EasyGeneratorMin.Web
         {
             _unitOWork.Save();
             base.OnActionExecuted(filterContext);
-        }
-
-        protected override void OnActionExecuting(ActionExecutingContext filterContext)
-        {
-            var sections = _sectionRepository.GetCollection();
-
-            foreach (var section in sections) { }
-
-            base.OnActionExecuting(filterContext);
         }
 
     }

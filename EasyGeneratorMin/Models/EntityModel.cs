@@ -10,9 +10,9 @@ namespace EasyGeneratorMin.Web
 
         public string Creater { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+        public long CreatedDate { get; set; }
 
-        public DateTime LastUpdatedDate { get; set; }
+        public long LastUpdatedDate { get; set; }
 
     }
 }

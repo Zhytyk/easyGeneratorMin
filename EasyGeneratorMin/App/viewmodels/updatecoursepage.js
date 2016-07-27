@@ -3,20 +3,20 @@
         courseRepository.getCourseById(id)
             .then(function (course) {
                 self.currentCourse = course;
-                self.title(self.currentCourse.title);
-                self.description(self.currentCourse.description);
+                self.courseTitle(self.currentCourse.title);
+                self.courseDescription(self.currentCourse.description);
             });
     };
     return {
         currentCourse: '',
-        title: ko.observable().extend({ rangeRequired: "" }),
-        description: ko.observable().extend({ required: "" }),
-        sectionTitle: ko.observable(),
+        courseTitle: ko.observable().extend({ rangeRequired: "" }),
+        courseDescription: ko.observable().extend({ required: "" }),
+        sectionTitle: ko.observable().extend({ required: "" }),
         activate: function (id) {
             initializeFormPage(id, this);
         },
         updateCourse: function () {
-            courseRepository.updateCourse(this.currentCourse.id, this.title, this.description).then(function (error) {
+            courseRepository.updateCourse(this.currentCourse.id, this.courseTitle, this.courseDescription).then(function (error) {
                 if (error) alert(error);
                 else router.navigate("#");
             });

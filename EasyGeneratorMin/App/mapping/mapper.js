@@ -11,8 +11,8 @@
             title: course.Title,
             description: course.Description,
             creater: course.Creater,
-            createdDate: new Date(parseInt(course.CreatedDate.replace(/\/Date\((-?\d+)\)\//, '$1'))).toLocaleString(),
-            lastUpdatedDate: new Date(parseInt(course.LastUpdatedDate.replace(/\/Date\((-?\d+)\)\//, '$1'))).toLocaleString(),
+            createdDate: new Date(course.CreatedDate).toLocaleString(),
+            lastUpdatedDate: new Date(course.LastUpdatedDate).toLocaleString(),
             sections: sections
         });
     };
@@ -22,8 +22,8 @@
             id: section.Id,
             title: section.Title,
             creater: section.Creater,
-            createdDate: new Date(parseInt(section.CreatedDate.replace(/\/Date\((-?\d+)\)\//, '$1'))).toLocaleString(),
-            lastUpdatedDate: new Date(parseInt(section.LastUpdatedDate.replace(/\/Date\((-?\d+)\)\//, '$1'))).toLocaleString(),
+            createdDate: new Date(section.CreatedDate).toLocaleString(),
+            lastUpdatedDate: new Date(section.LastUpdatedDate).toLocaleString(),
         });
     };
 
