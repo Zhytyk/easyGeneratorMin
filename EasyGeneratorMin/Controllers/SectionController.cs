@@ -10,14 +10,12 @@ namespace EasyGeneratorMin.Web
     {
 
         private readonly IUnitOfWork _unitOWork;
-        private readonly IRepository<Course> _courseRepository;
         private readonly IRepository<Section> _sectionRepository;
         private readonly IMapper _mapper;
 
         public SectionController(IUnitOfWork unitOfWork, IRepository<Course> courseRepository, IRepository<Section> sectionRepository, IMapper mapper)
         {
             _unitOWork = unitOfWork;
-            _courseRepository = courseRepository;
             _sectionRepository = sectionRepository;
             _mapper = mapper;
         }
@@ -25,9 +23,13 @@ namespace EasyGeneratorMin.Web
 
         [HttpPost]
         [Route("create/section")]
-        [OutOfRangeException]
+        [OutOfRangeExceptionFilter]
+        [NullExceptionFilter]
         public JsonResult CreateSection(Course course, string title)
         {
+            if (course == null)
+                throw new ArgumentNullException();
+
             var section = new Section(title, course);
 
             _sectionRepository.Insert(section);
@@ -39,12 +41,13 @@ namespace EasyGeneratorMin.Web
 
         [HttpPost]
         [Route("update/section")]
-        [OutOfRangeException]
+        [OutOfRangeExceptionFilter]
         public JsonResult UpdateSection(Section section, string title)
         {
-            section.UpdateSection(title);
+            if (section == null)
+                throw new ArgumentNullException();
 
-            _sectionRepository.Update(section);
+            section.UpdateSection(title);
 
             var mapSection = _mapper.Map<SectionModel>(section);
 
@@ -54,9 +57,13 @@ namespace EasyGeneratorMin.Web
 
         [HttpPost]
         [Route("remove/section")]
-        public JsonResult RemoveSection(Guid id)
+        [NullExceptionFilter]
+        public JsonResult RemoveSection(Section section)
         {
-            _sectionRepository.Delete(id);
+            if (section == null)
+                throw new ArgumentNullException();
+
+            _sectionRepository.Delete(section);
 
             return Json(new { success = true }, JsonRequestBehavior.DenyGet);
         }

@@ -16,6 +16,6 @@ namespace EasyGeneratorMin.DataAccess
 
         void Update(TEntity course);
 
-        void Delete(Guid id);
+        void Delete(TEntity id);
     }
 }

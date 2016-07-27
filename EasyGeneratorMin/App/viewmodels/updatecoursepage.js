@@ -2,29 +2,38 @@
     function initializeFormPage(id, self) {
         courseRepository.getCourseById(id)
             .then(function (course) {
-                self.currentCourse = course;
-                self.courseTitle(self.currentCourse.title);
-                self.courseDescription(self.currentCourse.description);
+                self.CourseId = course.id;
+                self.courseTitle(course.title);
+                self.courseDescription(course.description);
             });
     };
     return {
-        currentCourse: '',
+        courseId: '',
         courseTitle: ko.observable().extend({ rangeRequired: "" }),
         courseDescription: ko.observable().extend({ required: "" }),
         sectionTitle: ko.observable().extend({ required: "" }),
         activate: function (id) {
             initializeFormPage(id, this);
+            this.sectionTitle("SomeSection");
         },
         updateCourse: function () {
-            courseRepository.updateCourse(this.currentCourse.id, this.courseTitle, this.courseDescription).then(function (error) {
-                if (error) alert(error);
-                else router.navigate("#");
+            courseRepository.updateCourse(this.CourseId, this.courseTitle(), this.courseDescription()).then(function (error) {
+                if (error) {
+                    alert(error);
+                }
+                else {
+                    router.navigate("#");
+                }
             });
         },
         createSection: function () {
-            sectionRepository.createSection(this.currentCourse.id, this.sectionTitle).then(function (error) {
-                if (error) alert(error);
-                else router.navigate("#");
+            sectionRepository.createSection(this.CourseId, this.sectionTitle()).then(function (error) {
+                if (error) {
+                    alert(error);
+                }
+                else {
+                    router.navigate("#");
+                }
             });
         },
     };

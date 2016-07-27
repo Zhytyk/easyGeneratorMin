@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace EasyGeneratorMin.Web
 {
-    public class OutOfRangeException : FilterAttribute, IExceptionFilter
+    public class OutOfRangeExceptionFilter : FilterAttribute, IExceptionFilter
     {
         public void OnException(ExceptionContext exceptionContext)
         {

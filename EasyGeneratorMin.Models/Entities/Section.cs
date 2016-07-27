@@ -23,6 +23,8 @@ namespace EasyGeneratorMin.Models
 
         public void UpdateSection(string title)
         {
+            ThrowIfTitleInvalid(title);
+
             Title = title;
 
             SetLastUpdatedDate();

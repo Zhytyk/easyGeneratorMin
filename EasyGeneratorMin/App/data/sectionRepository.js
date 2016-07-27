@@ -1,5 +1,20 @@
 ﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/mapper'], function (dataContext, http, mapper) {
 
+    function getSectionById(courseId, sectionId) {
+        return new Promise(function (resolve) {
+            resolve(dataContext.courses);
+        })
+            .then(function (courses) {
+                var course = courses.find(function (course) {
+                    return course.id == courseId;
+                });
+
+                return course.sections.find(function (section) {
+                    return section.id = sectionId;
+                });
+            });
+    };
+
     function createSection(courseId, title) {
         return http.post('create/section', { id: courseId, title: title })
             .then(function (createdSection) {
@@ -35,7 +50,7 @@
         return http.post('update/section', { id: sectionId, title: title })
             .then(function (updatedSection) {
                 if (updatedSection.error) {
-                    return updatedCourse.error;
+                    return updatedSection.error;
                 }
                 var indexCourse = dataContext.courses.findIndex(function (course) {
                     return courseId == course.id;
@@ -51,6 +66,7 @@
     };
 
     return {
+        getSectionById: getSectionById,
         createSection: createSection,
         removeSection: removeSection,
         updateSection: updateSection

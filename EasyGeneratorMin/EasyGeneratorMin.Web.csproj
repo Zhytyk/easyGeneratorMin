@@ -224,7 +224,8 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
-    <Compile Include="Filters\OutOfRangeException.cs" />
+    <Compile Include="Filters\NullExceptionFilter.cs" />
+    <Compile Include="Filters\OutOfRangeExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

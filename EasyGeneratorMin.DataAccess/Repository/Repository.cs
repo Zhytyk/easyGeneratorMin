@@ -31,16 +31,15 @@ namespace EasyGeneratorMin.DataAccess
 
         public void Update(TEntity Entity)
         {
-            var existedCourse = GetValueById(Entity.Id);
+            var existedEntity = GetValueById(Entity.Id);
 
-            if (existedCourse != null)
-                _db.GetEntry(existedCourse).CurrentValues.SetValues(Entity);
+            if (existedEntity != null)
+                _db.GetEntry(existedEntity).CurrentValues.SetValues(Entity);
         }
 
-        public void Delete(Guid id)
+        public void Delete(TEntity entity)
         {
-            TEntity Entity = GetValueById(id);
-            _db.GetSet<TEntity>().Remove(Entity);
+            _db.GetSet<TEntity>().Remove(entity);
         }
 
     }
