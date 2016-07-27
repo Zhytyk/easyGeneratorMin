@@ -154,8 +154,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\data\courseRepository.js" />
     <Content Include="App\data\dataContext.js" />
-    <Content Include="App\data\dataRepository.js" />
+    <Content Include="App\data\sectionRepository.js" />
     <Content Include="App\extenders\validationExtenders.js" />
     <Content Include="App\http\httpWrapper.js" />
     <Content Include="App\main.js" />
@@ -222,11 +223,14 @@
     <Compile Include="Binders\CourseModelBinder.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ShippingCoursesController.cs" />
+    <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Filters\OutOfRangeException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CourseModel.cs" />
+    <Compile Include="Models\EntityModel.cs" />
+    <Compile Include="Models\SectionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -246,9 +250,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\ShippingCourses\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\EasyGeneratorMin.DataAccess\EasyGeneratorMin.DataAccess.csproj">
       <Project>{9e1f8118-361b-4ae9-ac64-308d52095269}</Project>

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace EasyGeneratorMin.Models
-{
-
+namespace EasyGeneratorMin.Web
+{ 
     public class CourseModel : EntityModel
     {
         public string Description { get; set; }

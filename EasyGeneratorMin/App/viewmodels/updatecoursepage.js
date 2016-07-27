@@ -1,6 +1,6 @@
-﻿define(['data/dataRepository', 'extenders/validationExtenders', 'plugins/router'], function (dataRepository, validationExtenders, router) {
+﻿define(['data/courseRepository', 'data/sectionRepository', 'extenders/validationExtenders', 'plugins/router'], function (courseRepository, sectionRepository, validationExtenders, router) {
     function initializeFormPage(id, self) {
-        dataRepository.getCourseById(id)
+        courseRepository.getCourseById(id)
             .then(function (course) {
                 self.currentCourse = course;
                 self.title(self.currentCourse.title);
@@ -16,13 +16,13 @@
             initializeFormPage(id, this);
         },
         updateCourse: function () {
-            dataRepository.updateCourse(this.currentCourse.id, this.title, this.description).then(function (error) {
+            courseRepository.updateCourse(this.currentCourse.id, this.title, this.description).then(function (error) {
                 if (error) alert(error);
                 else router.navigate("#");
             });
         },
         createSection: function () {
-            dataRepository.createSection(this.currentCourse.id, this.sectionTitle).then(function (error) {
+            sectionRepository.createSection(this.currentCourse.id, this.sectionTitle).then(function (error) {
                 if (error) alert(error);
                 else router.navigate("#");
             });

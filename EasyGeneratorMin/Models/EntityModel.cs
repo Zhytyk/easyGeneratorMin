@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasyGeneratorMin.Models
+namespace EasyGeneratorMin.Web
 {
     public class EntityModel
     {

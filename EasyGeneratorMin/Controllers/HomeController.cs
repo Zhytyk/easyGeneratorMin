@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace EasyGeneratorMin.Web.Controllers
+namespace EasyGeneratorMin.Web
 {
     public class HomeController : Controller
     {

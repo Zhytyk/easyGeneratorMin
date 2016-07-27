@@ -1,28 +1,28 @@
-﻿define(['durandal/app', 'plugins/router', 'data/dataContext', 'data/dataRepository'], function (app, router, dataContext, dataRepository) {
+﻿define(['durandal/app', 'plugins/router', 'data/dataContext', 'data/courseRepository', 'data/sectionRepository'], function (app, router, dataContext, courseRepository, sectionRepository) {
     return {
         courses: ko.observableArray([]),
         activate: function () {
             this.courses(dataContext.courses);
         },
         createCourse: function () {
-            router.navigate("#create");
+            router.navigate("#createCourse");
         },
         updateCourse: function (id) {
-            router.navigate("#update/" + id);
+            router.navigate("#updateCourse/" + id);
         },
-        updateSection: function(id) {
-            router.navigate("#updateSection/" + id);
+        updateSection: function(sectionId, courseId) {
+            router.navigate("#updateSection/" + courseId + "/" + sectionId);
         },
         removeCourse: function (id) {
             var self = this;
-            dataRepository.removeCourse(id)
+            courseRepository.removeCourse(id)
                 .then(function () {
                     self.courses.valueHasMutated();
             });
         },
-        removeSection: function (id) {
+        removeSection: function (sectionId, courseId) {
             var self = this;
-            dataRepository.removeSection(id)
+            sectionRepository.removeSection(sectionId, courseId)
                 .then(function () {
                     self.courses([]);
                     self.courses(dataContext.courses);
