@@ -8,14 +8,15 @@ namespace EasyGeneratorMin.Web
 {
 
     [ModelBinderType(typeof(Course))]
-    public class CourseModelBinder : IModelBinder
+    [ModelBinderType(typeof(Section))]
+    public class CourseModelBinder<T> : IModelBinder where T : Entity
     {
 
-        private IRepository<Course> _courseRepository;
+        private IRepository<T> _repository;
 
-        public CourseModelBinder(IRepository<Course> courseRepository)
+        public CourseModelBinder(IRepository<T> repository)
         {
-            _courseRepository = courseRepository;
+            _repository = repository;
         }
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
@@ -25,7 +26,7 @@ namespace EasyGeneratorMin.Web
 
             var id = (Guid)valueProvider.GetValue("id").ConvertTo(typeof(Guid));
 
-            return _courseRepository.GetValueById(id);
+            return _repository.GetValueById(id);
 
         }
 
