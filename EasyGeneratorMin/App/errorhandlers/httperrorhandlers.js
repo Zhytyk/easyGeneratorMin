@@ -1,9 +1,9 @@
 ﻿define(function () {
 
-    function dataIsNotFoundHandler(errorMessage) {
+    function dataIsNotFoundHandler() {
         return new Promise(
             (resolve, reject) => {
-                reject(errorMessage || "Data is not found!");
+                reject("Data is not found!");
             }
         )
             .catch(
@@ -33,6 +33,5 @@
 
     return {
         handler: handler,
-        dataIsNotFoundHandler: dataIsNotFoundHandler
     };
 });
