@@ -8,10 +8,14 @@
                 var course = courses.find(function (course) {
                     return course.id == courseId;
                 });
-
-                return course.sections.find(function (section) {
+                var section = course.sections.find(function (section) {
                     return section.id = sectionId;
                 });
+
+                if (section) {
+                    return section;
+                }
+                httpErrorHandlers.dataIsNotFoundHandler();
             });
     };
 
@@ -21,8 +25,8 @@
                 if (!createdSection) {
                     return httpErrorHandlers.dataIsNotFoundHandler();
                 }
-                if (createdSection.error) {
-                    return httpErrorHandlers.invalidDataHandler(createdSection.error);
+                if (createdSection.errorStatusCode) {
+                    return httpErrorHandlers.handler(createdSection.errorStatusCode);
                 }
 
 
@@ -35,13 +39,19 @@
 
     function removeSection(sectionId, courseId) {
         return http.post('remove/section', { id: sectionId })
-            .then(function () {
+            .then(function (e) {
+                if (e.errorStatusCode) {
+                    httpErrorHandlers.handler(e.errorStatusCode);
+                }
+
+
                 var indexCourse = dataContext.courses.findIndex(function (course) {
                     return courseId == course.id;
                 });
                 var indexSection = dataContext.courses[indexCourse].sections.findIndex(function (section) {
                     return sectionId == section.Id;
                 });
+
                 dataContext.courses[indexCourse].sections.splice(indexSection, 1);
             });
     };
@@ -52,8 +62,8 @@
                 if (!updatedSection) {
                     return httpErrorHandlers.dataIsNotFoundHandler();
                 }
-                if (updatedSection.error) {
-                    return httpErrorHandlers.invalidDataHandler(updatedSection.error);
+                if (updatedSection.errorStatusCode) {
+                    return httpErrorHandlers.handler(updatedSection.errorStatusCode);
                 }
 
 

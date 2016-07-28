@@ -1,9 +1,13 @@
 ﻿define(['data/sectionRepository', 'plugins/router', 'extenders/validationExtenders'], function (sectionRepository, router, validationExtenders) {
     function initializeFormPage(courseId, sectionId, self) {
         sectionRepository.getSectionById(courseId, sectionId)
-            .then(function (section) {
-                self.sectionTitle(section.title);
-            });
+            .then(
+                (section) => {
+                    if (!section) return;
+
+                    self.sectionTitle(section.title);
+                }
+            );
     };
     return {
         courseId: '',

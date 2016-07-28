@@ -11,9 +11,14 @@
             resolve(dataContext.courses);
         })
             .then(function (courses) {
-                return courses.find(function (course) {
+                var course = courses.find(function (course) {
                     return course.id == id;
                 });
+
+                if (course) {
+                    return course;
+                }
+                httpErrorHandlers.dataIsNotFoundHandler();
             });
     };
 
@@ -23,8 +28,8 @@
                 if (!createdCourse) {
                     return httpErrorHandlers.dataIsNotFoundHandler();
                 }
-                if (createdCourse.error) {
-                    return httpErrorHandlers.invalidDataHandler(createdCourse.error);
+                if (createdCourse.errorStatusCode) {
+                    return httpErrorHandlers.handler(createdCourse.errorStatusCode);
                 }
 
 
@@ -34,7 +39,11 @@
 
     function removeCourse(courseId) {
         return http.post('remove/course', { id: courseId })
-            .then(function () {
+            .then(function (e) {
+                if (e.errorStatusCode) {
+                    httpErrorHandlers.handler(e.errorStatusCode);
+                }
+
                 var index = dataContext.courses.findIndex(function (course, index) {
                     return course.id === courseId;
                 });
@@ -49,8 +58,8 @@
                 if (!updatedCourse) {
                     return httpErrorHandlers.dataIsNotFoundHandler();
                 }
-                if (updatedCourse.error) {
-                    return httpErrorHandlers.invalidDataHandler(updatedCourse.error);
+                if (updatedCourse.errorStatusCode) {
+                    return httpErrorHandlers.handler(updatedCourse.errorStatusCode);
                 }
 
 

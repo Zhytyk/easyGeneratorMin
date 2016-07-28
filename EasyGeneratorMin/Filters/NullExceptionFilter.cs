@@ -11,7 +11,7 @@ namespace EasyGeneratorMin.Web
             {
                 exceptionContext.Result = new JsonResult
                 {
-                    Data = new { error = "Data is not found!" }
+                    Data = new { errorStatusCode = 404 }
                 };
                 exceptionContext.ExceptionHandled = true;
             }

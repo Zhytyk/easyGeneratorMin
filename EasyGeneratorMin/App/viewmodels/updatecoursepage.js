@@ -1,11 +1,15 @@
 ﻿define(['data/courseRepository', 'data/sectionRepository', 'extenders/validationExtenders', 'plugins/router'], function (courseRepository, sectionRepository, validationExtenders, router) {
     function initializeFormPage(id, self) {
         courseRepository.getCourseById(id)
-            .then(function (course) {
-                self.CourseId = course.id;
-                self.courseTitle(course.title);
-                self.courseDescription(course.description);
-            });
+            .then(
+                (course) => {
+                    if (!course) return; 
+
+                    self.CourseId = course.id;
+                    self.courseTitle(course.title);
+                    self.courseDescription(course.description);
+                }
+            );
     };
     return {
         courseId: '',

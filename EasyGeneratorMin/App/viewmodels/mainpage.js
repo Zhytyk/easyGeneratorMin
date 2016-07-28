@@ -3,6 +3,7 @@
         courses: ko.observableArray([]),
         activate: function () {
             this.courses(dataContext.courses);
+            console.log(this.courses());
         },
         createCourse: function () {
             router.navigate("#createCourse");
@@ -22,10 +23,11 @@
         },
         removeSection: function (sectionId, courseId) {
             var self = this;
+            console.log(self.courses());
             sectionRepository.removeSection(sectionId, courseId)
-                .then(function () {
-                    self.courses([]);
-                    self.courses(dataContext.courses);
+                .then(function (indexCourse) {
+                    self.courses[indexCourse] = dataContext.courses[indexCourse];
+                    self.courses.valueHasMutated();
                 });
         },
     };
