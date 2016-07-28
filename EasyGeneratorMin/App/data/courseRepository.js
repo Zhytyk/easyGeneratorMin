@@ -1,4 +1,4 @@
-﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/mapper'], function (dataContext, http, mapper) {
+﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/mapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, mapper, httpErrorHandlers) {
 
     function getCourses() {
         return new Promise(function (resolve) {
@@ -20,9 +20,13 @@
     function createCourse(title, description) {
         return http.post('create/course', { title: title, description: description })
             .then(function (createdCourse) {
-                if (createdCourse.error) {
-                    return createdCourse.error;
+                if (!createdCourse) {
+                    return httpErrorHandlers.dataIsNotFoundHandler();
                 }
+                if (createdCourse.error) {
+                    return httpErrorHandlers.invalidDataHandler(createdCourse.error);
+                }
+
 
                 dataContext.courses.push(mapper.mapCourse(createdCourse));
             });
@@ -42,14 +46,17 @@
     function updateCourse(id, title, description) {
         return http.post('update/course', { id: id, title: title, description: description })
             .then(function (updatedCourse) {
-                if (updatedCourse.error) {
-                    return updatedCourse.error;
+                if (!updatedCourse) {
+                    return httpErrorHandlers.dataIsNotFoundHandler();
                 }
+                if (updatedCourse.error) {
+                    return httpErrorHandlers.invalidDataHandler(updatedCourse.error);
+                }
+
 
                 var index = dataContext.courses.findIndex(function (course) {
                     return course.id === updatedCourse.Id;
                 });
-
                 dataContext.courses[index] = mapper.mapCourse(updatedCourse);
             });
     };

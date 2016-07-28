@@ -17,24 +17,22 @@
             this.sectionTitle("SomeSection");
         },
         updateCourse: function () {
-            courseRepository.updateCourse(this.CourseId, this.courseTitle(), this.courseDescription()).then(function (error) {
-                if (error) {
-                    alert(error);
+            courseRepository.updateCourse(this.CourseId, this.courseTitle(), this.courseDescription()).then(
+                (error) => {
+                    if (!error) {
+                        router.navigate("#")
+                    }
                 }
-                else {
-                    router.navigate("#");
-                }
-            });
+            );
         },
         createSection: function () {
-            sectionRepository.createSection(this.CourseId, this.sectionTitle()).then(function (error) {
-                if (error) {
-                    alert(error);
+            sectionRepository.createSection(this.CourseId, this.sectionTitle()).then(
+                (error) => {
+                    if (!error) {
+                        router.navigate("#");
+                    }
                 }
-                else {
-                    router.navigate("#");
-                }
-            });
+            );
         },
     };
 

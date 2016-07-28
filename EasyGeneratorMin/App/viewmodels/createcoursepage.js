@@ -7,14 +7,13 @@
             this.description("SomeDescription");
         },
         createCourse: function () {
-            courseRepository.createCourse(this.title, this.description).then(function (error) {
-                if (error) {
-                    alert(error);
+            courseRepository.createCourse(this.title, this.description).then(
+                (error) => {
+                    if (!error) {
+                        router.navigate("#")
+                    }
                 }
-                else {
-                    router.navigate("#");
-                }
-            });
+            );
         }
 
     };

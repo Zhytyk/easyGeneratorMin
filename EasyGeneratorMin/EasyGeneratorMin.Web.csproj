@@ -157,6 +157,7 @@
     <Content Include="App\data\courseRepository.js" />
     <Content Include="App\data\dataContext.js" />
     <Content Include="App\data\sectionRepository.js" />
+    <Content Include="App\errorhandlers\httperrorhandlers.js" />
     <Content Include="App\extenders\validationExtenders.js" />
     <Content Include="App\http\httpWrapper.js" />
     <Content Include="App\main.js" />

@@ -15,14 +15,13 @@
             initializeFormPage(courseId, sectionId, this);
         },
         updateSection: function () {
-            sectionRepository.updateSection(this.sectionId, this.courseId, this.sectionTitle()).then(function (error) {
-                if (error) {
-                    alert(error);
+            sectionRepository.updateSection(this.sectionId, this.courseId, this.sectionTitle()).then(
+                (error) => {
+                    if (!error) {
+                        router.navigate("#");
+                    }
                 }
-                else {
-                    router.navigate("#");
-                }
-            });
+            );
         }
     };
 })
