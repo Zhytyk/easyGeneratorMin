@@ -17,12 +17,16 @@ namespace EasyGeneratorMin.DataAccess
 
         public override IEnumerable<TEntity> GetCollection()
         {
-            return _db.GetSet<TEntity>().Include(c => c.Sections).Select(c => c).ToList();
+            return _db.GetSet<TEntity>()
+                .Include(c => c.Sections)
+                .Select(c => c).ToList();
         }
 
         public override TEntity GetValueById(Guid id)
         {
-            return _db.GetSet<TEntity>().Include(c => c.Sections).FirstOrDefault(c => c.Id == id);
+            return _db.GetSet<TEntity>()
+                .Include(c => c.Sections)
+                .FirstOrDefault(c => c.Id == id);
         }
 
     }

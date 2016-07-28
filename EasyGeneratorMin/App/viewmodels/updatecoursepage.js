@@ -5,7 +5,6 @@
                 (course) => {
                     if (!course) return; 
 
-                    self.CourseId = course.id;
                     self.courseTitle(course.title);
                     self.courseDescription(course.description);
                 }
@@ -17,8 +16,9 @@
         courseDescription: ko.observable().extend({ required: "" }),
         sectionTitle: ko.observable().extend({ required: "" }),
         activate: function (id) {
-            initializeFormPage(id, this);
+            this.CourseId = id;
             this.sectionTitle("SomeSection");
+            initializeFormPage(id, this);
         },
         updateCourse: function () {
             courseRepository.updateCourse(this.CourseId, this.courseTitle(), this.courseDescription()).then(

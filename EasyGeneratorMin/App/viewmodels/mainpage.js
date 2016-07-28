@@ -26,8 +26,8 @@
             console.log(self.courses());
             sectionRepository.removeSection(sectionId, courseId)
                 .then(function (indexCourse) {
-                    self.courses[indexCourse] = dataContext.courses[indexCourse];
-                    self.courses.valueHasMutated();
+                    self.courses([]);
+                    self.courses(dataContext.courses);
                 });
         },
     };

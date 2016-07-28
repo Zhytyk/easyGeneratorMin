@@ -24,10 +24,12 @@ namespace EasyGeneratorMin.Web
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<CourseRepository<Course>>()
-                .As<IRepository<Course>>();
+                .As<IRepository<Course>>()
+                .InstancePerLifetimeScope();
 
             builder.RegisterType<Repository<Section>>()
-                .As<IRepository<Section>>();
+                .As<IRepository<Section>>()
+                .InstancePerLifetimeScope();
 
             builder.Register(c => Mapper.Instance).As<IMapper>();
 

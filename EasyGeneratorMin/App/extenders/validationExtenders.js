@@ -1,4 +1,5 @@
 ﻿define(function () {
+
     var required = ko.extenders.required = function (target, overrideMessage) {
         target.hasError = ko.observable();
         target.validationMessage = ko.observable();
@@ -10,6 +11,8 @@
         target.subscribe(validate);
         return target;
     };
+    
+
     var rangeRequired = ko.extenders.rangeRequired = function (target, overrideMessage) {
         target.hasError = ko.observable(true);
         target.validationMessage = ko.observable();
@@ -21,6 +24,7 @@
         target.subscribe(validate);
         return target;
     };
+
     return {
         required: required,
         rangeRequired: rangeRequired
