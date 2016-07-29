@@ -8,7 +8,7 @@ namespace EasyGeneratorMin.DataAccess
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : Entity
     {
-        private IDatabaseContext _db;
+        protected readonly IDatabaseContext _db;
         public Repository(IDatabaseContext db)
         {
             _db = db;

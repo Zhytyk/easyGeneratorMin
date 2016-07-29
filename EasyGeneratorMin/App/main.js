@@ -33,6 +33,5 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'durandal/com
         dataContext.initialize().then(function () {
             app.setRoot('viewmodels/shell', 'entrance');
         });
-       
     });
 });

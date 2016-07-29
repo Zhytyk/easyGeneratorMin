@@ -6,14 +6,10 @@
             this.title("SomeCourse");
             this.description("SomeDescription");
         },
-        createCourse: function () {
-            courseRepository.createCourse(this.title, this.description).then(
-                (error) => {
-                    if (!error) {
-                        router.navigate("#")
-                    }
-                }
-            );
+        createCourse: function () { 
+            courseRepository.createCourse(this.title, this.description).then(function() {
+                router.navigate("#");
+            });
         }
 
     };

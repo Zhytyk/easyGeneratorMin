@@ -8,28 +8,28 @@
 
     function getCourseById(id) {
         return new Promise(function (resolve) {
-            resolve(dataContext.courses);
-        })
-            .then(function (courses) {
-                var course = courses.find(function (course) {
-                    return course.id == id;
-                });
-
-                if (course) {
-                    return course;
-                }
-                httpErrorHandlers.dataIsNotFoundHandler();
+            var course = dataContext.courses.find(function (course) {
+                return course.id == id;
             });
+
+            if (course) {
+                resolve(course);
+                return;
+            }
+            throw httpErrorHandlers.dataIsNotFoundHandler();
+        });
     };
 
     function createCourse(title, description) {
         return http.post('create/course', { title: title, description: description })
             .then(function (createdCourse) {
                 if (!createdCourse) {
-                    return httpErrorHandlers.dataIsNotFoundHandler();
+                    throw httpErrorHandlers.dataIsNotFoundHandler();
+                    return;
                 }
                 if (createdCourse.errorStatusCode) {
-                    return httpErrorHandlers.handler(createdCourse.errorStatusCode);
+                    throw httpErrorHandlers.handler(createdCourse.errorStatusCode);
+                    return;
                 }
 
 
@@ -41,7 +41,8 @@
         return http.post('remove/course', { id: courseId })
             .then(function (e) {
                 if (e.errorStatusCode) {
-                    httpErrorHandlers.handler(e.errorStatusCode);
+                    throw httpErrorHandlers.handler(e.errorStatusCode);
+                    return;
                 }
 
                 var index = dataContext.courses.findIndex(function (course, index) {
@@ -56,10 +57,12 @@
         return http.post('update/course', { id: id, title: title, description: description })
             .then(function (updatedCourse) {
                 if (!updatedCourse) {
-                    return httpErrorHandlers.dataIsNotFoundHandler();
+                    throw httpErrorHandlers.dataIsNotFoundHandler();
+                    return;
                 }
                 if (updatedCourse.errorStatusCode) {
-                    return httpErrorHandlers.handler(updatedCourse.errorStatusCode);
+                    throw httpErrorHandlers.handler(updatedCourse.errorStatusCode);
+                    return;
                 }
 
 

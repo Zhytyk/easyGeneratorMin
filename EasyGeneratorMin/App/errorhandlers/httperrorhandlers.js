@@ -1,25 +1,21 @@
 ﻿define(function () {
 
     function dataIsNotFoundHandler() {
-        return new Promise(
-            (resolve, reject) => {
+        return new Promise(function(resolve, reject) {
                 reject("Data is not found!");
-            }
-        )
-            .catch(
-                errorMessage => alert(errorMessage)
-            );
+            })
+            .catch(function (errorMessage) {
+                alert(errorMessage);
+            });
     };
 
     function invalidDataHandler() {
-        return new Promise(
-            (resolve, reject) => {
+        return new Promise(function(resolve, reject) {
                 reject("You have inputed invalid data!");
-            }
-        )
-            .catch(
-                errorMessage => alert(errorMessage)
-            );
+            })
+            .catch(function (errorMessage) {
+                alert(errorMessage);
+            });
     };
 
     function handler(statusCode) {
@@ -32,6 +28,7 @@
     };
 
     return {
+        dataIsNotFoundHandler: dataIsNotFoundHandler,
         handler: handler,
     };
 });

@@ -2,31 +2,30 @@
 
     function getSectionById(courseId, sectionId) {
         return new Promise(function (resolve) {
-            resolve(dataContext.courses);
-        })
-            .then(function (courses) {
-                var course = courses.find(function (course) {
-                    return course.id == courseId;
-                });
-                var section = course.sections.find(function (section) {
-                    return section.id = sectionId;
-                });
-
-                if (section) {
-                    return section;
-                }
-                httpErrorHandlers.dataIsNotFoundHandler();
+            var course = dataContext.courses.find(function (course) {
+                return course.id == courseId;
             });
+            var section = course.sections.find(function (section) {
+                return section.id = sectionId;
+            });
+
+            if (section) {
+                resolve(section);
+            }
+            throw httpErrorHandlers.dataIsNotFoundHandler();
+        })
     };
 
     function createSection(courseId, title) {
         return http.post('create/section', { id: courseId, title: title })
             .then(function (createdSection) {
                 if (!createdSection) {
-                    return httpErrorHandlers.dataIsNotFoundHandler();
+                    throw httpErrorHandlers.dataIsNotFoundHandler();
+                    return;
                 }
                 if (createdSection.errorStatusCode) {
-                    return httpErrorHandlers.handler(createdSection.errorStatusCode);
+                    throw httpErrorHandlers.handler(createdSection.errorStatusCode);
+                    return;
                 }
 
 
@@ -41,7 +40,8 @@
         return http.post('remove/section', { id: sectionId })
             .then(function (e) {
                 if (e.errorStatusCode) {
-                    httpErrorHandlers.handler(e.errorStatusCode);
+                    throw httpErrorHandlers.handler(e.errorStatusCode);
+                    return;
                 }
 
 
@@ -60,10 +60,12 @@
         return http.post('update/section', { id: sectionId, title: title })
             .then(function (updatedSection) {
                 if (!updatedSection) {
-                    return httpErrorHandlers.dataIsNotFoundHandler();
+                    throw httpErrorHandlers.dataIsNotFoundHandler();
+                    return;
                 }
                 if (updatedSection.errorStatusCode) {
-                    return httpErrorHandlers.handler(updatedSection.errorStatusCode);
+                    throw httpErrorHandlers.handler(updatedSection.errorStatusCode);
+                    return;
                 }
 
 

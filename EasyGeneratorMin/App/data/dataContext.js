@@ -11,6 +11,6 @@
 
     return {
         initialize: initialize,
-        courses: [],
+        courses: []
     };
 });
