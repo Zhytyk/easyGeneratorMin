@@ -1,4 +1,4 @@
-﻿define(['plugins/router'],function (router) {
+﻿define(['plugins/router'], function (router) {
     return {
         router: router,
         activate: function () {

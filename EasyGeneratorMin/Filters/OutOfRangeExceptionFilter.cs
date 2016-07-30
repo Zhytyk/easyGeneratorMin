@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Web.Mvc;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http.Filters;
 
 namespace EasyGeneratorMin.Web
 {
-    public class OutOfRangeExceptionFilter : FilterAttribute, IExceptionFilter
+    public class OutOfRangeExceptionFilter : ExceptionFilterAttribute
     {
-        public void OnException(ExceptionContext exceptionContext)
+        public override void OnException(HttpActionExecutedContext context)
         {
-            if (!exceptionContext.ExceptionHandled && exceptionContext.Exception is ArgumentOutOfRangeException)
+            if (context.Exception is ArgumentOutOfRangeException)
             {
-                exceptionContext.Result = new JsonResult
-                {
-                    Data = new { errorStatusCode = 204 }
-                };
-                exceptionContext.ExceptionHandled = true;
+                context.Response = new HttpResponseMessage(HttpStatusCode.NoContent);
             }
         }
     }

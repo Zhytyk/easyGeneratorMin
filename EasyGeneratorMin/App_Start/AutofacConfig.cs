@@ -1,10 +1,14 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
 using AutoMapper;
 using EasyGeneratorMin.DataAccess;
 using EasyGeneratorMin.Models;
 using System.Reflection;
+using System.Web.Http;
 using System.Web.Mvc;
+
+
 
 namespace EasyGeneratorMin.Web
 {
@@ -15,8 +19,11 @@ namespace EasyGeneratorMin.Web
 
             var builder = new ContainerBuilder();
 
-            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            var config = GlobalConfiguration.Configuration;
 
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+
+            builder.RegisterWebApiFilterProvider(config);
 
             builder.RegisterType<CourseDataContext>()
                 .As<IUnitOfWork>()
@@ -35,7 +42,7 @@ namespace EasyGeneratorMin.Web
 
             var container = builder.Build();
 
-            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
 
         }
     }

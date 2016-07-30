@@ -11,6 +11,7 @@
 
             if (section) {
                 resolve(section);
+                return;
             }
             throw httpErrorHandlers.dataIsNotFoundHandler();
         })
@@ -23,10 +24,6 @@
                     throw httpErrorHandlers.dataIsNotFoundHandler();
                     return;
                 }
-                if (createdSection.errorStatusCode) {
-                    throw httpErrorHandlers.handler(createdSection.errorStatusCode);
-                    return;
-                }
 
 
                 var index = dataContext.courses.findIndex(function (course) {
@@ -37,12 +34,8 @@
     };
 
     function removeSection(sectionId, courseId) {
-        return http.post('remove/section', { id: sectionId })
-            .then(function (e) {
-                if (e.errorStatusCode) {
-                    throw httpErrorHandlers.handler(e.errorStatusCode);
-                    return;
-                }
+        return http.remove('remove/section', { id: sectionId })
+            .then(function () {
 
 
                 var indexCourse = dataContext.courses.findIndex(function (course) {
@@ -57,14 +50,10 @@
     };
 
     function updateSection(sectionId, courseId, title) {
-        return http.post('update/section', { id: sectionId, title: title })
+        return http.put('update/section', { id: sectionId, title: title })
             .then(function (updatedSection) {
                 if (!updatedSection) {
                     throw httpErrorHandlers.dataIsNotFoundHandler();
-                    return;
-                }
-                if (updatedSection.errorStatusCode) {
-                    throw httpErrorHandlers.handler(updatedSection.errorStatusCode);
                     return;
                 }
 

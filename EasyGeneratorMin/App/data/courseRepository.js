@@ -27,10 +27,6 @@
                     throw httpErrorHandlers.dataIsNotFoundHandler();
                     return;
                 }
-                if (createdCourse.errorStatusCode) {
-                    throw httpErrorHandlers.handler(createdCourse.errorStatusCode);
-                    return;
-                }
 
 
                 dataContext.courses.push(mapper.mapCourse(createdCourse));
@@ -38,12 +34,8 @@
     };
 
     function removeCourse(courseId) {
-        return http.post('remove/course', { id: courseId })
-            .then(function (e) {
-                if (e.errorStatusCode) {
-                    throw httpErrorHandlers.handler(e.errorStatusCode);
-                    return;
-                }
+        return http.remove('remove/course', { id: courseId })
+            .then(function () {
 
                 var index = dataContext.courses.findIndex(function (course, index) {
                     return course.id === courseId;
@@ -54,14 +46,10 @@
     };
 
     function updateCourse(id, title, description) {
-        return http.post('update/course', { id: id, title: title, description: description })
+        return http.put('update/course', { id: id, title: title, description: description })
             .then(function (updatedCourse) {
                 if (!updatedCourse) {
                     throw httpErrorHandlers.dataIsNotFoundHandler();
-                    return;
-                }
-                if (updatedCourse.errorStatusCode) {
-                    throw httpErrorHandlers.handler(updatedCourse.errorStatusCode);
                     return;
                 }
 

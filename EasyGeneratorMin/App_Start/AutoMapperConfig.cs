@@ -24,6 +24,15 @@ namespace EasyGeneratorMin.Web
                     .ForMember(opt => opt.Sections, opt => opt.MapFrom(src => src.Sections))
                     .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
                     .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))));
+
+                config.CreateMap<CourseModel, Course>()
+                    .ForMember(opt => opt.Title, opt => opt.MapFrom(src => src.Title))
+                    .ForMember(opt => opt.Description, opt => opt.MapFrom(src => src.Description))
+                    .ForAllOtherMembers(opt => opt.Ignore());
+
+                config.CreateMap<SectionModel, Section>()
+                    .ForMember(opt => opt.Title, opt => opt.MapFrom(src => src.Title))
+                    .ForAllOtherMembers(opt => opt.Ignore());
             });
         }
 

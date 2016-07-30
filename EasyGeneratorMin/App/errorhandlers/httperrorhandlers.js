@@ -1,4 +1,8 @@
 ﻿define(function () {
+    $(document).ajaxError(function (event, request) {
+        console.log(request);
+        handler(request.status);
+    });
 
     function dataIsNotFoundHandler() {
         return new Promise(function(resolve, reject) {
@@ -29,6 +33,5 @@
 
     return {
         dataIsNotFoundHandler: dataIsNotFoundHandler,
-        handler: handler,
     };
 });

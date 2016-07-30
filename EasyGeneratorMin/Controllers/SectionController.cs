@@ -2,11 +2,12 @@
 using EasyGeneratorMin.DataAccess;
 using EasyGeneratorMin.Models;
 using System;
-using System.Web.Mvc;
+using System.Web.Http;
+using System.Web.Http.ModelBinding;
 
 namespace EasyGeneratorMin.Web
 {
-    public class SectionController : Controller
+    public class SectionController : ApiController
     {
 
         private readonly IUnitOfWork _unitOWork;
@@ -25,53 +26,50 @@ namespace EasyGeneratorMin.Web
         [Route("create/section")]
         [OutOfRangeExceptionFilter]
         [NullExceptionFilter]
-        public JsonResult CreateSection(Course course, string title)
+        [SaveUnitOfWorkActionFilter]
+        public SectionModel CreateSection([ModelBinder(typeof(EntityModelBinder<Course>))]Course course, SectionModel sectionModel)
         {
             if (course == null)
                 throw new ArgumentNullException();
 
-            var section = new Section(title, course);
+            var section = new Section(sectionModel.Title, course);
 
             _sectionRepository.Insert(section);
 
             var mapSection = _mapper.Map<SectionModel>(section);
 
-            return Json(mapSection, JsonRequestBehavior.DenyGet);
+            return mapSection;
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("update/section")]
         [OutOfRangeExceptionFilter]
-        public JsonResult UpdateSection(Section section, string title)
+        [NullExceptionFilter]
+        [SaveUnitOfWorkActionFilter]
+        public SectionModel UpdateSection([ModelBinder(typeof(EntityModelBinder<Section>))]Section section, SectionModel sectionModel)
         {
             if (section == null)
                 throw new ArgumentNullException();
 
-            section.UpdateSection(title);
+            section.UpdateSection(sectionModel.Title);
 
             var mapSection = _mapper.Map<SectionModel>(section);
 
-            return Json(mapSection, JsonRequestBehavior.DenyGet);
+            return mapSection;
         }
 
 
-        [HttpPost]
+        [HttpDelete]
         [Route("remove/section")]
         [NullExceptionFilter]
-        public JsonResult RemoveSection(Section section)
+        [SaveUnitOfWorkActionFilter]
+        public void RemoveSection([ModelBinder(typeof(EntityModelBinder<Section>))]Section section)
         {
             if (section == null)
                 throw new ArgumentNullException();
 
             _sectionRepository.Delete(section);
 
-            return Json(new { success = true }, JsonRequestBehavior.DenyGet);
-        }
-
-        protected override void OnActionExecuted(ActionExecutedContext filterContext)
-        {
-            _unitOWork.Save();
-            base.OnActionExecuted(filterContext);
         }
 
     }

@@ -1,7 +1,7 @@
 ﻿define(['data/sectionRepository', 'plugins/router', 'extenders/validationExtenders'], function (sectionRepository, router, validationExtenders) {
     function initializeFormPage(courseId, sectionId, self) {
         sectionRepository.getSectionById(courseId, sectionId)
-            .then(function() {
+            .then(function(section) {
                 self.sectionTitle(section.title);
             });
     };
