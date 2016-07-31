@@ -3,6 +3,8 @@
         courses: ko.observableArray([]),
         activate: function () {
             this.courses(viewMapper.coursesMapper());
+            dataContext.initializeSelectQuestions();
+            console.log(dataContext);
         },
         createCourse: function () {
             router.navigate("#createCourse");

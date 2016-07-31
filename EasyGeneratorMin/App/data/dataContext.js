@@ -17,7 +17,7 @@
             });
             return http.get('/get/multipleselectquestions').then(function (multipleSelectQuestions) {
                 multipleSelectQuestions.forEach(function (multipleSelectQuestion) {
-                    self.multipleSelectQuestions.push(modelMapper.mapMultipleelectQuestion(multipleSelectQuestion));
+                    self.multipleSelectQuestions.push(modelMapper.mapMultipleSelectQuestion(multipleSelectQuestion));
                 });
             });
         });

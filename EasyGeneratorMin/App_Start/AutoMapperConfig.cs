@@ -27,11 +27,14 @@ namespace EasyGeneratorMin.Web
 
                 config.CreateMap<SingleSelectQuestion, SingleSelectQuestionModel>()
                     .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
-                    .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))));
+                    .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))))
+                    .ForMember(opt => opt.SectionId, opt => opt.MapFrom(src => src.Section.Id));
 
                 config.CreateMap<MultipleSelectQuestion, MultipleSelectQuestionModel>()
                     .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
-                    .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))));
+                    .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))))
+                    .ForMember(opt => opt.SectionId, opt => opt.MapFrom(src => src.Section.Id));
+
             });
         }
 

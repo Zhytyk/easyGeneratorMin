@@ -7,5 +7,6 @@ namespace EasyGeneratorMin.Web
 {
     public class SingleSelectQuestionModel : EntityModel
     {
+        public Guid SectionId { get; set; }
     }
 }

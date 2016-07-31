@@ -1,4 +1,4 @@
-﻿define(['data/sectionRepository', 'plugins/router', 'extenders/validationExtenders'], function (sectionRepository, router, validationExtenders) {
+﻿define(['data/dataContext','data/sectionRepository', 'plugins/router', 'extenders/validationExtenders'], function (dataContext, sectionRepository, router, validationExtenders) {
     function initializeFormPage(courseId, sectionId, self) {
         sectionRepository.getSectionById(courseId, sectionId)
             .then(function(section) {
@@ -6,13 +6,21 @@
             });
     };
     return {
+        singleSelectQuestions: ko.observableArray([]),
+        multipleSelectQuestions: ko.observableArray([]),
+        sectionTitle: ko.observable().extend({ required: '' }),
         courseId: '',
         sectionId: '',
-        sectionTitle: ko.observable().extend({ required: ''}),
         activate: function (courseId, sectionId) {
-            this.courseId = courseId;
-            this.sectionId = sectionId;
-            initializeFormPage(courseId, sectionId, this);
+            var self = this;
+            dataContext.initializeSelectQuestions()
+                .then(function () {
+                    self.courseId = courseId;
+                    self.sectionId = sectionId;
+                    initializeFormPage(courseId, sectionId, self);
+                });
+            this.singleSelectQuestions(dataContext.singleSelectQuestions);
+            this.multipleSelectQuestions(dataContext.multipleSelectQuestions);
         },
         updateSection: function () {
             sectionRepository.updateSection(this.sectionId, this.courseId, this.sectionTitle()).then(function() {
