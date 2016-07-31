@@ -30,7 +30,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'durandal/com
         viewLocator.useConvention();
 
         //Show the app by setting the root view model for our application with a transition.
-        dataContext.initialize().then(function () {
+        dataContext.initializeCourses().then(function () {
             app.setRoot('viewmodels/shell', 'entrance');
         });
     });

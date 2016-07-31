@@ -15,24 +15,23 @@ namespace EasyGeneratorMin.Web
         {
             Mapper.Initialize(config =>
             {
-
-                config.CreateMap<Section, SectionModel>()
-                    .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
-                    .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))));
-
                 config.CreateMap<Course, CourseModel>()
                     .ForMember(opt => opt.Sections, opt => opt.MapFrom(src => src.Sections))
                     .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
                     .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))));
 
-                config.CreateMap<CourseModel, Course>()
-                    .ForMember(opt => opt.Title, opt => opt.MapFrom(src => src.Title))
-                    .ForMember(opt => opt.Description, opt => opt.MapFrom(src => src.Description))
-                    .ForAllOtherMembers(opt => opt.Ignore());
+                config.CreateMap<Section, SectionModel>()
+                    .ForMember(opt => opt.SelectQuestions, opt => opt.MapFrom(src => src.SelectQuestions))
+                    .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
+                    .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))));
 
-                config.CreateMap<SectionModel, Section>()
-                    .ForMember(opt => opt.Title, opt => opt.MapFrom(src => src.Title))
-                    .ForAllOtherMembers(opt => opt.Ignore());
+                config.CreateMap<SingleSelectQuestion, SingleSelectQuestionModel>()
+                    .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
+                    .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))));
+
+                config.CreateMap<MultipleSelectQuestion, MultipleSelectQuestionModel>()
+                    .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
+                    .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))));
             });
         }
 

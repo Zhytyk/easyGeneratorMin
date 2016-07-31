@@ -86,7 +86,9 @@
   <ItemGroup>
     <Compile Include="Entities\Course.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\MultipleSelectQuestion.cs" />
     <Compile Include="Entities\Section.cs" />
+    <Compile Include="Entities\SingleSelectQuestion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -181,9 +181,10 @@
     <Content Include="App\mapping\modelMapper.js" />
     <Content Include="App\mapping\viewMapper.js" />
     <Content Include="App\models\course.js" />
-    <Content Include="App\models\education.js" />
-    <Content Include="App\models\question.js" />
+    <Content Include="App\models\entity.js" />
+    <Content Include="App\models\multipleSelectQuestion.js" />
     <Content Include="App\models\section.js" />
+    <Content Include="App\models\singleSelectQuestion.js" />
     <Content Include="App\viewmodels\createcoursepage.js" />
     <Content Include="App\viewmodels\updatecoursepage.js" />
     <Content Include="App\viewmodels\mainpage.js" />
@@ -242,9 +243,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Binders\EntityModelBinder.cs" />
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\MultipleSelectQuestionController.cs" />
     <Compile Include="Controllers\OverviewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Controllers\SingleSelectQuestionController.cs" />
     <Compile Include="Filters\NullExceptionFilter.cs" />
     <Compile Include="Filters\OutOfRangeExceptionFilter.cs" />
     <Compile Include="Filters\SaveUnitOfWorkActionFilter.cs" />
@@ -253,7 +256,9 @@
     </Compile>
     <Compile Include="Models\CourseModel.cs" />
     <Compile Include="Models\EntityModel.cs" />
+    <Compile Include="Models\MultipleSelectQuestionModel.cs" />
     <Compile Include="Models\SectionModel.cs" />
+    <Compile Include="Models\SingleSelectQuestionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

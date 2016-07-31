@@ -8,8 +8,6 @@ using System.Reflection;
 using System.Web.Http;
 using System.Web.Mvc;
 
-
-
 namespace EasyGeneratorMin.Web
 {
     public class AutofacConfig
@@ -36,6 +34,14 @@ namespace EasyGeneratorMin.Web
 
             builder.RegisterType<Repository<Section>>()
                 .As<IRepository<Section>>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<Repository<SingleSelectQuestion>>()
+                .As<IRepository<SingleSelectQuestion>>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<Repository<MultipleSelectQuestion>>()
+                .As<IRepository<MultipleSelectQuestion>>()
                 .InstancePerLifetimeScope();
 
             builder.Register(c => Mapper.Instance).As<IMapper>();

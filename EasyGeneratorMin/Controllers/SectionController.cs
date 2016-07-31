@@ -11,13 +11,11 @@ namespace EasyGeneratorMin.Web
     public class SectionController : ApiController
     {
 
-        private readonly IUnitOfWork _unitOWork;
         private readonly IRepository<Section> _sectionRepository;
         private readonly IMapper _mapper;
 
-        public SectionController(IUnitOfWork unitOfWork, IRepository<Course> courseRepository, IRepository<Section> sectionRepository, IMapper mapper)
+        public SectionController(IRepository<Course> courseRepository, IRepository<Section> sectionRepository, IMapper mapper)
         {
-            _unitOWork = unitOfWork;
             _sectionRepository = sectionRepository;
             _mapper = mapper;
         }

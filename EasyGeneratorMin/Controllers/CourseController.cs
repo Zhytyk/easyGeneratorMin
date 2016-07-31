@@ -17,16 +17,11 @@ namespace EasyGeneratorMin.Web
     public class CourseController : ApiController
     {
 
-        private readonly IUnitOfWork _unitOWork;
         private readonly IRepository<Course> _courseRepository;
         private readonly IMapper _mapper;
 
-        public CourseController() { }
-
-        public CourseController(IUnitOfWork unitOfWork, IRepository<Course> courseRepository, IMapper mapper) : this()
+        public CourseController(IRepository<Course> courseRepository, IMapper mapper)
         {
-
-            _unitOWork = unitOfWork;
             _courseRepository = courseRepository;
             _mapper = mapper;
         }
