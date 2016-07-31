@@ -2,6 +2,7 @@
 using EasyGeneratorMin.DataAccess;
 using EasyGeneratorMin.Models;
 using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
 
@@ -27,12 +28,12 @@ namespace EasyGeneratorMin.Web
         [OutOfRangeExceptionFilter]
         [NullExceptionFilter]
         [SaveUnitOfWorkActionFilter]
-        public SectionModel CreateSection([ModelBinder(typeof(EntityModelBinder<Course>))]Course course, SectionModel sectionModel)
+        public SectionModel CreateSection([ModelBinder(typeof(EntityModelBinder<Course>))]Course course, Dictionary<string,string> spec)
         {
             if (course == null)
                 throw new ArgumentNullException();
 
-            var section = new Section(sectionModel.Title, course);
+            var section = new Section(spec["title"], course);
 
             _sectionRepository.Insert(section);
 
@@ -46,12 +47,12 @@ namespace EasyGeneratorMin.Web
         [OutOfRangeExceptionFilter]
         [NullExceptionFilter]
         [SaveUnitOfWorkActionFilter]
-        public SectionModel UpdateSection([ModelBinder(typeof(EntityModelBinder<Section>))]Section section, SectionModel sectionModel)
+        public SectionModel UpdateSection([ModelBinder(typeof(EntityModelBinder<Section>))]Section section, Dictionary<string, string> spec)
         {
             if (section == null)
                 throw new ArgumentNullException();
 
-            section.UpdateSection(sectionModel.Title);
+            section.UpdateSection(spec["title"]);
 
             var mapSection = _mapper.Map<SectionModel>(section);
 

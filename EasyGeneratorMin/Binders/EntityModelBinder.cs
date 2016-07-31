@@ -36,7 +36,7 @@ namespace EasyGeneratorMin.Web
                 guidId = Guid.Parse(id);
             }
 
-            if (id != null)
+            if (guidId != null)
             {
                 var model = _repository.GetValueById(guidId);
                 bindingContext.Model = model;

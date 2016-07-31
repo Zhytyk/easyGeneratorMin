@@ -1,4 +1,4 @@
-﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/mapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, mapper, httpErrorHandlers) {
+﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/modelMapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, modelMapper, httpErrorHandlers) {
 
     function getSectionById(courseId, sectionId) {
         return new Promise(function (resolve) {
@@ -29,7 +29,7 @@
                 var index = dataContext.courses.findIndex(function (course) {
                     return course.id === courseId;
                 });
-                dataContext.courses[index].sections.push(mapper.mapSection(createdSection));
+                dataContext.courses[index].sections.push(modelMapper.mapSection(createdSection));
             });
     };
 
@@ -42,10 +42,15 @@
                     return courseId == course.id;
                 });
                 var indexSection = dataContext.courses[indexCourse].sections.findIndex(function (section) {
-                    return sectionId == section.Id;
+                    return sectionId == section.id;
                 });
 
                 dataContext.courses[indexCourse].sections.splice(indexSection, 1);
+
+                return {
+                    indexCourse: indexCourse,
+                    indexSection: indexSection
+                }
             });
     };
 
@@ -64,7 +69,7 @@
                 var indexSection = dataContext.courses[indexCourse].sections.findIndex(function (section) {
                     return sectionId == section.id;
                 });
-                dataContext.courses[indexCourse].sections[indexSection] = mapper.mapSection(updatedSection);
+                dataContext.courses[indexCourse].sections[indexSection] = modelMapper.mapSection(updatedSection);
             });
     };
 

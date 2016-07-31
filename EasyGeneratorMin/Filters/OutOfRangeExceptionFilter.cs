@@ -11,7 +11,7 @@ namespace EasyGeneratorMin.Web
         {
             if (context.Exception is ArgumentOutOfRangeException)
             {
-                context.Response = new HttpResponseMessage(HttpStatusCode.NoContent);
+                context.Response = new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
         }
     }

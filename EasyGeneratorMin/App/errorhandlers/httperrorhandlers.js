@@ -24,9 +24,9 @@
 
     function handler(statusCode) {
         switch (statusCode) {
-            case 204:
+            case 400:
                 return invalidDataHandler();
-            case 404:
+            case 501:
                 return dataIsNotFoundHandler();
         };
     };

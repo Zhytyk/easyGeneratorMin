@@ -1,4 +1,4 @@
-﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/mapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, mapper, httpErrorHandlers) {
+﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/modelMapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, modelMapper, httpErrorHandlers) {
 
     function getCourses() {
         return new Promise(function (resolve) {
@@ -29,7 +29,7 @@
                 }
 
 
-                dataContext.courses.push(mapper.mapCourse(createdCourse));
+                dataContext.courses.push(modelMapper.mapCourse(createdCourse));
             });
     };
 
@@ -42,6 +42,8 @@
                 });
 
                 dataContext.courses.splice(index, 1);
+
+                return index;
             });
     };
 
@@ -57,7 +59,7 @@
                 var index = dataContext.courses.findIndex(function (course) {
                     return course.id === updatedCourse.Id;
                 });
-                dataContext.courses[index] = mapper.mapCourse(updatedCourse);
+                dataContext.courses[index] = modelMapper.mapCourse(updatedCourse);
             });
     };
 

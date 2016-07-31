@@ -11,7 +11,7 @@ namespace EasyGeneratorMin.Web
         {
             if (context.Exception is ArgumentNullException)
             {
-                context.Response = new HttpResponseMessage(HttpStatusCode.BadRequest);
+                context.Response = new HttpResponseMessage(HttpStatusCode.NotImplemented);
             }
         }
     }

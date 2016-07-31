@@ -47,10 +47,10 @@ namespace EasyGeneratorMin.Web
         [OutOfRangeExceptionFilter]
         [NullExceptionFilter]
         [SaveUnitOfWorkActionFilter]
-        public CourseModel CreateCourse(CourseModel courseModel)
+        public CourseModel CreateCourse(Dictionary<string, string> spec)
         {
 
-            var course = new Course(courseModel.Title, courseModel.Description);
+            var course = new Course(spec["title"], spec["description"]);
 
             _courseRepository.Insert(course);
 
