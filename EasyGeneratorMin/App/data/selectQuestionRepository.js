@@ -32,6 +32,35 @@
         });
     };
 
+    function getSingleSelectQuestionById(id) {
+        return new Promise(function (resolve, reject) {
+
+            getSelectQuestions().then(function () {
+
+                var singleSelectQuestion = dataContext.singleSelectQuestions.find(function (singleSelectQuestion) {
+                    return singleSelectQuestion.id == id;
+                });
+
+
+                resolve(singleSelectQuestion);
+            });
+        });
+    };
+
+    function getMultipleSelectQuestionById(id) {
+        return new Promise(function (resolve, reject) {
+
+            getSelectQuestions().then(function () {
+
+                var multipleSelectQuestion = dataContext.multipleSelectQuestions.find(function (multipleSelectQuestion) {
+                    return multipleSelectQuestion.id == id;
+                });
+
+                resolve(multipleSelectQuestion);
+            });
+        });
+    };
+
     function createSingleSelectQuestion(singleSelectQuestionTitle, sectionId) {
         return http.post('create/singleselectquestion', { id: sectionId, title: singleSelectQuestionTitle }).then(function (singleSelectQuestion) {
             dataContext.singleSelectQuestions.push(modelMapper.mapSingleSelectQuestion(singleSelectQuestion));
@@ -66,10 +95,34 @@
         });
     };
 
+    function updateSingleSelectQuestion(id, title) {
+        return http.put('update/singleselectquestion', { id: id, title: title }).then(function (updatedSingleSelectQuestion) {
+            var index = dataContext.singleSelectQuestions.findIndex(function (singleSelectQuestion) {
+                return singleSelectQuestion.id == id;
+            });
+
+            dataContext.singleSelectQuestions[index] = updatedSingleSelectQuestion;
+        });
+    };
+
+    function updateMultipleSelectQuestion(id, title) {
+        return http.put('update/multipleselectquestion', { id: id, title: title }).then(function (updatedMultipleSelectQuestion) {
+            var index = dataContext.multipleSelectQuestions.findIndex(function (multipleSelectQuestion) {
+                return multipleSelectQuestion.id == id;
+            });
+
+            dataContext.multipleSelectQuestions[index] = updatedMultipleSelectQuestion;
+        })
+    };
+
     return {
-        getSelectQuestions : getSelectQuestions,
+        getSelectQuestions: getSelectQuestions,
+        getSingleSelectQuestionById: getSingleSelectQuestionById,
+        getMultipleSelectQuestionById: getMultipleSelectQuestionById,
         createSingleSelectQuestion : createSingleSelectQuestion,
         createMultipleSelectQuestion: createMultipleSelectQuestion,
+        updateSingleSelectQuestion: updateSingleSelectQuestion,
+        updateMultipleSelectQuestion: updateMultipleSelectQuestion,
         removeSingleSelectQuestion: removeSingleSelectQuestion,
         removeMultipleSelectQuestion: removeMultipleSelectQuestion
     };

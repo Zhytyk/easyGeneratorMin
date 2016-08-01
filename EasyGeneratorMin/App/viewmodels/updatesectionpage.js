@@ -40,7 +40,7 @@
         },
         updateSection: function () {
             sectionRepository.updateSection(this.sectionId, this.courseId, this.sectionTitle()).then(function() {
-                router.navigate("#");
+                router.navigateBack();
             });
         },
         createSelectQuestion: function () {
@@ -57,6 +57,12 @@
             selectQuestionRepository.removeMultipleSelectQuestion(id).then(function (index) {
                 self.multipleSelectQuestions.splice(index, 1);
             });
+        },
+        updateSingleSelectQuestion: function (id) {
+            router.navigate("update/singleselectquestion/" + id);
+        },
+        updateMultipleSelectQuestion: function (id) {
+            router.navigate("update/multipleselectquestion/" + id);
         },
     };
 })

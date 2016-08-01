@@ -48,6 +48,21 @@ namespace EasyGeneratorMin.Web
             return _mapper.Map<SingleSelectQuestionModel>(singleSelectQuestion);
         }
 
+        [HttpPut]
+        [Route("update/singleselectquestion")]
+        [OutOfRangeExceptionFilter]
+        [NullExceptionFilter]
+        [SaveUnitOfWorkActionFilter]
+        public SingleSelectQuestionModel UpdateSingleSelectQuestion([ModelBinder(typeof(EntityModelBinder<SingleSelectQuestion>))]SingleSelectQuestion singleSelectQuestion, Dictionary<string, string> spec)
+        {
+            if (singleSelectQuestion == null)
+                throw new ArgumentNullException();
+
+            singleSelectQuestion.UpdateValue(spec["title"]);
+
+            return _mapper.Map<SingleSelectQuestionModel>(singleSelectQuestion);
+        }
+
         [HttpDelete]
         [Route("remove/singleselectquestion")]
         [NullExceptionFilter]

@@ -18,12 +18,12 @@
         },
         updateCourse: function () {
             courseRepository.updateCourse(this.courseId, this.courseTitle(), this.courseDescription()).then(function() {
-                router.navigate("#")
+                router.navigateBack();
             });
         },
         createSection: function () {
             sectionRepository.createSection(this.courseId, this.sectionTitle()).then(function() {
-                router.navigate("#");
+                router.navigateBack();
             });
         },
     };

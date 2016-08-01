@@ -9,5 +9,15 @@ namespace EasyGeneratorMin.Models
     public class SelectQuestion : Entity
     {
         public Section Section { get; set; }
+
+        public SelectQuestion() { }
+
+        public SelectQuestion(string title, Section section)
+        {
+            ThrowIfTitleInvalid(title);
+
+            Title = title;
+            Section = section;
+        }
     }
 }

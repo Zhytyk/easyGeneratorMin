@@ -13,13 +13,13 @@
         createSingleSelectQuestion: function () {
             var self = this;
             selectQuestionRepository.createSingleSelectQuestion(this.singleSelectQuestionTitle(), this.sectionId).then(function () {
-                router.navigate("update/section/" + self.courseId + "/" + self.sectionId);
+                router.navigateBack();
             });
         },
         createMultipleSelectQuestion: function () {
             var self = this;
             selectQuestionRepository.createMultipleSelectQuestion(this.multipleSelectQuestionTitle(), this.sectionId).then(function () {
-                router.navigate("update/section/" + self.courseId + "/" + self.sectionId);
+                router.navigateBack();
             });
         },
     };

@@ -8,7 +8,7 @@
         },
         createCourse: function () { 
             courseRepository.createCourse(this.title, this.description).then(function() {
-                router.navigate("#");
+                router.navigateBack();
             });
         }
 

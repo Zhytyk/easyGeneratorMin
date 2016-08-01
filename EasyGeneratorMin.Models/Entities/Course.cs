@@ -41,17 +41,5 @@ namespace EasyGeneratorMin.Models
 
         }
 
-        private void ThrowIfTitleInvalid(string title)
-        {
-            if (title.Length < 1 || title.Length > 255)
-                throw new ArgumentOutOfRangeException();
-        }
-
-        private void ThrowIfDescriptionInvalid(string description)
-        {
-            if (description.Length < 1)
-                throw new ArgumentOutOfRangeException();
-        }
-
     }
 }

@@ -49,6 +49,21 @@ namespace EasyGeneratorMin.Web
             return _mapper.Map<MultipleSelectQuestionModel>(multipleSelectQuestion);
         }
 
+        [HttpPut]
+        [Route("update/multipleselectquestion")]
+        [OutOfRangeExceptionFilter]
+        [NullExceptionFilter]
+        [SaveUnitOfWorkActionFilter]
+        public MultipleSelectQuestionModel UpdateMultipleSelectQuestion([ModelBinder(typeof(EntityModelBinder<MultipleSelectQuestion>))]MultipleSelectQuestion multipleSelectQuestion, Dictionary<string, string> spec)
+        {
+            if (multipleSelectQuestion == null)
+                throw new ArgumentNullException();
+
+            multipleSelectQuestion.UpdateValue(spec["title"]);
+
+            return _mapper.Map<MultipleSelectQuestionModel>(multipleSelectQuestion);
+        }
+
         [HttpDelete]
         [Route("remove/multipleselectquestion")]
         [NullExceptionFilter]

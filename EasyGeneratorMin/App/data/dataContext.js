@@ -13,7 +13,7 @@
         initializeCourses: initializeCourses,
 
         courses: [],
-        singleSelectQuestions: null,
-        multipleSelectQuestions: null
+        singleSelectQuestions: undefined,
+        multipleSelectQuestions: undefined
     };
 });

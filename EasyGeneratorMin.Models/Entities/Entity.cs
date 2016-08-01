@@ -26,9 +26,30 @@ namespace EasyGeneratorMin.Models
             Creater = "Pavel Vaydalauskas";
         }
 
+        public void UpdateValue(string title)
+        {
+            ThrowIfTitleInvalid(title);
+
+            Title = title;
+
+            SetLastUpdatedDate();
+        }
+
         protected void SetLastUpdatedDate()
         {
             LastUpdatedDate = DateTime.UtcNow;
+        }
+
+        protected void ThrowIfTitleInvalid(string title)
+        {
+            if (title.Length < 1 || title.Length > 255)
+                throw new ArgumentOutOfRangeException();
+        }
+
+        protected void ThrowIfDescriptionInvalid(string description)
+        {
+            if (description.Length < 1)
+                throw new ArgumentOutOfRangeException();
         }
 
     }

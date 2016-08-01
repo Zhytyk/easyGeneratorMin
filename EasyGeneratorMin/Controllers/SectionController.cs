@@ -48,7 +48,7 @@ namespace EasyGeneratorMin.Web
             if (section == null)
                 throw new ArgumentNullException();
 
-            section.UpdateSection(spec["title"]);
+            section.UpdateValue(spec["title"]);
 
             return _mapper.Map<SectionModel>(section);
         }
