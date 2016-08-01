@@ -10,6 +10,8 @@ namespace EasyGeneratorMin.DataAccess
 
         public DbSet<Section> Sections { get; set; } 
 
+        public DbSet<SelectQuestion> SelectQuestion { get; set; }
+
         public DbSet<SingleSelectQuestion> SingleSelectQuestion { get; set; }
 
         public DbSet<MultipleSelectQuestion> MultipleSelectQuestion { get; set; }

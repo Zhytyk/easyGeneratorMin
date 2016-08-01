@@ -3,7 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace EasyGeneratorMin.DataAccess
 {
-    public class SelectQuestionConfiguration : EntityTypeConfiguration<SingleSelectQuestion>
+    public class SelectQuestionConfiguration : EntityTypeConfiguration<SelectQuestion>
     {
         public SelectQuestionConfiguration()
         {

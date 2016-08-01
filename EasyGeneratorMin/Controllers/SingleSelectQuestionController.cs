@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.ModelBinding;
 
 namespace EasyGeneratorMin.Web
 {
@@ -27,9 +28,24 @@ namespace EasyGeneratorMin.Web
         {
             var singleSelectQuestions = _singleSelectQuestionRepository.GetCollection();
 
-            var mapSections = singleSelectQuestions.Select(item => _mapper.Map<SingleSelectQuestionModel>(item)).ToList();
+            return singleSelectQuestions.Select(item => _mapper.Map<SingleSelectQuestionModel>(item)).ToList();
+        }
 
-            return mapSections;
+        [HttpPost]
+        [Route("create/singleselectquestion")]
+        [OutOfRangeExceptionFilter]
+        [NullExceptionFilter]
+        [SaveUnitOfWorkActionFilter]
+        public SingleSelectQuestionModel CreateSingleSelectQuestion([ModelBinder(typeof(EntityModelBinder<Section>))]Section section, Dictionary<string, string> spec)
+        {
+            if (section == null)
+                throw new ArgumentNullException();
+
+            var singleSelectQuestion = new SingleSelectQuestion(spec["title"], section);
+
+            _singleSelectQuestionRepository.Insert(singleSelectQuestion);
+
+            return _mapper.Map<SingleSelectQuestionModel>(singleSelectQuestion);
         }
 
     }

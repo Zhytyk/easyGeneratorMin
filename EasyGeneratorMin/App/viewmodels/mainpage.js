@@ -3,17 +3,15 @@
         courses: ko.observableArray([]),
         activate: function () {
             this.courses(viewMapper.coursesMapper());
-            dataContext.initializeSelectQuestions();
-            console.log(dataContext);
         },
         createCourse: function () {
-            router.navigate("#createCourse");
+            router.navigate("#create/course");
         },
         updateCourse: function (id) {
-            router.navigate("#updateCourse/" + id);
+            router.navigate("#update/course/" + id);
         },
         updateSection: function(sectionId, courseId) {
-            router.navigate("#updateSection/" + courseId + "/" + sectionId);
+            router.navigate("#update/section/" + courseId + "/" + sectionId);
         },
         removeCourse: function (id) {
             var self = this;

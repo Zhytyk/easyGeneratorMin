@@ -32,9 +32,7 @@ namespace EasyGeneratorMin.Web
         {
             var courses = _courseRepository.GetCollection();
 
-            var mapCourses = courses.Select(item => _mapper.Map<CourseModel>(item)).ToList();
-
-            return mapCourses;
+            return courses.Select(item => _mapper.Map<CourseModel>(item)).ToList();
         }
 
         [HttpPost]
@@ -44,14 +42,11 @@ namespace EasyGeneratorMin.Web
         [SaveUnitOfWorkActionFilter]
         public CourseModel CreateCourse(Dictionary<string, string> spec)
         {
-
             var course = new Course(spec["title"], spec["description"]);
 
             _courseRepository.Insert(course);
 
-            var mapCourse = _mapper.Map<CourseModel>(course);
-
-            return mapCourse;
+            return _mapper.Map<CourseModel>(course);
         }
 
         [HttpPut]
@@ -64,11 +59,9 @@ namespace EasyGeneratorMin.Web
             if (course == null)
                 throw new ArgumentNullException();
 
-            course.UpdateCourse(spec["title"], spec["description"]);
+            course.UpdateCourse(spec["title"], spec["description"]); 
 
-            var mapCourse = _mapper.Map<CourseModel>(course);
-
-            return mapCourse;
+            return _mapper.Map<CourseModel>(course);
         }
 
         [HttpDelete]

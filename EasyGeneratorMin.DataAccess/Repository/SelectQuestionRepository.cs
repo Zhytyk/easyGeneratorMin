@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EasyGeneratorMin.DataAccess
 {
-    public class SelectQuestionRepository<TEntity> : Repository<TEntity> where TEntity : SingleSelectQuestion
+    public class SelectQuestionRepository<TEntity> : Repository<TEntity> where TEntity : SelectQuestion
     {
         public SelectQuestionRepository(IDatabaseContext db) : base(db) { }
 

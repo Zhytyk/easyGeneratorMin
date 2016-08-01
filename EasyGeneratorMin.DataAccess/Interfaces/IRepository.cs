@@ -12,10 +12,10 @@ namespace EasyGeneratorMin.DataAccess
 
         TEntity GetValueById(Guid id);
 
-        void Insert(TEntity course);
+        void Insert(TEntity entity);
 
-        void Update(TEntity course);
+        void Update(TEntity entity);
 
-        void Delete(TEntity id);
+        void Delete(TEntity entity);
     }
 }

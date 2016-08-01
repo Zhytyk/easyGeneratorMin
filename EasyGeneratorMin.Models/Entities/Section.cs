@@ -11,7 +11,7 @@ namespace EasyGeneratorMin.Models
 
         public Course Course { get; set; }
 
-        public List<SingleSelectQuestion> SelectQuestions { get; set; }
+        public List<SelectQuestion> SelectQuestions { get; set; }
 
         public Section() { }
 

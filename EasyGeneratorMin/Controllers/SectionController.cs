@@ -35,9 +35,7 @@ namespace EasyGeneratorMin.Web
 
             _sectionRepository.Insert(section);
 
-            var mapSection = _mapper.Map<SectionModel>(section);
-
-            return mapSection;
+            return  _mapper.Map<SectionModel>(section);
         }
 
         [HttpPut]
@@ -52,9 +50,7 @@ namespace EasyGeneratorMin.Web
 
             section.UpdateSection(spec["title"]);
 
-            var mapSection = _mapper.Map<SectionModel>(section);
-
-            return mapSection;
+            return _mapper.Map<SectionModel>(section);
         }
 
 

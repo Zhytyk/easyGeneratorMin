@@ -9,26 +9,11 @@
         });
     };
 
-    function initializeSelectQuestions() {
-        var self = this;
-        return http.get('/get/singleselectquestions').then(function (singleSelectQuestions) {
-            singleSelectQuestions.forEach(function (singleSelectQuestion) {
-                self.singleSelectQuestions.push(modelMapper.mapSingleSelectQuestion(singleSelectQuestion));
-            });
-            return http.get('/get/multipleselectquestions').then(function (multipleSelectQuestions) {
-                multipleSelectQuestions.forEach(function (multipleSelectQuestion) {
-                    self.multipleSelectQuestions.push(modelMapper.mapMultipleSelectQuestion(multipleSelectQuestion));
-                });
-            });
-        });
-    };
-
     return {
         initializeCourses: initializeCourses,
-        initializeSelectQuestions: initializeSelectQuestions,
 
         courses: [],
-        singleSelectQuestions: [],
-        multipleSelectQuestions: []
+        singleSelectQuestions: null,
+        multipleSelectQuestions: null
     };
 });
