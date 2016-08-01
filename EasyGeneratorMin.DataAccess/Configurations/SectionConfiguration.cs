@@ -16,7 +16,8 @@ namespace EasyGeneratorMin.DataAccess
                 .WithMany(c => c.Sections);
 
             HasMany(c => c.SelectQuestions)
-                .WithOptional(c => c.Section);
+                .WithOptional(c => c.Section)
+                .WillCascadeOnDelete(true);
 
             Property(o => o.Title).IsRequired();
             Property(o => o.Creater).IsRequired();

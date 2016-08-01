@@ -14,7 +14,8 @@ namespace EasyGeneratorMin.DataAccess
             HasKey(o => o.Id);
 
             HasMany(c => c.Sections)
-                .WithOptional(c => c.Course);
+                .WithOptional(c => c.Course)
+                .WillCascadeOnDelete(true);
 
             Property(o => o.Title).IsRequired();
             Property(o => o.Description).IsRequired();

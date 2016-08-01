@@ -2,8 +2,8 @@
     return {
         courseId: '',
         sectionId: '',
-        singleSelectQuestionTitle: ko.observable().extend({ require: '' }),
-        multipleSelectQuestionTitle: ko.observable().extend({ require: '' }),
+        singleSelectQuestionTitle: ko.observable().extend({ required: '' }),
+        multipleSelectQuestionTitle: ko.observable().extend({ required: '' }),
         activate: function (courseId, sectionId) {
             this.courseId = courseId;
             this.sectionId = sectionId;

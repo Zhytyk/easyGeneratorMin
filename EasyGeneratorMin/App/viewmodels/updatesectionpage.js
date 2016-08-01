@@ -46,5 +46,17 @@
         createSelectQuestion: function () {
             router.navigate("#" + this.courseId + "/" + this.sectionId + "/create/selectquestion");
         },
+        removeSingleSelectQuestion: function (id) {
+            var self = this;
+            selectQuestionRepository.removeSingleSelectQuestion(id).then(function (index) {
+                self.singleSelectQuestions.splice(index, 1);
+            });
+        },
+        removeMultipleSelectQuestion: function (id) {
+            var self = this;
+            selectQuestionRepository.removeMultipleSelectQuestion(id).then(function (index) {
+                self.multipleSelectQuestions.splice(index, 1);
+            });
+        },
     };
 })
