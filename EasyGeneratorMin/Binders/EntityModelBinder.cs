@@ -27,6 +27,9 @@ namespace EasyGeneratorMin.Web
 
             var uriFromId = requestContent.Substring(requestContent.IndexOf("id"));
 
+            if (uriFromId == null)
+                throw new ArgumentNullException();
+
             string id = WebUtility.UrlDecode(requestContent.Substring(uriFromId.IndexOf('=') + 1)).Substring(0, 36);
 
             Guid guidId;
@@ -36,14 +39,11 @@ namespace EasyGeneratorMin.Web
                 guidId = Guid.Parse(id);
             }
 
-            if (guidId != null)
-            {
-                var model = _repository.GetValueById(guidId);
-                bindingContext.Model = model;
-                return true;
-            }
 
-            return false;  
+            var model = _repository.GetValueById(guidId);
+            bindingContext.Model = model;
+
+            return true; 
         }
 
     }

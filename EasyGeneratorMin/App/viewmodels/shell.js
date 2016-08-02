@@ -8,8 +8,7 @@
                { route: 'update/course/:id', title: 'Update course', moduleId: 'viewmodels/updatecoursepage', nav: true },
                { route: 'update/section/:courseId/:sectionId', title: 'Update section', moduleId: 'viewmodels/updatesectionpage', nav: true },
                { route: ':courseId/:sectionId/create/selectquestion', title: 'Create SelectQuestion', moduleId: 'viewmodels/createselectquestionpage', nav: true },
-               { route: 'update/singleselectquestion/:singleselectquestionId', title: 'Update SingleSelectQuestion', moduleId: 'viewmodels/updatesingleselectquestionpage', nav: true },
-               { route: 'update/multipleselectquestion/:multipleselectquestionId', title: 'Update MultipleSelectQuestion', moduleId: 'viewmodels/updatemultipleselectquestionpage', nav: true},
+               { route: 'update/selectquestion/:selectquestionId', title: 'Update SingleSelectQuestion', moduleId: 'viewmodels/updatesingleselectquestionpage', nav: true },
             ]).buildNavigationModel();
 
             return router.activate();

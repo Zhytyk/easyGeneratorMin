@@ -1,30 +1,15 @@
-﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/modelMapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, modelMapper, httpErrorHandler) {
+﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/modelMapper', 'mapping/viewMapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, modelMapper, viewMapper, httpErrorHandler) {
     function getSelectQuestions() {
         return new Promise(function (resolve, reject) {
-            if (!dataContext.singleSelectQuestion) {
-                dataContext.singleSelectQuestions = [];
+            if (!dataContext.selectQuestions) {
+                dataContext.selectQuestions = [];
 
-                http.get('/get/singleselectquestions').then(function (singleSelectQuestions) {
-                    singleSelectQuestions.forEach(function (singleSelectQuestion) {
-                        dataContext.singleSelectQuestions.push(modelMapper.mapSingleSelectQuestion(singleSelectQuestion));
+                http.get('/get/selectquestions').then(function (selectQuestions) {
+                    selectQuestions.forEach(function (selectQuestion) {
+                        dataContext.selectQuestions.push(viewMapper.selectQuestionsMapper(selectQuestion));
                     });
-
-                    if (!dataContext.multipleSelectQuestion) {
-                        dataContext.multipleSelectQuestions = [];
-
-                        http.get('/get/multipleselectquestions').then(function (multipleSelectQuestions) {
-                            multipleSelectQuestions.forEach(function (multipleSelectQuestion) {
-                                dataContext.multipleSelectQuestions.push(modelMapper.mapMultipleSelectQuestion(multipleSelectQuestion));
-                            });
-
-                            resolve("success");
-                        });
-                    }
-
-                    else {
-                        resolve("success");
-                    }
                 });
+                resolve("success");
             }
             else {
                 resolve("success");
@@ -32,34 +17,25 @@
         });
     };
 
-    function getSingleSelectQuestionById(id) {
+    function getSelectQuestionById(id) {
         return new Promise(function (resolve, reject) {
 
             getSelectQuestions().then(function () {
 
-                var singleSelectQuestion = dataContext.singleSelectQuestions.find(function (singleSelectQuestion) {
-                    return singleSelectQuestion.id == id;
+                var selectQuestion = dataContext.selectQuestions.find(function (selectQuestion) {
+                    return selectQuestion.id == id;
                 });
 
+                if (!selectQuestion) {
+                    throw httpErrorHandler.dataIsNotFoundHandler();
+                    return;
+                }
 
-                resolve(singleSelectQuestion);
+
+                resolve(selectQuestion);
             });
         });
-    };
-
-    function getMultipleSelectQuestionById(id) {
-        return new Promise(function (resolve, reject) {
-
-            getSelectQuestions().then(function () {
-
-                var multipleSelectQuestion = dataContext.multipleSelectQuestions.find(function (multipleSelectQuestion) {
-                    return multipleSelectQuestion.id == id;
-                });
-
-                resolve(multipleSelectQuestion);
-            });
-        });
-    };
+    }
 
     function createSingleSelectQuestion(singleSelectQuestionTitle, sectionId) {
         return http.post('create/singleselectquestion', { id: sectionId, title: singleSelectQuestionTitle }).then(function (singleSelectQuestion) {
@@ -68,7 +44,7 @@
                 return;
             }
 
-            dataContext.singleSelectQuestions.push(modelMapper.mapSingleSelectQuestion(singleSelectQuestion));
+            dataContext.selectQuestions.push(modelMapper.mapSingleSelectQuestion(singleSelectQuestion));
         });
     };
 
@@ -79,71 +55,43 @@
                 return;
             }
 
-            dataContext.multipleSelectQuestions.push(modelMapper.mapMultipleSelectQuestion(multipleSelectQuestion));
+            dataContext.selectQuestions.push(modelMapper.mapMultipleSelectQuestion(multipleSelectQuestion));
         });
     };
 
-    function removeSingleSelectQuestion(id) {
-        return http.remove('remove/singleselectquestion', { id: id }).then(function () {
-            var index = dataContext.singleSelectQuestions.findIndex(function (singleSelectQuestion) {
-                return singleSelectQuestion.id == id;
+    function removeSelectQuestion(id) {
+        return http.remove('remove/selectquestion', { id: id }).then(function () {
+            var index = dataContext.selectQuestions.findIndex(function (selectQuestion) {
+                return selectQuestion.id == id;
             });
 
-            dataContext.singleSelectQuestions.splice(index, 1);
+            dataContext.selectQuestions.splice(index, 1);
             return index;
         });
     };
 
-    function removeMultipleSelectQuestion(id) {
-        return http.remove('remove/multipleselectquestion', { id: id }).then(function () {
-            var index = dataContext.multipleSelectQuestions.findIndex(function (multipleSelectQuestion) {
-                return multipleSelectQuestion.id == id;
-            });
-
-            dataContext.multipleSelectQuestions.splice(index, 1);
-            return index;
-        });
-    };
-
-    function updateSingleSelectQuestion(id, title) {
-        return http.put('update/singleselectquestion', { id: id, title: title }).then(function (updatedSingleSelectQuestion) {
-            if (!updatedSingleSelectQuestion) {
+    function updateSelectQuestion(id, title) {
+        return http.put('update/selectquestion', { id: id, title: title }).then(function (updatedSelectQuestion) {
+            if (!updatedSelectQuestion) {
                 throw httpErrorHandler.dataIsNotFoundHandler();
                 return;
             }
 
-            var index = dataContext.singleSelectQuestions.findIndex(function (singleSelectQuestion) {
-                return singleSelectQuestion.id == id;
+            var index = dataContext.selectQuestions.findIndex(function (selectQuestion) {
+                return selectQuestion.id == id;
             });
 
-            dataContext.singleSelectQuestions[index] = updatedSingleSelectQuestion;
+            dataContext.selectQuestions[index].title = updatedSelectQuestion.title;
+            dataContext.selectQuestions[index].lastUpdatedDate = updatedSelectQuestion.lastUpdatedDate;
         });
-    };
-
-    function updateMultipleSelectQuestion(id, title) {
-        return http.put('update/multipleselectquestion', { id: id, title: title }).then(function (updatedMultipleSelectQuestion) {
-            if (!updatedMultipleSelectQuestion) {
-                throw httpErrorHandler.dataIsNotFoundHandler();
-                return;
-            }
-
-            var index = dataContext.multipleSelectQuestions.findIndex(function (multipleSelectQuestion) {
-                return multipleSelectQuestion.id == id;
-            });
-
-            dataContext.multipleSelectQuestions[index] = updatedMultipleSelectQuestion;
-        })
     };
 
     return {
         getSelectQuestions: getSelectQuestions,
-        getSingleSelectQuestionById: getSingleSelectQuestionById,
-        getMultipleSelectQuestionById: getMultipleSelectQuestionById,
+        getSelectQuestionById: getSelectQuestionById,
         createSingleSelectQuestion : createSingleSelectQuestion,
         createMultipleSelectQuestion: createMultipleSelectQuestion,
-        updateSingleSelectQuestion: updateSingleSelectQuestion,
-        updateMultipleSelectQuestion: updateMultipleSelectQuestion,
-        removeSingleSelectQuestion: removeSingleSelectQuestion,
-        removeMultipleSelectQuestion: removeMultipleSelectQuestion
+        updateSelectQuestion: updateSelectQuestion,
+        removeSelectQuestion: removeSelectQuestion
     };
 });

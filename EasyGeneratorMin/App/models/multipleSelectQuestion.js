@@ -1,6 +1,6 @@
-﻿define(['models/singleSelectQuestion'],function (singleSelectQuestion) {
+﻿define(['models/selectQuestion'],function (SelectQuestion) {
     function MultipleSelectQuestion(spec) {
-        singleSelectQuestion.call(this, spec);
+        SelectQuestion.call(this, spec);
     }
     return MultipleSelectQuestion;
 });

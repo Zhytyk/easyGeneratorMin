@@ -9,6 +9,7 @@
             this.sectionId = sectionId;
             this.singleSelectQuestionTitle("SomeSingleSelectQuestion");
             this.multipleSelectQuestionTitle("SomeMultipleSelectQuestion");
+            selectQuestionRepository.getSelectQuestions();
         },
         createSingleSelectQuestion: function () {
             var self = this;

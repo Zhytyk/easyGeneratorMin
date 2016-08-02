@@ -1,6 +1,6 @@
 ﻿define(['data/courseRepository', 'data/sectionRepository', 'extenders/validationExtenders', 'plugins/router'], function (courseRepository, sectionRepository, validationExtenders, router) {
-    function initializeFormPage(id, self) {
-        courseRepository.getCourseById(id)
+    function initializeForm(id, self) {
+        return courseRepository.getCourseById(id)
             .then(function(course) {
                 self.courseTitle(course.title);
                 self.courseDescription(course.description);
@@ -14,7 +14,7 @@
         activate: function (id) {
             this.courseId = id;
             this.sectionTitle("SomeSection");
-            initializeFormPage(id, this);
+            return initializeForm(id, this);
         },
         updateCourse: function () {
             courseRepository.updateCourse(this.courseId, this.courseTitle(), this.courseDescription()).then(function() {

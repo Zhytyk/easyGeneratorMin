@@ -185,23 +185,22 @@
     <Content Include="App\models\entity.js" />
     <Content Include="App\models\multipleSelectQuestion.js" />
     <Content Include="App\models\section.js" />
+    <Content Include="App\models\selectQuestion.js" />
     <Content Include="App\models\singleSelectQuestion.js" />
     <Content Include="App\viewmodels\createcoursepage.js" />
     <Content Include="App\viewmodels\createselectquestionpage.js" />
     <Content Include="App\viewmodels\updatecoursepage.js" />
     <Content Include="App\viewmodels\mainpage.js" />
     <Content Include="App\viewmodels\shell.js" />
-    <Content Include="App\viewmodels\updatemultipleselectquestionpage.js" />
     <Content Include="App\viewmodels\updatesectionpage.js" />
-    <Content Include="App\viewmodels\updatesingleselectquestionpage.js" />
+    <Content Include="App\viewmodels\updateselectquestionpage.js" />
     <Content Include="App\views\createcoursepage.html" />
     <Content Include="App\views\createselectquestionpage.html" />
     <Content Include="App\views\updatecoursepage.html" />
     <Content Include="App\views\mainpage.html" />
     <Content Include="App\views\shell.html" />
-    <Content Include="App\views\updatemultipleselectquestionpage.html" />
     <Content Include="App\views\updatesectionpage.html" />
-    <Content Include="App\views\updatesingleselectquestionpage.html" />
+    <Content Include="App\views\updateselectquestionpage.html" />
     <Content Include="App_Data\EasyGeneratorMin.mdf" />
     <Content Include="App_Data\EasyGeneratorMin_log.ldf">
       <DependentUpon>EasyGeneratorMin.mdf</DependentUpon>
@@ -254,6 +253,7 @@
     <Compile Include="Controllers\OverviewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Controllers\SelectQuestionController.cs" />
     <Compile Include="Controllers\SingleSelectQuestionController.cs" />
     <Compile Include="Filters\NullExceptionFilter.cs" />
     <Compile Include="Filters\OutOfRangeExceptionFilter.cs" />
@@ -265,6 +265,7 @@
     <Compile Include="Models\EntityModel.cs" />
     <Compile Include="Models\MultipleSelectQuestionModel.cs" />
     <Compile Include="Models\SectionModel.cs" />
+    <Compile Include="Models\SelectQuestionModel.cs" />
     <Compile Include="Models\SingleSelectQuestionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

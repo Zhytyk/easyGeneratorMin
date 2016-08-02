@@ -1,4 +1,4 @@
-﻿define(['models/course', 'models/section', 'models/singleSelectQuestion'], function (Course, Section, SingleSelectQuestion) {
+﻿define(['models/course', 'models/section', 'models/singleSelectQuestion', 'models/multipleSelectQuestion'], function (Course, Section, SingleSelectQuestion, MultipleSelectQuestion) {
     function mapCourse(course) {
         var sections = [];
         if (course.Sections) {
@@ -27,25 +27,25 @@
         });
     };
 
-    function mapSingleSelectQuestion(singleSelectQuestion) {
+    function mapSingleSelectQuestion(selectQuestion) {
         return new SingleSelectQuestion({
-            id: singleSelectQuestion.Id,
-            title: singleSelectQuestion.Title,
-            creater: singleSelectQuestion.Creater,
-            createdDate: new Date(singleSelectQuestion.CreatedDate).toLocaleString(),
-            lastUpdatedDate: new Date(singleSelectQuestion.LastUpdatedDate).toLocaleString(),
-            sectionId: singleSelectQuestion.SectionId
+            id: selectQuestion.Id,
+            title: selectQuestion.Title,
+            creater: selectQuestion.Creater,
+            createdDate: new Date(selectQuestion.CreatedDate).toLocaleString(),
+            lastUpdatedDate: new Date(selectQuestion.LastUpdatedDate).toLocaleString(),
+            sectionId: selectQuestion.SectionId
         });
     };
 
-    function mapMultipleSelectQuestion(multipleSelectQuestion) {
-        return new SingleSelectQuestion({
-            id: multipleSelectQuestion.Id,
-            title: multipleSelectQuestion.Title,
-            creater: multipleSelectQuestion.Creater,
-            createdDate: new Date(multipleSelectQuestion.CreatedDate).toLocaleString(),
-            lastUpdatedDate: new Date(multipleSelectQuestion.LastUpdatedDate).toLocaleString(),
-            sectionId: multipleSelectQuestion.SectionId
+    function mapMultipleSelectQuestion(selectQuestion) {
+        return new MultipleSelectQuestion({
+            id: selectQuestion.Id,
+            title: selectQuestion.Title,
+            creater: selectQuestion.Creater,
+            createdDate: new Date(selectQuestion.CreatedDate).toLocaleString(),
+            lastUpdatedDate: new Date(selectQuestion.LastUpdatedDate).toLocaleString(),
+            sectionId: selectQuestion.SectionId
         });
     };
 

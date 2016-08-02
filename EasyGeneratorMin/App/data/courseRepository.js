@@ -12,11 +12,11 @@
                 return course.id == id;
             });
 
-            if (course) {
-                resolve(course);
+            if (!course) {
+                throw httpErrorHandlers.dataIsNotFoundHandler();
                 return;
             }
-            throw httpErrorHandlers.dataIsNotFoundHandler();
+            resolve(course);
         });
     };
 
@@ -36,7 +36,6 @@
     function removeCourse(courseId) {
         return http.remove('remove/course', { id: courseId })
             .then(function () {
-
                 var index = dataContext.courses.findIndex(function (course, index) {
                     return course.id === courseId;
                 });

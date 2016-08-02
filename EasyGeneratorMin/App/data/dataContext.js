@@ -13,7 +13,6 @@
         initializeCourses: initializeCourses,
 
         courses: [],
-        singleSelectQuestions: undefined,
-        multipleSelectQuestions: undefined
+        selectQuestions: undefined
     };
 });

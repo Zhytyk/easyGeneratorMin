@@ -1,6 +1,6 @@
 ﻿define(function () {
 
-    function Education(spec) {
+    function Entity(spec) {
         this.id = spec.id;
         this.title = spec.title;
         this.creater = spec.creater;
@@ -8,5 +8,5 @@
         this.lastUpdatedDate = spec.lastUpdatedDate;
     };
 
-    return Education;
+    return Entity;
 })

@@ -5,8 +5,8 @@ using System.Web;
 
 namespace EasyGeneratorMin.Web
 {
-    public class SingleSelectQuestionModel : EntityModel
+    public class SingleSelectQuestionModel : SelectQuestionModel
     {
-        public Guid SectionId { get; set; }
+        
     }
 }

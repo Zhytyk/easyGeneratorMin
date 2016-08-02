@@ -36,6 +36,10 @@ namespace EasyGeneratorMin.Web
                 .As<IRepository<Section>>()
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<SelectQuestionRepository<SelectQuestion>>()
+                .As<IRepository<SelectQuestion>>()
+                .InstancePerLifetimeScope();
+
             builder.RegisterType<SelectQuestionRepository<SingleSelectQuestion>>()
                 .As<IRepository<SingleSelectQuestion>>()
                 .InstancePerLifetimeScope();

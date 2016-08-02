@@ -6,24 +6,14 @@
     </form>
     <div>
         <button data-bind="click: createSelectQuestion">Create select question</button>
-        <div data-bind="foreach: singleSelectQuestions" >
+        <div data-bind="foreach: selectQuestions" >
             <div>
                 <span data-bind="text: title"></span>
                 <span data-bind="text: creater"></span>
                 <span data-bind="text: lastUpdatedDate"></span>
                 <span data-bind="text: createdDate"></span>
-                <button data-bind="click: function() { $root.updateSingleSelectQuestion($data.id) }">Update</button>
-                <button data-bind="click: function() { $root.removeSingleSelectQuestion($data.id) }">Delete</button>
-            </div>
-        </div>
-        <div data-bind="foreach: multipleSelectQuestions" style="margin-top: 100px;">
-            <div>
-                <span data-bind="text: title"></span>
-                <span data-bind="text: creater"></span>
-                <span data-bind="text: lastUpdatedDate"></span>
-                <span data-bind="text: createdDate"></span>
-                <button data-bind="click: function() { $root.updateMultipleSelectQuestion($data.id) }">Update</button>
-                <button data-bind="click: function() { $root.removeMultipleSelectQuestion($data.id) }">Delete</button>
+                <button data-bind="click: function() { $root.updateSelectQuestion($data.id) }">Update</button>
+                <button data-bind="click: function() { $root.removeSelectQuestion($data.id) }">Delete</button>
             </div>
         </div>
     </div>

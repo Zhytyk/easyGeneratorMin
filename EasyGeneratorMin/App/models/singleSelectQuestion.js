@@ -1,7 +1,6 @@
-﻿define(['models/entity'], function (entity) {
+﻿define(['models/selectQuestion'], function (SelectQuestion) {
     function SingleSelectQuestion(spec) {
-        entity.call(this, spec);
-        this.sectionId = spec.sectionId;
+        SelectQuestion.call(this, spec);
     }
     return SingleSelectQuestion;
 });

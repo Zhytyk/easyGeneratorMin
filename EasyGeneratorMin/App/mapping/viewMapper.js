@@ -18,36 +18,20 @@
 
     function selectQuestionsMapper() {
 
-        var mapSingleSelectQuestions = dataContext.singleSelectQuestions.map(function (singleSelectQuestion) {
+        var mapSelectQuestions = dataContext.selectQuestions.map(function (selectQuestion) {
             var newSelectQuestion = {
-                id: singleSelectQuestion.id,
-                title: singleSelectQuestion.title,
-                description: singleSelectQuestion.description,
-                creater: singleSelectQuestion.creater,
-                createdDate: singleSelectQuestion.createdDate,
-                lastUpdatedDate: singleSelectQuestion.lastUpdatedDate,
-                sectionId: singleSelectQuestion.sectionId
+                id: selectQuestion.id,
+                title: selectQuestion.title,
+                description: selectQuestion.description,
+                creater: selectQuestion.creater,
+                createdDate: selectQuestion.createdDate,
+                lastUpdatedDate: selectQuestion.lastUpdatedDate,
+                sectionId: selectQuestion.sectionId
             }
             return newSelectQuestion;
         });
 
-        var mapMultipleSelectQuestions = dataContext.multipleSelectQuestions.map(function (multipleSelectQuestion) {
-            var newSelectQuestion = {
-                id: multipleSelectQuestion.id,
-                title: multipleSelectQuestion.title,
-                description: multipleSelectQuestion.description,
-                creater: multipleSelectQuestion.creater,
-                createdDate: multipleSelectQuestion.createdDate,
-                lastUpdatedDate: multipleSelectQuestion.lastUpdatedDate,
-                sectionId: multipleSelectQuestion.sectionId
-            }
-            return newSelectQuestion;
-        });
-
-        return {
-            mapSingleSelectQuestions: mapSingleSelectQuestions,
-            mapMultipleSelectQuestions: mapMultipleSelectQuestions
-        }
+        return mapSelectQuestions;
     }
 
     return {

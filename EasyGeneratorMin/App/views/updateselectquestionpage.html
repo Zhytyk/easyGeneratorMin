@@ -1,0 +1,7 @@
+﻿<section>
+    <form data-bind="submit: updateSelectQuestion">
+        <input type="text" data-bind="value: selectQuestionTitle, valueUpdate: 'afterkeydown'" />
+        <span data-bind="visible: selectQuestionTitle.hasError, text: selectQuestionTitle.validationMessage"></span>
+        <input type="submit" />
+    </form>
+</section>

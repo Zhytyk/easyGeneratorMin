@@ -9,7 +9,6 @@ namespace EasyGeneratorMin.Web
 {
     public class AutoMapperConfig
     {
-        public static DateTime Jan1St1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         public static void RegisterMappings()
         {
@@ -24,6 +23,11 @@ namespace EasyGeneratorMin.Web
                     .ForMember(opt => opt.SelectQuestions, opt => opt.MapFrom(src => src.SelectQuestions))
                     .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
                     .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))));
+
+                config.CreateMap<SelectQuestion, SelectQuestionModel>()
+                    .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
+                    .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))))
+                    .ForMember(opt => opt.SectionId, opt => opt.MapFrom(src => src.Section.Id));
 
                 config.CreateMap<SingleSelectQuestion, SingleSelectQuestionModel>()
                     .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))

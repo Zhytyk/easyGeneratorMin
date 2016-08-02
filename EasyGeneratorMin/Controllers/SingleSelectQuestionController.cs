@@ -22,14 +22,7 @@ namespace EasyGeneratorMin.Web
             _mapper = mapper;
         }
 
-        [HttpGet]
-        [Route("get/singleselectquestions")]
-        public IEnumerable<SingleSelectQuestionModel> GetSingleSelectQuestions()
-        {
-            var singleSelectQuestions = _singleSelectQuestionRepository.GetCollection();
-
-            return singleSelectQuestions.Select(item => _mapper.Map<SingleSelectQuestionModel>(item)).ToList();
-        }
+      
 
         [HttpPost]
         [Route("create/singleselectquestion")]
@@ -46,33 +39,6 @@ namespace EasyGeneratorMin.Web
             _singleSelectQuestionRepository.Insert(singleSelectQuestion);
 
             return _mapper.Map<SingleSelectQuestionModel>(singleSelectQuestion);
-        }
-
-        [HttpPut]
-        [Route("update/singleselectquestion")]
-        [OutOfRangeExceptionFilter]
-        [NullExceptionFilter]
-        [SaveUnitOfWorkActionFilter]
-        public SingleSelectQuestionModel UpdateSingleSelectQuestion([ModelBinder(typeof(EntityModelBinder<SingleSelectQuestion>))]SingleSelectQuestion singleSelectQuestion, Dictionary<string, string> spec)
-        {
-            if (singleSelectQuestion == null)
-                throw new ArgumentNullException();
-
-            singleSelectQuestion.UpdateValue(spec["title"]);
-
-            return _mapper.Map<SingleSelectQuestionModel>(singleSelectQuestion);
-        }
-
-        [HttpDelete]
-        [Route("remove/singleselectquestion")]
-        [NullExceptionFilter]
-        [SaveUnitOfWorkActionFilter]
-        public void RemoveSingleSelectQuestion([ModelBinder(typeof(EntityModelBinder<SingleSelectQuestion>))]SingleSelectQuestion singleSelectQuestion)
-        {
-            if (singleSelectQuestion == null)
-                throw new ArgumentNullException();
-
-            _singleSelectQuestionRepository.Delete(singleSelectQuestion);
         }
 
     }

@@ -1,7 +1,7 @@
 ﻿define(function () {
     $(document).ajaxError(function (event, request) {
         console.log(request);
-        handler(request.status);
+        alert("Bad Request! Something has happend wrong!");
     });
 
     function dataIsNotFoundHandler() {
@@ -12,26 +12,7 @@
                 alert(errorMessage);
             });
     };
-
-    function invalidDataHandler() {
-        return new Promise(function(resolve, reject) {
-                reject("You have inputed invalid data!");
-            })
-            .catch(function (errorMessage) {
-                alert(errorMessage);
-            });
-    };
-
-    function handler(statusCode) {
-        switch (statusCode) {
-            case 400:
-                return invalidDataHandler();
-            case 501:
-                return dataIsNotFoundHandler();
-        };
-    };
-
     return {
-        dataIsNotFoundHandler: dataIsNotFoundHandler,
+        dataIsNotFoundHandler: dataIsNotFoundHandler
     };
 });

@@ -1,7 +1,7 @@
-﻿define(['models/entity'], function (entity) {
+﻿define(['models/entity'], function (Entity) {
 
     function Section(spec) {
-        entity.call(this, spec);
+        Entity.call(this, spec);
     };
 
     return Section;

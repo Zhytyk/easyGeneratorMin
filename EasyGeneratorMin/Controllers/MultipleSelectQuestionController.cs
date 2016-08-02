@@ -22,16 +22,6 @@ namespace EasyGeneratorMin.Web
             _mapper = mapper;
         }
 
-
-        [HttpGet]
-        [Route("get/multipleselectquestions")]
-        public IEnumerable<MultipleSelectQuestionModel> GetSingleSelectQuestions()
-        {
-            var multipleSelectQuestions = _multipleSelectQuestionRepository.GetCollection();
-
-            return multipleSelectQuestions.Select(item => _mapper.Map<MultipleSelectQuestionModel>(item)).ToList();
-        }
-
         [HttpPost]
         [Route("create/multipleselectquestion")]
         [OutOfRangeExceptionFilter]
@@ -47,33 +37,6 @@ namespace EasyGeneratorMin.Web
             _multipleSelectQuestionRepository.Insert(multipleSelectQuestion);
 
             return _mapper.Map<MultipleSelectQuestionModel>(multipleSelectQuestion);
-        }
-
-        [HttpPut]
-        [Route("update/multipleselectquestion")]
-        [OutOfRangeExceptionFilter]
-        [NullExceptionFilter]
-        [SaveUnitOfWorkActionFilter]
-        public MultipleSelectQuestionModel UpdateMultipleSelectQuestion([ModelBinder(typeof(EntityModelBinder<MultipleSelectQuestion>))]MultipleSelectQuestion multipleSelectQuestion, Dictionary<string, string> spec)
-        {
-            if (multipleSelectQuestion == null)
-                throw new ArgumentNullException();
-
-            multipleSelectQuestion.UpdateValue(spec["title"]);
-
-            return _mapper.Map<MultipleSelectQuestionModel>(multipleSelectQuestion);
-        }
-
-        [HttpDelete]
-        [Route("remove/multipleselectquestion")]
-        [NullExceptionFilter]
-        [SaveUnitOfWorkActionFilter]
-        public void removeMultipleSeelctQuestion([ModelBinder(typeof(EntityModelBinder<MultipleSelectQuestion>))]MultipleSelectQuestion multipleSelectQuestion)
-        {
-            if (multipleSelectQuestion == null)
-                throw new ArgumentNullException();
-
-            _multipleSelectQuestionRepository.Delete(multipleSelectQuestion);
         }
 
     }
