@@ -63,12 +63,22 @@
 
     function createSingleSelectQuestion(singleSelectQuestionTitle, sectionId) {
         return http.post('create/singleselectquestion', { id: sectionId, title: singleSelectQuestionTitle }).then(function (singleSelectQuestion) {
+            if (!singleSelectQuestion) {
+                throw httpErrorHandler.dataIsNotFoundHandler();
+                return;
+            }
+
             dataContext.singleSelectQuestions.push(modelMapper.mapSingleSelectQuestion(singleSelectQuestion));
         });
     };
 
     function createMultipleSelectQuestion(multipleSelectQuestionTitle, sectionId) {
         return http.post('create/multipleselectquestion', { id: sectionId, title: multipleSelectQuestionTitle }).then(function (multipleSelectQuestion) {
+            if (!multipleSelectQuestion) {
+                throw httpErrorHandler.dataIsNotFoundHandler();
+                return;
+            }
+
             dataContext.multipleSelectQuestions.push(modelMapper.mapMultipleSelectQuestion(multipleSelectQuestion));
         });
     };
@@ -97,6 +107,11 @@
 
     function updateSingleSelectQuestion(id, title) {
         return http.put('update/singleselectquestion', { id: id, title: title }).then(function (updatedSingleSelectQuestion) {
+            if (!updatedSingleSelectQuestion) {
+                throw httpErrorHandler.dataIsNotFoundHandler();
+                return;
+            }
+
             var index = dataContext.singleSelectQuestions.findIndex(function (singleSelectQuestion) {
                 return singleSelectQuestion.id == id;
             });
@@ -107,6 +122,11 @@
 
     function updateMultipleSelectQuestion(id, title) {
         return http.put('update/multipleselectquestion', { id: id, title: title }).then(function (updatedMultipleSelectQuestion) {
+            if (!updatedMultipleSelectQuestion) {
+                throw httpErrorHandler.dataIsNotFoundHandler();
+                return;
+            }
+
             var index = dataContext.multipleSelectQuestions.findIndex(function (multipleSelectQuestion) {
                 return multipleSelectQuestion.id == id;
             });
