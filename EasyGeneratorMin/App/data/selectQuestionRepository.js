@@ -1,15 +1,15 @@
-﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/modelMapper', 'mapping/viewMapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, modelMapper, viewMapper, httpErrorHandler) {
+﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/modelMapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, modelMapper, httpErrorHandler) {
     function getSelectQuestions() {
         return new Promise(function (resolve, reject) {
             if (!dataContext.selectQuestions) {
                 dataContext.selectQuestions = [];
 
-                http.get('/get/selectquestions').then(function (selectQuestions) {
+                http.get('get/selectquestions').then(function (selectQuestions) {
                     selectQuestions.forEach(function (selectQuestion) {
-                        dataContext.selectQuestions.push(viewMapper.selectQuestionsMapper(selectQuestion));
+                        dataContext.selectQuestions.push(modelMapper.mapSelectQuestion(selectQuestion));
                     });
+                    resolve("success");
                 });
-                resolve("success");
             }
             else {
                 resolve("success");
@@ -44,7 +44,7 @@
                 return;
             }
 
-            dataContext.selectQuestions.push(modelMapper.mapSingleSelectQuestion(singleSelectQuestion));
+            dataContext.selectQuestions.push(modelMapper.mapSelectQuestion(singleSelectQuestion));
         });
     };
 
@@ -55,7 +55,7 @@
                 return;
             }
 
-            dataContext.selectQuestions.push(modelMapper.mapMultipleSelectQuestion(multipleSelectQuestion));
+            dataContext.selectQuestions.push(modelMapper.mapSelectQuestion(multipleSelectQuestion));
         });
     };
 
@@ -66,7 +66,6 @@
             });
 
             dataContext.selectQuestions.splice(index, 1);
-            return index;
         });
     };
 
@@ -81,8 +80,8 @@
                 return selectQuestion.id == id;
             });
 
-            dataContext.selectQuestions[index].title = updatedSelectQuestion.title;
-            dataContext.selectQuestions[index].lastUpdatedDate = updatedSelectQuestion.lastUpdatedDate;
+            dataContext.selectQuestions[index].title = updatedSelectQuestion.Title;
+            dataContext.selectQuestions[index].lastUpdatedDate = updatedSelectQuestion.LastUpdatedDate;
         });
     };
 

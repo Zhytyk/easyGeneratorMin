@@ -1,4 +1,4 @@
-﻿define(['models/course', 'models/section', 'models/singleSelectQuestion', 'models/multipleSelectQuestion'], function (Course, Section, SingleSelectQuestion, MultipleSelectQuestion) {
+﻿define(['models/course', 'models/section', 'models/selectQuestion', 'models/singleSelectQuestion', 'models/multipleSelectQuestion'], function (Course, Section, SelectQuestion, SingleSelectQuestion, MultipleSelectQuestion) {
     function mapCourse(course) {
         var sections = [];
         if (course.Sections) {
@@ -27,6 +27,17 @@
         });
     };
 
+    function mapSelectQuestion(selectQuestion) {
+        return new SelectQuestion({
+            id: selectQuestion.Id,
+            title: selectQuestion.Title,
+            creater: selectQuestion.Creater,
+            createdDate: new Date(selectQuestion.CreatedDate).toLocaleString(),
+            lastUpdatedDate: new Date(selectQuestion.LastUpdatedDate).toLocaleString(),
+            sectionId: selectQuestion.SectionId
+        })
+    };
+
     function mapSingleSelectQuestion(selectQuestion) {
         return new SingleSelectQuestion({
             id: selectQuestion.Id,
@@ -52,6 +63,7 @@
     return {
         mapCourse: mapCourse,
         mapSection: mapSection,
+        mapSelectQuestion: mapSelectQuestion,
         mapSingleSelectQuestion: mapSingleSelectQuestion,
         mapMultipleSelectQuestion: mapMultipleSelectQuestion
     };

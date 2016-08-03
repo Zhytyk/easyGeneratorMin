@@ -40,7 +40,11 @@
         },
         removeSelectQuestion: function (id) {
             var self = this;
-            selectQuestionRepository.removeSelectQuestion(id).then(function (index) {
+            selectQuestionRepository.removeSelectQuestion(id).then(function () {
+                var index = self.selectQuestions().findIndex(function (selectQuestion) {
+                    return selectQuestion.id == id;
+                });
+                
                 self.selectQuestions.splice(index, 1);
             });
         },
