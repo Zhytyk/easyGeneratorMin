@@ -1,23 +1,18 @@
 ﻿using EasyGeneratorMin.Models;
 using System.Data.Entity.ModelConfiguration;
 
+
 namespace EasyGeneratorMin.DataAccess
 {
-    public class SelectQuestionConfiguration : EntityTypeConfiguration<SelectQuestion>
+    public class SelectAnswerConfiguration : EntityTypeConfiguration<SelectAnswer>
     {
-        public SelectQuestionConfiguration()
+        public SelectAnswerConfiguration()
         {
-            ToTable("t_select_question_data");
+            ToTable("t_select_answer_data");
 
             HasKey(o => o.Id);
 
-            HasOptional(c => c.Section)
-                .WithMany(c => c.SelectQuestions);
-
-            HasMany(c => c.SelectAnswers)
-                .WithOptional(c => c.SelectQuestion)
-                .WillCascadeOnDelete(true);
-
+            Property(o => o.IsCorrectly).IsRequired();
             Property(o => o.Title).IsRequired();
             Property(o => o.Creater).IsRequired();
             Property(o => o.LastUpdatedDate).IsRequired();

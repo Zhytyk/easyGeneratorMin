@@ -253,6 +253,7 @@
     <Compile Include="Controllers\OverviewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
+    <Compile Include="Controllers\SelectAnswerController.cs" />
     <Compile Include="Controllers\SelectQuestionController.cs" />
     <Compile Include="Controllers\SingleSelectQuestionController.cs" />
     <Compile Include="Filters\NullExceptionFilter.cs" />
@@ -265,6 +266,7 @@
     <Compile Include="Models\EntityModel.cs" />
     <Compile Include="Models\MultipleSelectQuestionModel.cs" />
     <Compile Include="Models\SectionModel.cs" />
+    <Compile Include="Models\SelectAnswerModel.cs" />
     <Compile Include="Models\SelectQuestionModel.cs" />
     <Compile Include="Models\SingleSelectQuestionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

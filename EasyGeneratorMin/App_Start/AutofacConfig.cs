@@ -48,6 +48,10 @@ namespace EasyGeneratorMin.Web
                 .As<IRepository<MultipleSelectQuestion>>()
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<SelectAnswerRepository>()
+                .As<IRepository<SelectAnswer>>()
+                .InstancePerLifetimeScope();
+
             builder.Register(c => Mapper.Instance).As<IMapper>();
 
             var container = builder.Build();

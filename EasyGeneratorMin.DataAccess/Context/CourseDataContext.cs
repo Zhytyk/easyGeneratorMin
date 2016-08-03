@@ -16,11 +16,14 @@ namespace EasyGeneratorMin.DataAccess
 
         public DbSet<MultipleSelectQuestion> MultipleSelectQuestion { get; set; }
 
+        public DbSet<SelectAnswer> SelectAnswer { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new CourseConfiguration());
             modelBuilder.Configurations.Add(new SectionConfiguration());
             modelBuilder.Configurations.Add(new SelectQuestionConfiguration());
+            modelBuilder.Configurations.Add(new SelectAnswerConfiguration());
         }
 
         public IDbSet<TEntity> GetSet<TEntity>() where TEntity : Entity

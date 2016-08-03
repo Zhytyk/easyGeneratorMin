@@ -16,9 +16,9 @@ namespace EasyGeneratorMin.Web.Controllers
         private readonly IRepository<SelectQuestion> _selectQuestionRepository;
         private readonly IMapper _mapper;
 
-        public SelectQuestionController(IRepository<SelectQuestion> multipleSelectQuestionRepository, IMapper mapper)
+        public SelectQuestionController(IRepository<SelectQuestion> selectQuestionRepository, IMapper mapper)
         {
-            _selectQuestionRepository = multipleSelectQuestionRepository;
+            _selectQuestionRepository = selectQuestionRepository;
             _mapper = mapper;
         }
 
@@ -41,7 +41,7 @@ namespace EasyGeneratorMin.Web.Controllers
             if (selectQuestion == null)
                 throw new ArgumentNullException();
 
-            selectQuestion.UpdateValue(spec["title"]);
+            selectQuestion.Update(spec["title"]);
 
             return _mapper.Map<SelectQuestionModel>(selectQuestion);
         }

@@ -26,7 +26,7 @@ namespace EasyGeneratorMin.Models
             Creater = "Pavel Vaydalauskas";
         }
 
-        public void UpdateValue(string title)
+        public void Update(string title)
         {
             ThrowIfTitleInvalid(title);
 

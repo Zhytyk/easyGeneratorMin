@@ -28,17 +28,13 @@ namespace EasyGeneratorMin.Models
             Description = description;
         }
 
-        public void UpdateCourse(string title, string description)
+        public void Update(string title, string description)
         {
 
-            ThrowIfTitleInvalid(title);
             ThrowIfDescriptionInvalid(description);
-
-            Title = title;
             Description = description;
 
-            SetLastUpdatedDate();
-
+            Update(title);
         }
 
     }

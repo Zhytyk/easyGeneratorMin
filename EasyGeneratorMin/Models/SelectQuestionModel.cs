@@ -8,5 +8,7 @@ namespace EasyGeneratorMin.Web
     public class SelectQuestionModel : EntityModel
     {
         public Guid SectionId { get; set; }
+
+        List<SelectAnswerModel> SelectAnswers { get; set; }
     }
 }

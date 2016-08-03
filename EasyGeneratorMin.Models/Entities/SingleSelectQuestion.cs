@@ -8,7 +8,7 @@ namespace EasyGeneratorMin.Models
 {
     public class SingleSelectQuestion : SelectQuestion
     {
-        
+
         public SingleSelectQuestion() { }
 
         public SingleSelectQuestion(string title, Section section) : base(title, section) { }

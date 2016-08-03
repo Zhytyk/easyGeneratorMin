@@ -59,7 +59,7 @@ namespace EasyGeneratorMin.Web
             if (course == null)
                 throw new ArgumentNullException();
 
-            course.UpdateCourse(spec["title"], spec["description"]); 
+            course.Update(spec["title"], spec["description"]); 
 
             return _mapper.Map<CourseModel>(course);
         }

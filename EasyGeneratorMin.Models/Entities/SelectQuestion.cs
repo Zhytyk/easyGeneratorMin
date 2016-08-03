@@ -10,6 +10,8 @@ namespace EasyGeneratorMin.Models
     {
         public Section Section { get; set; }
 
+        public List<SelectAnswer> SelectAnswers { get; set; }
+
         public SelectQuestion() { }
 
         public SelectQuestion(string title, Section section)

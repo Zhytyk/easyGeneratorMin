@@ -4,6 +4,6 @@ namespace EasyGeneratorMin.Web
 {
     public class SectionModel : EntityModel
     {
-        public List<SingleSelectQuestionModel> SelectQuestions { get; set; }
+        public List<SelectQuestionModel> SelectQuestions { get; set; }
     }
 }
