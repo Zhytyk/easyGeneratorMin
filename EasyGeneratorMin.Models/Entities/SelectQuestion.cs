@@ -8,9 +8,12 @@ namespace EasyGeneratorMin.Models
 {
     public class SelectQuestion : Entity
     {
+
+        public List<SelectAnswer> selectAnswers { get; set; }
+
         public Section Section { get; set; }
 
-        public List<SelectAnswer> SelectAnswers { get; set; }
+        public string Type { get; set; }
 
         public SelectQuestion() { }
 

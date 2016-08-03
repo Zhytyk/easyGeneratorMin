@@ -11,7 +11,10 @@ namespace EasyGeneratorMin.Models
 
         public SingleSelectQuestion() { }
 
-        public SingleSelectQuestion(string title, Section section) : base(title, section) { }
+        public SingleSelectQuestion(string title, Section section) : base(title, section)
+        {
+            Type = "Single";
+        }
 
     }
 }

@@ -12,6 +12,9 @@ namespace EasyGeneratorMin.DataAccess
 
             HasKey(o => o.Id);
 
+            HasOptional(o => o.SelectQuestion)
+                .WithMany(o => o.selectAnswers);
+
             Property(o => o.IsCorrectly).IsRequired();
             Property(o => o.Title).IsRequired();
             Property(o => o.Creater).IsRequired();

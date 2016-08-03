@@ -11,7 +11,10 @@ namespace EasyGeneratorMin.Models
 
         public MultipleSelectQuestion() { }
 
-        public MultipleSelectQuestion(string title, Section section) : base(title, section) { }
+        public MultipleSelectQuestion(string title, Section section) : base(title, section)
+        {
+            Type = "Multiple";
+        }
 
     }
 }

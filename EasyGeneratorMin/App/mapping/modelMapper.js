@@ -1,4 +1,4 @@
-﻿define(['models/course', 'models/section', 'models/selectQuestion', 'models/singleSelectQuestion', 'models/multipleSelectQuestion'], function (Course, Section, SelectQuestion, SingleSelectQuestion, MultipleSelectQuestion) {
+﻿define(['models/course', 'models/section', 'models/selectQuestion', 'models/selectAnswer'], function (Course, Section, SelectQuestion, SelectAnswer) {
     function mapCourse(course) {
         var sections = [];
         if (course.Sections) {
@@ -28,35 +28,32 @@
     };
 
     function mapSelectQuestion(selectQuestion) {
+        var selectAnswers = [];
+        if (selectQuestion.SelectAnswers) {
+            selectQuestion.SelectAnswers.forEach(function (selectAnswer) {
+                selectAnswers.push(mapSelectAnswer(selectAnswer));
+            });
+        }
         return new SelectQuestion({
             id: selectQuestion.Id,
             title: selectQuestion.Title,
             creater: selectQuestion.Creater,
             createdDate: new Date(selectQuestion.CreatedDate).toLocaleString(),
             lastUpdatedDate: new Date(selectQuestion.LastUpdatedDate).toLocaleString(),
-            sectionId: selectQuestion.SectionId
+            type : selectQuestion.Type,
+            sectionId: selectQuestion.SectionId,
+            selectAnswers: selectAnswers,
         })
     };
 
-    function mapSingleSelectQuestion(selectQuestion) {
-        return new SingleSelectQuestion({
-            id: selectQuestion.Id,
-            title: selectQuestion.Title,
-            creater: selectQuestion.Creater,
-            createdDate: new Date(selectQuestion.CreatedDate).toLocaleString(),
-            lastUpdatedDate: new Date(selectQuestion.LastUpdatedDate).toLocaleString(),
-            sectionId: selectQuestion.SectionId
-        });
-    };
-
-    function mapMultipleSelectQuestion(selectQuestion) {
-        return new MultipleSelectQuestion({
-            id: selectQuestion.Id,
-            title: selectQuestion.Title,
-            creater: selectQuestion.Creater,
-            createdDate: new Date(selectQuestion.CreatedDate).toLocaleString(),
-            lastUpdatedDate: new Date(selectQuestion.LastUpdatedDate).toLocaleString(),
-            sectionId: selectQuestion.SectionId
+    function mapSelectAnswer(selectAnswer) {
+        return new SelectAnswer({
+            id: selectAnswer.Id,
+            title: selectAnswer.Title,
+            creater: selectAnswer.Creater,
+            createdDate: new Date(selectAnswer.CreatedDate).toLocaleString(),
+            lastUpdatedDate: new Date(selectAnswer.LastUpdatedDate).toLocaleString(),
+            isCorrectly: selectAnswer.isCorrectly
         });
     };
 
@@ -64,7 +61,6 @@
         mapCourse: mapCourse,
         mapSection: mapSection,
         mapSelectQuestion: mapSelectQuestion,
-        mapSingleSelectQuestion: mapSingleSelectQuestion,
-        mapMultipleSelectQuestion: mapMultipleSelectQuestion
+        mapSelectAnswer: mapSelectAnswer
     };
 });

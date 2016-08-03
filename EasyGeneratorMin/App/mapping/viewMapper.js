@@ -26,8 +26,11 @@
                 creater: selectQuestion.creater,
                 createdDate: selectQuestion.createdDate,
                 lastUpdatedDate: selectQuestion.lastUpdatedDate,
-                sectionId: selectQuestion.sectionId
+                sectionId: selectQuestion.sectionId,
+                type: selectQuestion.type,
+                selectAnswers: ko.observableArray()
             }
+            newSelectQuestion.selectAnswers(selectQuestion.selectAnswers);
             return newSelectQuestion;
         });
 

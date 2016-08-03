@@ -5,8 +5,5 @@ using System.Web;
 
 namespace EasyGeneratorMin.Web
 {
-    public class MultipleSelectQuestionModel : SelectQuestionModel
-    {
-
-    }
+    public class MultipleSelectQuestionModel : SelectQuestionModel { }
 }

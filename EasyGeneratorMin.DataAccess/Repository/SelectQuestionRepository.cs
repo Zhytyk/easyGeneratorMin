@@ -16,7 +16,6 @@ namespace EasyGeneratorMin.DataAccess
         {
             return _db.GetSet<TEntity>()
                 .Include(c => c.Section)
-                .Include(c => c.SelectAnswers)
                 .Select(c => c).ToList();
         }
     }

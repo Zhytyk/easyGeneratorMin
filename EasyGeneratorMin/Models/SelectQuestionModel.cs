@@ -9,6 +9,8 @@ namespace EasyGeneratorMin.Web
     {
         public Guid SectionId { get; set; }
 
+        public string Type { get; set; }
+
         List<SelectAnswerModel> SelectAnswers { get; set; }
     }
 }
