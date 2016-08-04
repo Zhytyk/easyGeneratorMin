@@ -1,9 +1,15 @@
 ﻿<section>
+    <div>
+        Create single select question
+    </div>
     <form data-bind="submit: createSingleSelectQuestion">
         <input type="text" data-bind="value: singleSelectQuestionTitle, valueUpdate: 'afterkeydown'"/>
         <span data-bind="visible: singleSelectQuestionTitle.hasError, text: singleSelectQuestionTitle.validationMessage"></span>
         <input type="submit"/>
     </form>
+    <div>
+        Create multiple select question
+    </div>
     <form data-bind="submit: createMultipleSelectQuestion">
         <input type="text" data-bind="value: multipleSelectQuestionTitle, valueUpdate: 'afterkeydown'" />
         <span data-bind="visible: multipleSelectQuestionTitle.hasError, text: multipleSelectQuestionTitle.validationMessage"></span>

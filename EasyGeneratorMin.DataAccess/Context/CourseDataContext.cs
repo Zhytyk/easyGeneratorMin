@@ -16,7 +16,7 @@ namespace EasyGeneratorMin.DataAccess
 
         public DbSet<MultipleSelectQuestion> MultipleSelectQuestion { get; set; }
 
-        public DbSet<SelectAnswer> SelectAnswer { get; set; }
+        public DbSet<Answer> Answer { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

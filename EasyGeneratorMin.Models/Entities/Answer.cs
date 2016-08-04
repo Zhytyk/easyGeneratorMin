@@ -2,19 +2,20 @@
 
 namespace EasyGeneratorMin.Models
 {
-    public class SelectAnswer : Entity 
+    public class Answer : Entity 
     {
         public SelectQuestion SelectQuestion { get; set; }
 
         public bool IsCorrectly { get; set; }
 
-        public SelectAnswer() { }
+        public Answer() { }
 
-        public SelectAnswer(string title, SelectQuestion selectQuestion)
+        public Answer(string title, string isCorrectly, SelectQuestion selectQuestion)
         {
             ThrowIfTitleInvalid(title);
 
             Title = title;
+            IsCorrectly = bool.Parse(isCorrectly);
             SelectQuestion = selectQuestion;
         }
 
@@ -22,7 +23,7 @@ namespace EasyGeneratorMin.Models
         {
             Update(title);
 
-            IsCorrectly = isCorrectly == "true" ? true : false;
+            IsCorrectly = bool.Parse(isCorrectly);
         }
     }
 }

@@ -11,6 +11,6 @@ namespace EasyGeneratorMin.Web
 
         public string Type { get; set; }
 
-        List<SelectAnswerModel> SelectAnswers { get; set; }
+        public List<AnswerModel> Answers { get; set; }
     }
 }

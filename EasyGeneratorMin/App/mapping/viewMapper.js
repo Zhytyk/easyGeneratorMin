@@ -28,9 +28,9 @@
                 lastUpdatedDate: selectQuestion.lastUpdatedDate,
                 sectionId: selectQuestion.sectionId,
                 type: selectQuestion.type,
-                selectAnswers: ko.observableArray()
+                answers: ko.observableArray()
             }
-            newSelectQuestion.selectAnswers(selectQuestion.selectAnswers);
+            newSelectQuestion.answers(selectQuestion.answers);
             return newSelectQuestion;
         });
 

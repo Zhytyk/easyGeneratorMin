@@ -58,7 +58,9 @@
                 var index = dataContext.courses.findIndex(function (course) {
                     return course.id === updatedCourse.Id;
                 });
-                dataContext.courses[index] = modelMapper.mapCourse(updatedCourse);
+
+                dataContext.courses[index].title = updatedCourse.Title;
+                dataContext.courses[index].lastUpdatedDate = new Date(updateCourse.LastUpdatedDate).toLocaleString();
             });
     };
 

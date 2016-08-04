@@ -9,11 +9,13 @@
                 return section.id = sectionId;
             });
 
-            if (section) {
-                resolve(section);
+            if (!section) {
+                throw httpErrorHandlers.dataIsNotFoundHandler();
                 return;
             }
-            throw httpErrorHandlers.dataIsNotFoundHandler();
+
+            resolve(section);
+            
         })
     };
 
@@ -69,7 +71,9 @@
                 var indexSection = dataContext.courses[indexCourse].sections.findIndex(function (section) {
                     return sectionId == section.id;
                 });
-                dataContext.courses[indexCourse].sections[indexSection] = modelMapper.mapSection(updatedSection);
+
+                dataContext.courses[indexCourse].sections[indexSection].title = updatedSection.Title;
+                dataContext.courses[indexCourse].sections[indexSection].lastUpdatedDate = new Date(updatedSection.LastUpdatedDate).toLocaleString();
             });
     };
 

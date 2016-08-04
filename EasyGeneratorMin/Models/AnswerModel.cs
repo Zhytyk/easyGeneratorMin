@@ -5,9 +5,9 @@ using System.Web;
 
 namespace EasyGeneratorMin.Web
 {
-    public class SelectAnswerModel : EntityModel
+    public class AnswerModel : EntityModel
     {
-        public string SelectQuestionId { get; set; }
+        public Guid SelectQuestionId { get; set; }
 
         public bool IsCorrectly { get; set; }
     }

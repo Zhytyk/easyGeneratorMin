@@ -4,7 +4,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace EasyGeneratorMin.DataAccess
 {
-    public class SelectAnswerConfiguration : EntityTypeConfiguration<SelectAnswer>
+    public class SelectAnswerConfiguration : EntityTypeConfiguration<Answer>
     {
         public SelectAnswerConfiguration()
         {
@@ -13,7 +13,7 @@ namespace EasyGeneratorMin.DataAccess
             HasKey(o => o.Id);
 
             HasOptional(o => o.SelectQuestion)
-                .WithMany(o => o.selectAnswers);
+                .WithMany(o => o.Answers);
 
             Property(o => o.IsCorrectly).IsRequired();
             Property(o => o.Title).IsRequired();

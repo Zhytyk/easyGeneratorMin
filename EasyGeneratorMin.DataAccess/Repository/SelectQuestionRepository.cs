@@ -16,7 +16,16 @@ namespace EasyGeneratorMin.DataAccess
         {
             return _db.GetSet<TEntity>()
                 .Include(c => c.Section)
+                .Include(c => c.Answers)
                 .Select(c => c).ToList();
+        }
+
+        public override TEntity GetValueById(Guid id)
+        {
+            return _db.GetSet<TEntity>()
+                .Include(c => c.Section)
+                .Include(c => c.Answers)
+                .FirstOrDefault(c => c.Id == id);
         }
     }
 }

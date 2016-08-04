@@ -174,7 +174,7 @@
     <Content Include="App\data\courseRepository.js" />
     <Content Include="App\data\dataContext.js" />
     <Content Include="App\data\sectionRepository.js" />
-    <Content Include="App\data\selectAnswerRepository.js" />
+    <Content Include="App\data\answerRepository.js" />
     <Content Include="App\data\selectQuestionRepository.js" />
     <Content Include="App\errorhandlers\httperrorhandlers.js" />
     <Content Include="App\extenders\validationExtenders.js" />
@@ -184,11 +184,9 @@
     <Content Include="App\mapping\viewMapper.js" />
     <Content Include="App\models\course.js" />
     <Content Include="App\models\entity.js" />
-    <Content Include="App\models\multipleSelectQuestion.js" />
     <Content Include="App\models\section.js" />
-    <Content Include="App\models\selectAnswer.js" />
+    <Content Include="App\models\answer.js" />
     <Content Include="App\models\selectQuestion.js" />
-    <Content Include="App\models\singleSelectQuestion.js" />
     <Content Include="App\viewmodels\createcoursepage.js" />
     <Content Include="App\viewmodels\createselectquestionpage.js" />
     <Content Include="App\viewmodels\updatecoursepage.js" />
@@ -255,7 +253,7 @@
     <Compile Include="Controllers\OverviewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
-    <Compile Include="Controllers\SelectAnswerController.cs" />
+    <Compile Include="Controllers\AnswerController.cs" />
     <Compile Include="Controllers\SelectQuestionController.cs" />
     <Compile Include="Controllers\SingleSelectQuestionController.cs" />
     <Compile Include="Filters\NullExceptionFilter.cs" />
@@ -268,7 +266,7 @@
     <Compile Include="Models\EntityModel.cs" />
     <Compile Include="Models\MultipleSelectQuestionModel.cs" />
     <Compile Include="Models\SectionModel.cs" />
-    <Compile Include="Models\SelectAnswerModel.cs" />
+    <Compile Include="Models\AnswerModel.cs" />
     <Compile Include="Models\SelectQuestionModel.cs" />
     <Compile Include="Models\SingleSelectQuestionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

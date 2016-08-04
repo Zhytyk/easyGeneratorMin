@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace EasyGeneratorMin.DataAccess
 {
-    public class SelectAnswerRepository : Repository<SelectAnswer>
+    public class SelectAnswerRepository : Repository<Answer>
     {
         public SelectAnswerRepository(IDatabaseContext db) : base(db) {}
 
-        public override IEnumerable<SelectAnswer> GetCollection()
+        public override IEnumerable<Answer> GetCollection()
         {
-            return _db.GetSet<SelectAnswer>()
+            return _db.GetSet<Answer>()
                 .Include(c => c.SelectQuestion)
                 .Select(c => c).ToList();
         }

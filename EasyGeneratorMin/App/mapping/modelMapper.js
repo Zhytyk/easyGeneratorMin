@@ -1,4 +1,4 @@
-﻿define(['models/course', 'models/section', 'models/selectQuestion', 'models/selectAnswer'], function (Course, Section, SelectQuestion, SelectAnswer) {
+﻿define(['models/course', 'models/section', 'models/selectQuestion', 'models/answer'], function (Course, Section, SelectQuestion, Answer) {
     function mapCourse(course) {
         var sections = [];
         if (course.Sections) {
@@ -28,10 +28,10 @@
     };
 
     function mapSelectQuestion(selectQuestion) {
-        var selectAnswers = [];
-        if (selectQuestion.SelectAnswers) {
-            selectQuestion.SelectAnswers.forEach(function (selectAnswer) {
-                selectAnswers.push(mapSelectAnswer(selectAnswer));
+        var answers = [];
+        if (selectQuestion.Answers) {
+            selectQuestion.Answers.forEach(function (answer) {
+                answers.push(mapAnswer(answer));
             });
         }
         return new SelectQuestion({
@@ -42,18 +42,18 @@
             lastUpdatedDate: new Date(selectQuestion.LastUpdatedDate).toLocaleString(),
             type : selectQuestion.Type,
             sectionId: selectQuestion.SectionId,
-            selectAnswers: selectAnswers,
+            answers: answers,
         })
     };
 
-    function mapSelectAnswer(selectAnswer) {
-        return new SelectAnswer({
-            id: selectAnswer.Id,
-            title: selectAnswer.Title,
-            creater: selectAnswer.Creater,
-            createdDate: new Date(selectAnswer.CreatedDate).toLocaleString(),
-            lastUpdatedDate: new Date(selectAnswer.LastUpdatedDate).toLocaleString(),
-            isCorrectly: selectAnswer.isCorrectly
+    function mapAnswer(answer) {
+        return new Answer({
+            id: answer.Id,
+            title: answer.Title,
+            creater: answer.Creater,
+            createdDate: new Date(answer.CreatedDate).toLocaleString(),
+            lastUpdatedDate: new Date(answer.LastUpdatedDate).toLocaleString(),
+            isCorrectly: answer.IsCorrectly
         });
     };
 
@@ -61,6 +61,6 @@
         mapCourse: mapCourse,
         mapSection: mapSection,
         mapSelectQuestion: mapSelectQuestion,
-        mapSelectAnswer: mapSelectAnswer
+        mapAnswer: mapAnswer
     };
 });

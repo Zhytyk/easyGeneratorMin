@@ -27,7 +27,8 @@ namespace EasyGeneratorMin.Web
                 config.CreateMap<SelectQuestion, SelectQuestionModel>()
                     .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
                     .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))))
-                    .ForMember(opt => opt.SectionId, opt => opt.MapFrom(src => src.Section.Id));
+                    .ForMember(opt => opt.SectionId, opt => opt.MapFrom(src => src.Section.Id))
+                    .ForMember(opt => opt.Answers, opt => opt.MapFrom(src => src.Answers));
 
                 config.CreateMap<SingleSelectQuestion, SingleSelectQuestionModel>()
                     .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
@@ -39,7 +40,7 @@ namespace EasyGeneratorMin.Web
                     .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))))
                     .ForMember(opt => opt.SectionId, opt => opt.MapFrom(src => src.Section.Id));
 
-                config.CreateMap<SelectAnswer, SelectAnswerModel>()
+                config.CreateMap<Answer, AnswerModel>()
                     .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
                     .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))))
                     .ForMember(opt => opt.SelectQuestionId, opt => opt.MapFrom(src => src.SelectQuestion.Id));

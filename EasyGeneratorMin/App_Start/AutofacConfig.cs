@@ -49,7 +49,7 @@ namespace EasyGeneratorMin.Web
                 .InstancePerLifetimeScope();
 
             builder.RegisterType<SelectAnswerRepository>()
-                .As<IRepository<SelectAnswer>>()
+                .As<IRepository<Answer>>()
                 .InstancePerLifetimeScope();
 
             builder.Register(c => Mapper.Instance).As<IMapper>();

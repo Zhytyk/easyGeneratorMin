@@ -25,10 +25,10 @@ namespace EasyGeneratorMin.Web
 
             var requestContent = actionContext.Request.Content.ReadAsStringAsync().Result;
 
-            var uriFromId = requestContent.Substring(requestContent.IndexOf("id"));
-
-            if (uriFromId == null)
+            if (requestContent == null)
                 throw new ArgumentNullException();
+
+            var uriFromId = requestContent.Substring(requestContent.IndexOf("id"));
 
             string id = WebUtility.UrlDecode(requestContent.Substring(uriFromId.IndexOf('=') + 1)).Substring(0, 36);
 
