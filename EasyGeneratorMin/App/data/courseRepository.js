@@ -60,7 +60,7 @@
                 });
 
                 dataContext.courses[index].title = updatedCourse.Title;
-                dataContext.courses[index].lastUpdatedDate = new Date(updateCourse.LastUpdatedDate).toLocaleString();
+                dataContext.courses[index].lastUpdatedDate = new Date(updatedCourse.LastUpdatedDate).toLocaleString();
             });
     };
 

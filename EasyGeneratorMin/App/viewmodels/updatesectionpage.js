@@ -66,5 +66,8 @@
         updateSelectQuestion: function (id) {
             router.navigate("update/selectquestion/" + id);
         },
+        updateAnswer: function(answerId, questionId){
+            router.navigate("update/answer/" + questionId + "/" + answerId);
+        },
     };
 })

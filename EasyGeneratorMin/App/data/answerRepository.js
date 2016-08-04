@@ -1,13 +1,13 @@
 ﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/modelMapper', 'errorhandlers/httperrorhandlers', 'data/selectQuestionRepository'], function (dataContext, http, modelMapper, httpErrorHandlers, selectQuestionRepository) {
 
     function getAnswerById(questionId, answerId) {
-        return selectQuestionRepository.getSelectQuestion().then(function () {
+        return selectQuestionRepository.tryInitializeSelectQuestions().then(function () {
 
             var question = dataContext.selectQuestions.find(function (selectQuestion) {
                 return selectQuestion.id == questionId;
             });
 
-            var answer = question.selectAnswers.findIndex(function (answer) {
+            var answer = question.answers.find(function (answer) {
                 return answer.id == answerId;
             });
 
@@ -35,8 +35,8 @@
             });
     };
 
-    function updateAnswer(questionId, answerId, title) {
-        return http.put('update/answer', { id: answerId, title: title })
+    function updateAnswer(questionId, answerId, title, isCorrectly) {
+        return http.put('update/answer', { id: answerId, title: title, isCorrectly: String(isCorrectly) })
                 .then(function (updatedAnswer) {
                     if (!updatedAnswer) {
                         throw httpErrorHandlers.dataIsNotFoundHandler();
@@ -52,6 +52,7 @@
                     });
 
                     dataContext.selectQuestions[indexSelectQuestion].answers[indexAnswer].title = updatedAnswer.Title;
+                    dataContext.selectQuestions[indexSelectQuestion].answers[indexAnswer].isCorrectly = updatedAnswer.IsCorrectly;
                     dataContext.selectQuestions[indexSelectQuestion].answers[indexAnswer].lastUpdatedDate = new Date(updatedAnswer.LastUpdatedDate).toLocaleString();
                 });
     };
