@@ -6,11 +6,11 @@
                 dataContext.selectQuestions = [];
 
                 dataContext.initializeSelectQuestions().then(function () {
-                    resolve("Done!");
+                    resolve();
                 });
             }
             else {
-                resolve("Done!");
+                resolve();
             }
         });
     };
@@ -26,7 +26,6 @@
 
                     if (!selectQuestion) {
                         throw httpErrorHandler.dataIsNotFoundHandler();
-                        return;
                     }
                     resolve(selectQuestion);
                 });
@@ -38,7 +37,6 @@
             .then(function (singleSelectQuestion) {
                 if (!singleSelectQuestion) {
                     throw httpErrorHandler.dataIsNotFoundHandler();
-                    return;
                 }
 
                 dataContext.selectQuestions.push(modelMapper.mapSelectQuestion(singleSelectQuestion));
@@ -50,7 +48,6 @@
             .then(function (multipleSelectQuestion) {
                 if (!multipleSelectQuestion) {
                     throw httpErrorHandler.dataIsNotFoundHandler();
-                    return;
                 }
 
                 dataContext.selectQuestions.push(modelMapper.mapSelectQuestion(multipleSelectQuestion));
@@ -73,15 +70,14 @@
             .then(function (updatedSelectQuestion) {
                 if (!updatedSelectQuestion) {
                     throw httpErrorHandler.dataIsNotFoundHandler();
-                    return;
                 }
 
-                var index = dataContext.selectQuestions.findIndex(function (selectQuestion) {
+                var selectQuestion = dataContext.selectQuestions.find(function (selectQuestion) {
                     return selectQuestion.id == id;
                 });
 
-                dataContext.selectQuestions[index].title = updatedSelectQuestion.Title;
-                dataContext.selectQuestions[index].lastUpdatedDate = new Date(updatedSelectQuestion.LastUpdatedDate).toLocaleString();
+                selectQuestion.title = updatedSelectQuestion.Title;
+                selectQuestion.lastUpdatedDate = new Date(updatedSelectQuestion.LastUpdatedDate).toLocaleString();
             });
     };
 

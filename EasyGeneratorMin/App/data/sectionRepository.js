@@ -11,7 +11,6 @@
 
             if (!section) {
                 throw httpErrorHandlers.dataIsNotFoundHandler();
-                return;
             }
 
             resolve(section);
@@ -24,14 +23,14 @@
             .then(function (createdSection) {
                 if (!createdSection) {
                     throw httpErrorHandlers.dataIsNotFoundHandler();
-                    return;
                 }
 
 
-                var index = dataContext.courses.findIndex(function (course) {
+                var course = dataContext.courses.find(function (course) {
                     return course.id === courseId;
                 });
-                dataContext.courses[index].sections.push(modelMapper.mapSection(createdSection));
+
+                course.sections.push(modelMapper.mapSection(createdSection));
             });
     };
 
@@ -40,19 +39,19 @@
             .then(function () {
 
 
-                var indexCourse = dataContext.courses.findIndex(function (course) {
+                var course = dataContext.courses.find(function (course) {
                     return courseId == course.id;
                 });
-                var indexSection = dataContext.courses[indexCourse].sections.findIndex(function (section) {
+                var indexSection = course.sections.findIndex(function (section) {
                     return sectionId == section.id;
                 });
 
-                dataContext.courses[indexCourse].sections.splice(indexSection, 1);
+                course.sections.splice(indexSection, 1);
 
                 return {
                     indexCourse: indexCourse,
                     indexSection: indexSection
-                }
+                };
             });
     };
 
@@ -61,19 +60,18 @@
             .then(function (updatedSection) {
                 if (!updatedSection) {
                     throw httpErrorHandlers.dataIsNotFoundHandler();
-                    return;
                 }
 
 
-                var indexCourse = dataContext.courses.findIndex(function (course) {
+                var course = dataContext.courses.find(function (course) {
                     return courseId == course.id;
                 });
-                var indexSection = dataContext.courses[indexCourse].sections.findIndex(function (section) {
+                var section = course.sections.find(function (section) {
                     return sectionId == section.id;
                 });
 
-                dataContext.courses[indexCourse].sections[indexSection].title = updatedSection.Title;
-                dataContext.courses[indexCourse].sections[indexSection].lastUpdatedDate = new Date(updatedSection.LastUpdatedDate).toLocaleString();
+                section.title = updatedSection.Title;
+                section.lastUpdatedDate = new Date(updatedSection.LastUpdatedDate).toLocaleString();
             });
     };
 

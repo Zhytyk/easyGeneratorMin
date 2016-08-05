@@ -14,7 +14,6 @@
 
             if (!course) {
                 throw httpErrorHandlers.dataIsNotFoundHandler();
-                return;
             }
             resolve(course);
         });
@@ -25,7 +24,6 @@
             .then(function (createdCourse) {
                 if (!createdCourse) {
                     throw httpErrorHandlers.dataIsNotFoundHandler();
-                    return;
                 }
 
 
@@ -51,16 +49,15 @@
             .then(function (updatedCourse) {
                 if (!updatedCourse) {
                     throw httpErrorHandlers.dataIsNotFoundHandler();
-                    return;
                 }
 
 
-                var index = dataContext.courses.findIndex(function (course) {
+                var course = dataContext.courses.find(function (course) {
                     return course.id === updatedCourse.Id;
                 });
 
-                dataContext.courses[index].title = updatedCourse.Title;
-                dataContext.courses[index].lastUpdatedDate = new Date(updatedCourse.LastUpdatedDate).toLocaleString();
+                course.title = updatedCourse.Title;
+                course.lastUpdatedDate = new Date(updatedCourse.LastUpdatedDate).toLocaleString();
             });
     };
 

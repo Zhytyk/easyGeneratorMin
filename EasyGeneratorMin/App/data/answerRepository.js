@@ -13,7 +13,6 @@
 
             if (!answer) {
                 throw httpErrorHandlers.dataIsNotFoundHandler();
-                return;
             }
 
             return answer;
@@ -25,13 +24,13 @@
             .then(function (createdAnswer) {
                 if (!createdAnswer) {
                     throw httpErrorHandlers.dataIsNotFoundHandler();
-                    return;
                 }
 
-                var index = dataContext.selectQuestions.findIndex(function (selectQuestion) {
+                var selectQuestion = dataContext.selectQuestions.find(function (selectQuestion) {
                     return selectQuestion.id == questionId;
                 });
-                dataContext.selectQuestions[index].answers.push(modelMapper.mapAnswer(createdAnswer));
+
+                selectQuestion.answers.push(modelMapper.mapAnswer(createdAnswer));
             });
     };
 
@@ -40,35 +39,34 @@
                 .then(function (updatedAnswer) {
                     if (!updatedAnswer) {
                         throw httpErrorHandlers.dataIsNotFoundHandler();
-                        return;
                     }
 
-                    var indexSelectQuestion = dataContext.selectQuestions.findIndex(function (selectQuestion) {
+                    var selectQuestion = dataContext.selectQuestions.find(function (selectQuestion) {
                         return selectQuestion.id == questionId;
                     });
 
-                    var indexAnswer = dataContext.selectQuestions[indexSelectQuestion].answers.findIndex(function (answer) {
+                    var answer = selectQuestion.answers.find(function (answer) {
                         return answer.id == answerId;
                     });
 
-                    dataContext.selectQuestions[indexSelectQuestion].answers[indexAnswer].title = updatedAnswer.Title;
-                    dataContext.selectQuestions[indexSelectQuestion].answers[indexAnswer].isCorrectly = updatedAnswer.IsCorrectly;
-                    dataContext.selectQuestions[indexSelectQuestion].answers[indexAnswer].lastUpdatedDate = new Date(updatedAnswer.LastUpdatedDate).toLocaleString();
+                    answer.title = updatedAnswer.Title;
+                    answer.isCorrectly = updatedAnswer.IsCorrectly;
+                    answer.lastUpdatedDate = new Date(updatedAnswer.LastUpdatedDate).toLocaleString();
                 });
     };
 
     function removeAnswer(questionId, answerId) {
         return http.remove('remove/answer', { id: answerId })
                 .then(function () {
-                    var indexSelectQuestion = dataContext.selectQuestions.findIndex(function (selectQuestion) {
+                    var selectQuestion = dataContext.selectQuestions.find(function (selectQuestion) {
                         return selectQuestion.id == questionId;
                     });
 
-                    var indexAnswer = dataContext.selectQuestions[indexSelectQuestion].answers.findIndex(function (answer) {
+                    var answerIndex = selectQuestion.answers.findIndex(function (answer) {
                         return answer.id == answerId;
                     });
 
-                    dataContext.selectQuestions[indexSelectQuestion].answers.splice(indexAnswer, 1);
+                    selectQuestion.answers.slice(answerIndex, 1);
                 });
     };
 
