@@ -47,11 +47,6 @@
                 });
 
                 course.sections.splice(indexSection, 1);
-
-                return {
-                    indexCourse: indexCourse,
-                    indexSection: indexSection
-                };
             });
     };
 

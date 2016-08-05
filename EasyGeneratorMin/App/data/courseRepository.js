@@ -35,7 +35,7 @@
         return http.remove('remove/course', { id: courseId })
             .then(function () {
                 var index = dataContext.courses.findIndex(function (course, index) {
-                    return course.id === courseId;
+                    return course.id == courseId;
                 });
 
                 dataContext.courses.splice(index, 1);

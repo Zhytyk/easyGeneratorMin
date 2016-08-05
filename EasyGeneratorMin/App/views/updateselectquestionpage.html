@@ -13,7 +13,6 @@
     <form data-bind="submit: createAnswer">
         <input type="text" data-bind="value: answerTitle, valueUpdate: 'afterkeydown'" />
         <span data-bind="visible: answerTitle.hasError, text: answerTitle.validationMessage"></span>
-        <input type="checkbox" data-bind="checked: answerIsCorrectly" />
         <input type="submit" />
     </form>
 </section>

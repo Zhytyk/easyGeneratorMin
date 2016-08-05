@@ -40,28 +40,24 @@
         removeSelectQuestion: function (id) {
             var self = this;
             selectQuestionRepository.removeSelectQuestion(id)
-                .then(function () {
-                    var index = self.selectQuestions().findIndex(function (selectQuestion) {
-                        return selectQuestion.id == id;
-                    });
-                
+                .then(function (index) {
                     self.selectQuestions.splice(index, 1);
-            });
+                });
         },
         removeAnswer: function(answerId, questionId){
             var self = this;
             answerRepository.removeAnswer(questionId, answerId)
                 .then(function () {
-                    var indexQuestion = self.selectQuestions().findIndex(function (selectQuestion) {
+                    var question = self.selectQuestions().find(function (selectQuestion) {
                         return selectQuestion.id == questionId;
                     });
 
-                    var indexAnswer = self.selectQuestions()[indexQuestion].answers().findIndex(function (answer) {
+                    var indexAnswer = question.answers().findIndex(function (answer) {
                         return answer.id == answerId;
                     });
 
-                    self.selectQuestions()[indexQuestion].answers.valueHasMutated();
-            });
+                    question.answers.valueHasMutated();
+                });
         },
         updateSelectQuestion: function (id) {
             router.navigate("update/selectquestion/" + id);

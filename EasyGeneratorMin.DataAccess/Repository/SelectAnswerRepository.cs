@@ -18,5 +18,12 @@ namespace EasyGeneratorMin.DataAccess
                 .Include(c => c.SelectQuestion)
                 .Select(c => c).ToList();
         }
+
+        public override Answer GetValueById(Guid id)
+        {
+            return _db.GetSet<Answer>()
+                .Include(c => c.SelectQuestion)
+                .FirstOrDefault(c => c.Id == id);
+        }
     }
 }

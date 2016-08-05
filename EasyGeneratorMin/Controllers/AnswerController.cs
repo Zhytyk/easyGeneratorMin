@@ -27,14 +27,12 @@ namespace EasyGeneratorMin.Web.Controllers
         [OutOfRangeExceptionFilter]
         [NullExceptionFilter]
         [SaveUnitOfWorkActionFilter]
-        public AnswerModel CreateSelectAnswer([ModelBinder(typeof(EntityModelBinder<SelectQuestion>))]SelectQuestion selectQuestion, Dictionary<string, string> spec)
+        public AnswerModel CreateAnswer([ModelBinder(typeof(EntityModelBinder<SelectQuestion>))]SelectQuestion selectQuestion, Dictionary<string, string> spec)
         {
             if (selectQuestion == null)
                 throw new ArgumentNullException();
 
-            selectQuestion.ThrowIfHasOneMoreCorrectAnswers(spec["isCorrectly"]);
-
-            var answer = new Answer(spec["title"], spec["isCorrectly"], selectQuestion);
+            var answer = new Answer(spec["title"], selectQuestion);
 
             _answerRepository.Insert(answer);
 
@@ -46,7 +44,7 @@ namespace EasyGeneratorMin.Web.Controllers
         [OutOfRangeExceptionFilter]
         [NullExceptionFilter]
         [SaveUnitOfWorkActionFilter]
-        public AnswerModel UpdateSection([ModelBinder(typeof(EntityModelBinder<Answer>))]Answer answer, Dictionary<string, string> spec)
+        public AnswerModel UpdateAnswer([ModelBinder(typeof(EntityModelBinder<Answer>))]Answer answer, Dictionary<string, string> spec)
         {
             if (answer == null)
                 throw new ArgumentNullException();
@@ -61,7 +59,7 @@ namespace EasyGeneratorMin.Web.Controllers
         [Route("remove/answer")]
         [NullExceptionFilter]
         [SaveUnitOfWorkActionFilter]
-        public void RemoveSection([ModelBinder(typeof(EntityModelBinder<Answer>))]Answer answer)
+        public void RemoveAnswer([ModelBinder(typeof(EntityModelBinder<Answer>))]Answer answer)
         {
             if (answer == null)
                 throw new ArgumentNullException();

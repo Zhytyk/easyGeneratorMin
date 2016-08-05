@@ -19,8 +19,8 @@
         });
     };
 
-    function createAnswer(questionId, title, isCorrectly) {
-        return http.post('create/answer', {id: questionId, title: title, isCorrectly: String(isCorrectly)})
+    function createAnswer(questionId, title) {
+        return http.post('create/answer', {id: questionId, title: title})
             .then(function (createdAnswer) {
                 if (!createdAnswer) {
                     throw httpErrorHandlers.dataIsNotFoundHandler();
@@ -66,7 +66,7 @@
                         return answer.id == answerId;
                     });
 
-                    selectQuestion.answers.slice(answerIndex, 1);
+                    selectQuestion.answers.splice(answerIndex, 1);
                 });
     };
 

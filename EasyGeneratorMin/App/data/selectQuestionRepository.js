@@ -8,8 +8,7 @@
                 dataContext.initializeSelectQuestions().then(function () {
                     resolve();
                 });
-            }
-            else {
+            } else {
                 resolve();
             }
         });
@@ -17,7 +16,6 @@
 
     function getSelectQuestionById(id) {
         return new Promise(function (resolve, reject) {
-
             tryInitializeSelectQuestions()
                 .then(function () {
                     var selectQuestion = dataContext.selectQuestions.find(function (selectQuestion) {
@@ -27,6 +25,7 @@
                     if (!selectQuestion) {
                         throw httpErrorHandler.dataIsNotFoundHandler();
                     }
+
                     resolve(selectQuestion);
                 });
         });
@@ -62,6 +61,8 @@
                 });
 
                 dataContext.selectQuestions.splice(index, 1);
+
+                return index;
             });
     };
 

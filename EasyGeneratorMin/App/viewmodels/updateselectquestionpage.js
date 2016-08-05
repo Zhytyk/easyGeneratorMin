@@ -8,12 +8,10 @@
     return {
         selectQuestionTitle: ko.observable().extend({ required: '' }),
         answerTitle: ko.observable().extend({ required: '' }),
-        answerIsCorrectly: ko.observable(),
         selectQuestionId: '',
         activate: function (id) {
             this.selectQuestionId = id;
             this.answerTitle("SomeAnswer");
-            this.answerIsCorrectly(true);
             return initializeForm(id, this);
         },
         updateSelectQuestion: function () {
@@ -22,7 +20,7 @@
             });
         },
         createAnswer: function(){
-            answerRepository.createAnswer(this.selectQuestionId, this.answerTitle(), this.answerIsCorrectly()).then(function () {
+            answerRepository.createAnswer(this.selectQuestionId, this.answerTitle()).then(function () {
                 router.navigateBack();
             });
         },

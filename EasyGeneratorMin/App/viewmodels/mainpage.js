@@ -23,8 +23,12 @@
         removeSection: function (sectionId, courseId) {
             var self = this;
             sectionRepository.removeSection(sectionId, courseId)
-                .then(function (indexes) {
-                    self.courses()[indexes.indexCourse].sections.splice(indexes.indexSection, 1);
+                .then(function () {
+                    var course = self.courses().find(function (course) {
+                        return course.id == courseId;
+                    });
+
+                    course.sections.valueHasMutated();
                 });
         },
     };

@@ -1,4 +1,4 @@
-﻿
+﻿using System.Linq;
 
 namespace EasyGeneratorMin.Models
 {
@@ -8,20 +8,24 @@ namespace EasyGeneratorMin.Models
 
         public bool IsCorrectly { get; set; }
 
-        public Answer() { }
+        public Answer()
+        {
+            IsCorrectly = false;
+        }
 
-        public Answer(string title, string isCorrectly, SelectQuestion selectQuestion)
+        public Answer(string title, SelectQuestion selectQuestion)
         {
             ThrowIfTitleInvalid(title);
 
             Title = title;
-            IsCorrectly = bool.Parse(isCorrectly);
             SelectQuestion = selectQuestion;
         }
 
         public void Update(string title, string isCorrectly)
         {
             Update(title);
+
+            SelectQuestion.Answers.ForEach(o => o.IsCorrectly = false);
 
             IsCorrectly = bool.Parse(isCorrectly);
         }
