@@ -260,6 +260,7 @@
     <Compile Include="Controllers\SingleSelectQuestionController.cs" />
     <Compile Include="Filters\NullExceptionFilter.cs" />
     <Compile Include="Filters\OutOfRangeExceptionFilter.cs" />
+    <Compile Include="Filters\ResetSingleAnswersActionFilter.cs" />
     <Compile Include="Filters\SaveUnitOfWorkActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

@@ -44,6 +44,7 @@ namespace EasyGeneratorMin.Web.Controllers
         [OutOfRangeExceptionFilter]
         [NullExceptionFilter]
         [SaveUnitOfWorkActionFilter]
+        [ResetSingleAnswersActionFilter]
         public AnswerModel UpdateAnswer([ModelBinder(typeof(EntityModelBinder<Answer>))]Answer answer, Dictionary<string, string> spec)
         {
             if (answer == null)

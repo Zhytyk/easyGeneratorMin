@@ -49,10 +49,27 @@
                         return answer.id == answerId;
                     });
 
+                    resetCorrectAnswersIfSingleQuestion(isCorrectly, selectQuestion);
+
                     answer.title = updatedAnswer.Title;
                     answer.isCorrectly = updatedAnswer.IsCorrectly;
                     answer.lastUpdatedDate = new Date(updatedAnswer.LastUpdatedDate).toLocaleString();
                 });
+    };
+
+    function resetCorrectAnswersIfSingleQuestion(isCorrectly, selectQuestion) {
+
+        if (isCorrectly !== true || selectQuestion.type != "Single") {
+            return undefined;
+        }
+
+        var correctAnswer = selectQuestion.answers.find(function (answer) {
+            return answer.isCorrectly == true;
+        });
+
+        if (correctAnswer) {
+            correctAnswer.isCorrectly = false;
+        }
     };
 
     function removeAnswer(questionId, answerId) {

@@ -25,8 +25,6 @@ namespace EasyGeneratorMin.Models
         {
             Update(title);
 
-            SelectQuestion.Answers.ForEach(o => o.IsCorrectly = false);
-
             IsCorrectly = bool.Parse(isCorrectly);
         }
     }
