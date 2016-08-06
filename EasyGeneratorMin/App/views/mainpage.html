@@ -20,6 +20,7 @@
                         <span data-bind="text: creater"></span>
                         <span data-bind="text: lastUpdatedDate"></span>
                         <span data-bind="text: createdDate"></span>
+                        <button data-bind="click: function() { $root.previewSection($data.id, $parent.id) }">Preview</button>
                         <button data-bind="click: function() { $root.updateSection($data.id, $parent.id) }">Update</button>
                         <button data-bind="click: function() { $root.removeSection($data.id, $parent.id) }">Delete</button>
                     </div>

@@ -1,4 +1,6 @@
-﻿define(['data/answerRepository', 'data/selectQuestionRepository','data/sectionRepository', 'plugins/router', 'extenders/validationExtenders', 'mapping/viewMapper'], function (answerRepository, selectQuestionRepository, sectionRepository, router, validationExtenders, viewMapper) {
+﻿define(['data/answerRepository', 'data/selectQuestionRepository', 'data/sectionRepository', 'plugins/router', 'extenders/validationExtenders', 'mapping/viewMapper'],
+    function (answerRepository, selectQuestionRepository, sectionRepository, router, validationExtenders, viewMapper) {
+
     function initializeForm(courseId, sectionId, self) {
          return sectionRepository.getSectionById(courseId, sectionId)
             .then(function(section) {
@@ -27,6 +29,7 @@
                     self.sectionId = sectionId;
                     initializeForm(self.courseId, self.sectionId, self);
                     self.selectQuestions(filterSelectQuestionBySectionId(sectionId));
+                    console.log(self.selectQuestions());
                 });
         },
         updateSection: function () {
@@ -35,7 +38,7 @@
             });
         },
         createSelectQuestion: function () {
-            router.navigate("#" + this.courseId + "/" + this.sectionId + "/create/selectquestion");
+            router.navigate("#course/" + this.courseId + "/section/" + this.sectionId + "/create/selectquestion");
         },
         removeSelectQuestion: function (id) {
             var self = this;
@@ -63,7 +66,7 @@
             router.navigate("update/selectquestion/" + id);
         },
         updateAnswer: function(answerId, questionId){
-            router.navigate("update/answer/" + questionId + "/" + answerId);
+            router.navigate("update/question/" + questionId + "/answer/" + answerId);
         },
     };
 })

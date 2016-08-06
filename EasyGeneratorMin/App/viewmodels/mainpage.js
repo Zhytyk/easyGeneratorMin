@@ -11,7 +11,7 @@
             router.navigate("#update/course/" + id);
         },
         updateSection: function(sectionId, courseId) {
-            router.navigate("#update/section/" + courseId + "/" + sectionId);
+            router.navigate("#update/course/" + courseId + "/section/" + sectionId);
         },
         removeCourse: function (id) {
             var self = this;
@@ -30,6 +30,9 @@
 
                     course.sections.valueHasMutated();
                 });
+        },
+        previewSection: function (sectionId, courseId) {
+            router.navigate("#preview/course/" + courseId + "/section/" + sectionId);
         },
     };
 })

@@ -35,10 +35,38 @@
         });
 
         return mapSelectQuestions;
-    }
+    };
+
+    function previewSelectQuestionMapper() {
+
+        var mapSelectQuestions = dataContext.selectQuestions.map(function (selectQuestion) {
+            var newSelectQuestion = {
+                id: selectQuestion.id,
+                title: selectQuestion.title,
+                sectionId: selectQuestion.sectionId,
+                type: selectQuestion.type,
+                answers: ko.observableArray()
+            };
+
+            newSelectQuestion.answers(selectQuestion.answers.map(function (answer) {
+                var newAnswer = {
+                    id: answer.id,
+                    title: answer.title,
+                    isCorrectly: false,
+                };
+
+                return newAnswer;
+            }));
+
+            return newSelectQuestion;
+        });
+
+        return mapSelectQuestions;
+    };
 
     return {
         coursesMapper: coursesMapper,
-        selectQuestionsMapper: selectQuestionsMapper
+        selectQuestionsMapper: selectQuestionsMapper,
+        previewSelectQuestionMapper: previewSelectQuestionMapper,
     };
 });

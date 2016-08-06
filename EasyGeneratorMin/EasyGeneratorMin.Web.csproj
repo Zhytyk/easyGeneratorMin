@@ -189,6 +189,7 @@
     <Content Include="App\models\selectQuestion.js" />
     <Content Include="App\viewmodels\createcoursepage.js" />
     <Content Include="App\viewmodels\createselectquestionpage.js" />
+    <Content Include="App\viewmodels\previewsectionpage.js" />
     <Content Include="App\viewmodels\updateanswer.js" />
     <Content Include="App\viewmodels\updatecoursepage.js" />
     <Content Include="App\viewmodels\mainpage.js" />
@@ -197,6 +198,7 @@
     <Content Include="App\viewmodels\updateselectquestionpage.js" />
     <Content Include="App\views\createcoursepage.html" />
     <Content Include="App\views\createselectquestionpage.html" />
+    <Content Include="App\views\previewsectionpage.html" />
     <Content Include="App\views\updateanswer.html" />
     <Content Include="App\views\updatecoursepage.html" />
     <Content Include="App\views\mainpage.html" />
