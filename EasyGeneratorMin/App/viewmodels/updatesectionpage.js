@@ -43,8 +43,12 @@
         removeSelectQuestion: function (id) {
             var self = this;
             selectQuestionRepository.removeSelectQuestion(id)
-                .then(function (index) {
-                    self.selectQuestions.splice(index, 1);
+                .then(function () {
+                    var selectQuestion = self.selectQuestions().find(function (selectQuestion) {
+                        return selectQuestion.id == id;
+                    });
+
+                    self.selectQuestions.remove(selectQuestion);
                 });
         },
         removeAnswer: function(answerId, questionId){

@@ -10,7 +10,7 @@
                 <div data-bind="foreach: answers">
                     <div style="margin-left: 30px">
                         <input type="checkbox" data-bind="visible: $parent.type == 'Multiple',checked: $data.isCorrectly" />
-                        <input type="radio" value="true" data-bind="visible: $parent.type == 'Single', attr: { name: $parent.title },checked: $data.isCorrectly" />
+                        <input type="radio" value="true" data-bind="visible: $parent.type == 'Single', attr: { name: $parent.id },checked: $data.isCorrectly" />
                         <span data-bind="text: title"></span>
                     </div>
                 </div>

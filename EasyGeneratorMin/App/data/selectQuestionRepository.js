@@ -61,8 +61,6 @@
                 });
 
                 dataContext.selectQuestions.splice(index, 1);
-
-                return index;
             });
     };
 

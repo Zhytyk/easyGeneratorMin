@@ -33,7 +33,7 @@ namespace EasyGeneratorMin.Web
 
             var selectQuestion = selectQuestions.First( c => {
 
-                if (c.Answers.DefaultIfEmpty(null).FirstOrDefault(o => o.Id == Guid.Parse(id)) != null)
+                if (c.Answers.FirstOrDefault(o => o.Id == Guid.Parse(id)) != null)
                     return true;
 
                 return false;
