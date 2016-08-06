@@ -67,5 +67,18 @@ namespace EasyGeneratorMin.Web
 
         }
 
+        [HttpGet]
+        [Route("get/previewresult")]
+        [NullExceptionFilter]
+        public string GetPreviewResult(IEnumerable<SelectQuestionModel> questions)
+        {
+            if (questions == null)
+                throw new ArgumentNullException();
+
+
+
+            return "You have ";
+        }
+
     }
 }
