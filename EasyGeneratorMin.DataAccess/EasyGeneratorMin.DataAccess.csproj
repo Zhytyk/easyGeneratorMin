@@ -88,10 +88,12 @@
     <Compile Include="Context\CourseDataContext.cs" />
     <Compile Include="DbInitializer\CourseDataDbInitializer.cs" />
     <Compile Include="Interfaces\IDatabaseContext.cs" />
+    <Compile Include="Interfaces\IPreviewRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CourseRepository.cs" />
+    <Compile Include="Repository\PreviewRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Repository\SelectAnswerRepository.cs" />
     <Compile Include="Repository\SelectQuestionRepository.cs" />

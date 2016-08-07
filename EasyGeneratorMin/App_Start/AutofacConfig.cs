@@ -12,7 +12,7 @@ namespace EasyGeneratorMin.Web
 {
     public class AutofacConfig
     {
-        public static void ConfigureContainer()
+        public static void ConfigureContainerApi()
         {
 
             var builder = new ContainerBuilder();
@@ -57,6 +57,33 @@ namespace EasyGeneratorMin.Web
             var container = builder.Build();
 
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
+        }
+
+        public static void ConfigureContainer()
+        {
+            var builder = new ContainerBuilder();
+
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+
+            builder.RegisterType<CourseDataContext>()
+                .As<IUnitOfWork>()
+                .As<IDatabaseContext>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<PreviewRepository>()
+                .As<IPreviewRepository>()
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<SelectQuestionRepository<SelectQuestion>>()
+                .As<IRepository<SelectQuestion>>()
+                .InstancePerLifetimeScope();
+
+            builder.Register(c => Mapper.Instance).As<IMapper>();
+
+            var container = builder.Build();
+
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
         }
     }

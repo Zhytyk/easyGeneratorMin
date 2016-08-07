@@ -173,6 +173,7 @@
   <ItemGroup>
     <Content Include="App\data\courseRepository.js" />
     <Content Include="App\data\dataContext.js" />
+    <Content Include="App\data\previewRepository.js" />
     <Content Include="App\data\sectionRepository.js" />
     <Content Include="App\data\answerRepository.js" />
     <Content Include="App\data\selectQuestionRepository.js" />
@@ -181,6 +182,7 @@
     <Content Include="App\http\httpWrapper.js" />
     <Content Include="App\main.js" />
     <Content Include="App\mapping\modelMapper.js" />
+    <Content Include="App\mapping\previewMapper.js" />
     <Content Include="App\mapping\viewMapper.js" />
     <Content Include="App\models\course.js" />
     <Content Include="App\models\entity.js" />
@@ -256,6 +258,7 @@
     <Compile Include="Controllers\MultipleSelectQuestionController.cs" />
     <Compile Include="Controllers\OverviewController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PreviewController.cs" />
     <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Controllers\AnswerController.cs" />
     <Compile Include="Controllers\SelectQuestionController.cs" />
@@ -274,6 +277,8 @@
     <Compile Include="Models\AnswerModel.cs" />
     <Compile Include="Models\SelectQuestionModel.cs" />
     <Compile Include="Models\SingleSelectQuestionModel.cs" />
+    <Compile Include="PreviewModels\AnswerPreviewModel.cs" />
+    <Compile Include="PreviewModels\SelectQuestionPreviewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -293,7 +298,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Preview\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyGeneratorMin.DataAccess\EasyGeneratorMin.DataAccess.csproj">
       <Project>{9e1f8118-361b-4ae9-ac64-308d52095269}</Project>

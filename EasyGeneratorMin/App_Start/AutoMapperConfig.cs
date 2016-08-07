@@ -45,6 +45,10 @@ namespace EasyGeneratorMin.Web
                     .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))))
                     .ForMember(opt => opt.SelectQuestionId, opt => opt.MapFrom(src => src.SelectQuestion.Id));
 
+                config.CreateMap<SelectQuestionPreviewModel, SelectQuestion>()
+                    .ForMember(opt => opt.Answers, opt => opt.MapFrom(src => src.Answers));
+
+                config.CreateMap<AnswerPreviewModel, Answer>();
             });
         }
 

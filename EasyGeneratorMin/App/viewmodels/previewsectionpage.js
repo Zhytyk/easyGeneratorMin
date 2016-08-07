@@ -1,5 +1,5 @@
-﻿define(['data/answerRepository', 'data/selectQuestionRepository', 'plugins/router', 'mapping/viewMapper'],
-    function (answerRepository, selectQuestionRepository, router, viewMapper) {
+﻿define(['data/previewRepository', 'data/selectQuestionRepository', 'plugins/router', 'mapping/viewMapper', 'mapping/previewMapper'],
+    function (previewRepository, selectQuestionRepository, router, viewMapper, previewMapper) {
 
     function filterSelectQuestionBySectionId(sectionId) {
         var filteredSelectQuestions = viewMapper.previewSelectQuestionMapper().filter(function (selectQuestion) {
@@ -19,6 +19,11 @@
         },
         answersHandler: function () {
             console.log(this.selectQuestions());
+
+            previewRepository.getPreviewResult(previewMapper.previewSelectQuestionsMapper(this.selectQuestions())).then(function (result) {
+                alert(result);
+                router.navigateBack();
+            });
         }
     };
 });
