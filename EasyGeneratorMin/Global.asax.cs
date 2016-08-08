@@ -15,8 +15,8 @@ namespace EasyGeneratorMin.Web
         protected void Application_Start()
         {
             AutoMapperConfig.RegisterMappings();
-            AutofacConfig.ConfigureContainerApi();
-            AutofacConfig.ConfigureContainer();
+            AutofacConfigMvc.ConfigureContainer();
+            AutofacConfigWebApi.ConfigureContainer();
 
             AreaRegistration.RegisterAllAreas();
 

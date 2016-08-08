@@ -8,7 +8,7 @@ using System.Web.Http.Filters;
 
 namespace EasyGeneratorMin.Web
 {
-    public class SaveUnitOfWorkActionFilter : ActionFilterAttribute
+    public class SaveUnitOfWorkWebApiActionFilter : ActionFilterAttribute
     {
 
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)

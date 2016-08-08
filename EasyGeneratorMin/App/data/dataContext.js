@@ -14,6 +14,7 @@
         var self = this;
         return http.get('get/selectquestions')
             .then(function (selectQuestions) {
+                console.log(self.courses);
                 selectQuestions.forEach(function (selectQuestion) {
                     self.selectQuestions.push(modelMapper.mapSelectQuestion(selectQuestion));
                 });

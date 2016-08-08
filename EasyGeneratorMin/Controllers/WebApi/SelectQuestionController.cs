@@ -11,15 +11,13 @@ using System.Web.Http.ModelBinding;
 
 namespace EasyGeneratorMin.Web.Controllers
 {
-    public class SelectQuestionController : ApiController
+    public class SelectQuestionController : MainWebApiController
     {
         private readonly IRepository<SelectQuestion> _selectQuestionRepository;
-        private readonly IMapper _mapper;
 
-        public SelectQuestionController(IRepository<SelectQuestion> selectQuestionRepository, IMapper mapper)
+        public SelectQuestionController(IRepository<SelectQuestion> selectQuestionRepository, IMapper mapper) : base(mapper)
         {
             _selectQuestionRepository = selectQuestionRepository;
-            _mapper = mapper;
         }
 
         [HttpGet]
@@ -33,9 +31,6 @@ namespace EasyGeneratorMin.Web.Controllers
 
         [HttpPut]
         [Route("update/selectquestion")]
-        [OutOfRangeExceptionFilter]
-        [NullExceptionFilter]
-        [SaveUnitOfWorkActionFilter]
         public SelectQuestionModel UpdateSelectQuestion([ModelBinder(typeof(EntityModelBinder<SelectQuestion>))]SelectQuestion selectQuestion, Dictionary<string, string> spec)
         {
             if (selectQuestion == null)
@@ -48,8 +43,6 @@ namespace EasyGeneratorMin.Web.Controllers
 
         [HttpDelete]
         [Route("remove/selectquestion")]
-        [NullExceptionFilter]
-        [SaveUnitOfWorkActionFilter]
         public void RemoveSelectQuestion([ModelBinder(typeof(EntityModelBinder<SelectQuestion>))]SelectQuestion selectQuestion)
         {
             if (selectQuestion == null)

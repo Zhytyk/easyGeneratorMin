@@ -11,22 +11,17 @@ using System.Web.Http.ModelBinding;
 
 namespace EasyGeneratorMin.Web
 {
-    public class MultipleSelectQuestionController : ApiController
+    public class MultipleSelectQuestionController : MainWebApiController
     {
         private readonly IRepository<MultipleSelectQuestion> _multipleSelectQuestionRepository;
-        private readonly IMapper _mapper;
 
-        public MultipleSelectQuestionController(IRepository<MultipleSelectQuestion> multipleSelectQuestionRepository, IMapper mapper)
+        public MultipleSelectQuestionController(IRepository<MultipleSelectQuestion> multipleSelectQuestionRepository, IMapper mapper) : base(mapper)
         {
             _multipleSelectQuestionRepository = multipleSelectQuestionRepository;
-            _mapper = mapper;
         }
 
         [HttpPost]
         [Route("create/multipleselectquestion")]
-        [OutOfRangeExceptionFilter]
-        [NullExceptionFilter]
-        [SaveUnitOfWorkActionFilter]
         public MultipleSelectQuestionModel CreateSingleSelectQuestion([ModelBinder(typeof(EntityModelBinder<Section>))]Section section, Dictionary<string, string> spec)
         {
             if (section == null)

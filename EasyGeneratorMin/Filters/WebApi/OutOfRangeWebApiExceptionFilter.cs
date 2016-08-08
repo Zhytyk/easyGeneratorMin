@@ -5,7 +5,7 @@ using System.Web.Http.Filters;
 
 namespace EasyGeneratorMin.Web
 {
-    public class OutOfRangeExceptionFilter : ExceptionFilterAttribute
+    public class OutOfRangeWebApiExceptionFilter : ExceptionFilterAttribute
     {
         public override void OnException(HttpActionExecutedContext context)
         {

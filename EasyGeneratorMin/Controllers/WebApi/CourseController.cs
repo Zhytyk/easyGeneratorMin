@@ -13,17 +13,14 @@ using System.Web.Http.Results;
 
 namespace EasyGeneratorMin.Web
 {
-
-    public class CourseController : ApiController
+    public class CourseController : MainWebApiController
     {
 
         private readonly IRepository<Course> _courseRepository;
-        private readonly IMapper _mapper;
 
-        public CourseController(IRepository<Course> courseRepository, IMapper mapper)
+        public CourseController(IRepository<Course> courseRepository, IMapper mapper) : base(mapper)
         {
             _courseRepository = courseRepository;
-            _mapper = mapper;
         }
 
         [HttpGet]
@@ -37,9 +34,6 @@ namespace EasyGeneratorMin.Web
 
         [HttpPost]
         [Route("create/course")]
-        [OutOfRangeExceptionFilter]
-        [NullExceptionFilter]
-        [SaveUnitOfWorkActionFilter]
         public CourseModel CreateCourse(Dictionary<string, string> spec)
         {
             var course = new Course(spec["title"], spec["description"]);
@@ -51,9 +45,6 @@ namespace EasyGeneratorMin.Web
 
         [HttpPut]
         [Route("update/course")]
-        [OutOfRangeExceptionFilter]
-        [NullExceptionFilter]
-        [SaveUnitOfWorkActionFilter]
         public CourseModel UpdateCourse([ModelBinder(typeof(EntityModelBinder<Course>))]Course course, Dictionary<string, string> spec)
         {
             if (course == null)
@@ -66,8 +57,6 @@ namespace EasyGeneratorMin.Web
 
         [HttpDelete]
         [Route("remove/course")]
-        [NullExceptionFilter]
-        [SaveUnitOfWorkActionFilter]
         public void RemoveCourse([ModelBinder(typeof(EntityModelBinder<Course>))]Course course)
         {
             if (course == null)

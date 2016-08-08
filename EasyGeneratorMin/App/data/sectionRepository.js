@@ -1,12 +1,13 @@
 ﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/modelMapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, modelMapper, httpErrorHandlers) {
 
     function getSectionById(courseId, sectionId) {
+        console.log(dataContext);
         return new Promise(function (resolve) {
             var course = dataContext.courses.find(function (course) {
                 return course.id == courseId;
             });
             var section = course.sections.find(function (section) {
-                return section.id = sectionId;
+                return section.id == sectionId;
             });
 
             if (!section) {
@@ -14,7 +15,7 @@
             }
 
             resolve(section);
-            
+            console.log(dataContext);
         })
     };
 

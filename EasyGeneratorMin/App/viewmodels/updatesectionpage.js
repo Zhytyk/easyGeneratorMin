@@ -29,7 +29,6 @@
                     self.sectionId = sectionId;
                     initializeForm(self.courseId, self.sectionId, self);
                     self.selectQuestions(filterSelectQuestionBySectionId(sectionId));
-                    console.log(self.selectQuestions());
                 });
         },
         updateSection: function () {

@@ -21,7 +21,8 @@ namespace EasyGeneratorMin.Web.Controllers
 
         [HttpPost]
         [Route("get/previewresult")]
-        public JsonResult GetPreviewResult(IEnumerable<SelectQuestionPreviewModel> questions)
+        [NullMvcExceptionFilter]
+        public ActionResult GetPreviewResult(IEnumerable<SelectQuestionPreviewModel> questions)
         {
             if (questions == null)
                 throw new ArgumentNullException();
@@ -29,7 +30,8 @@ namespace EasyGeneratorMin.Web.Controllers
             var result = _previewRepository.GetResultCorrectAnswer(questions.Select(item => _mapper.Map<SelectQuestion>(item)));
 
 
-            return Json("You have " + result.ToString("#.##") + " from " + questions.Count() + " correct answers!" ,JsonRequestBehavior.AllowGet);
+            return Json("You have " + result.ToString("#.##") + " from " + questions.Count() + " correct answers!",
+                   JsonRequestBehavior.AllowGet);
         }
     }
 }

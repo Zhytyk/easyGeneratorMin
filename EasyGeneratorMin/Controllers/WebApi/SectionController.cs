@@ -8,24 +8,17 @@ using System.Web.Http.ModelBinding;
 
 namespace EasyGeneratorMin.Web
 {
-    public class SectionController : ApiController
+    public class SectionController : MainWebApiController
     {
-
         private readonly IRepository<Section> _sectionRepository;
-        private readonly IMapper _mapper;
 
-        public SectionController(IRepository<Course> courseRepository, IRepository<Section> sectionRepository, IMapper mapper)
+        public SectionController(IRepository<Section> sectionRepository, IMapper mapper) : base(mapper)
         {
             _sectionRepository = sectionRepository;
-            _mapper = mapper;
         }
-
 
         [HttpPost]
         [Route("create/section")]
-        [OutOfRangeExceptionFilter]
-        [NullExceptionFilter]
-        [SaveUnitOfWorkActionFilter]
         public SectionModel CreateSection([ModelBinder(typeof(EntityModelBinder<Course>))]Course course, Dictionary<string,string> spec)
         {
             if (course == null)
@@ -40,9 +33,6 @@ namespace EasyGeneratorMin.Web
 
         [HttpPut]
         [Route("update/section")]
-        [OutOfRangeExceptionFilter]
-        [NullExceptionFilter]
-        [SaveUnitOfWorkActionFilter]
         public SectionModel UpdateSection([ModelBinder(typeof(EntityModelBinder<Section>))]Section section, Dictionary<string, string> spec)
         {
             if (section == null)
@@ -53,11 +43,8 @@ namespace EasyGeneratorMin.Web
             return _mapper.Map<SectionModel>(section);
         }
 
-
         [HttpDelete]
         [Route("remove/section")]
-        [NullExceptionFilter]
-        [SaveUnitOfWorkActionFilter]
         public void RemoveSection([ModelBinder(typeof(EntityModelBinder<Section>))]Section section)
         {
             if (section == null)

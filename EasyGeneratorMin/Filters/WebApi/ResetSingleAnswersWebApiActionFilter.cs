@@ -10,7 +10,7 @@ using System.Web.Http.Filters;
 
 namespace EasyGeneratorMin.Web
 {
-    public class ResetSingleAnswersActionFilter : ActionFilterAttribute
+    public class ResetSingleAnswersWebApiActionFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(HttpActionContext actionContext)
         {

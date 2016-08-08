@@ -5,7 +5,7 @@ using System.Web.Http.Filters;
 
 namespace EasyGeneratorMin.Web
 {
-    public class NullExceptionFilter : ExceptionFilterAttribute
+    public class NullWebApiExceptionFilter : ExceptionFilterAttribute
     {
         public override void OnException(HttpActionExecutedContext context)
         {

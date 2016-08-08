@@ -33,7 +33,6 @@
             newSelectQuestion.answers(selectQuestion.answers);
             return newSelectQuestion;
         });
-
         return mapSelectQuestions;
     };
 

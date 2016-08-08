@@ -248,25 +248,28 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\AutofacConfig.cs" />
+    <Compile Include="App_Start\AutofacConfigMvc.cs" />
+    <Compile Include="App_Start\AutofacConfigWebApi.cs" />
     <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Binders\EntityModelBinder.cs" />
-    <Compile Include="Controllers\CourseController.cs" />
-    <Compile Include="Controllers\MultipleSelectQuestionController.cs" />
-    <Compile Include="Controllers\OverviewController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PreviewController.cs" />
-    <Compile Include="Controllers\SectionController.cs" />
-    <Compile Include="Controllers\AnswerController.cs" />
-    <Compile Include="Controllers\SelectQuestionController.cs" />
-    <Compile Include="Controllers\SingleSelectQuestionController.cs" />
-    <Compile Include="Filters\NullExceptionFilter.cs" />
-    <Compile Include="Filters\OutOfRangeExceptionFilter.cs" />
-    <Compile Include="Filters\ResetSingleAnswersActionFilter.cs" />
-    <Compile Include="Filters\SaveUnitOfWorkActionFilter.cs" />
+    <Compile Include="Controllers\WebApi\CourseController.cs" />
+    <Compile Include="Controllers\WebApi\MainWebApiController.cs" />
+    <Compile Include="Controllers\WebApi\MultipleSelectQuestionController.cs" />
+    <Compile Include="Controllers\Mvc\OverviewController.cs" />
+    <Compile Include="Controllers\Mvc\HomeController.cs" />
+    <Compile Include="Controllers\Mvc\PreviewController.cs" />
+    <Compile Include="Controllers\WebApi\SectionController.cs" />
+    <Compile Include="Controllers\WebApi\AnswerController.cs" />
+    <Compile Include="Controllers\WebApi\SelectQuestionController.cs" />
+    <Compile Include="Controllers\WebApi\SingleSelectQuestionController.cs" />
+    <Compile Include="Filters\WebApi\NullWebApiExceptionFilter.cs" />
+    <Compile Include="Filters\Mvc\NullMvcExceptionFilter.cs" />
+    <Compile Include="Filters\WebApi\OutOfRangeWebApiExceptionFilter.cs" />
+    <Compile Include="Filters\WebApi\ResetSingleAnswersWebApiActionFilter.cs" />
+    <Compile Include="Filters\WebApi\SaveUnitOfWorkWebApiActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -277,8 +280,8 @@
     <Compile Include="Models\AnswerModel.cs" />
     <Compile Include="Models\SelectQuestionModel.cs" />
     <Compile Include="Models\SingleSelectQuestionModel.cs" />
-    <Compile Include="PreviewModels\AnswerPreviewModel.cs" />
-    <Compile Include="PreviewModels\SelectQuestionPreviewModel.cs" />
+    <Compile Include="Models\Preview\AnswerPreviewModel.cs" />
+    <Compile Include="Models\Preview\SelectQuestionPreviewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
