@@ -2,6 +2,7 @@
     <div>
         Create course
     </div>
+    <button data-bind="click: back">Back</button>
     <form data-bind="submit: createCourse">
         <input type="text" data-bind="value: title, valueUpdate: 'afterkeydown'" />
         <span data-bind="visible: title.hasError, text: title.validationMessage"></span>

@@ -22,5 +22,6 @@
                     router.navigateBack();
                 })
         },
+        back: function () { router.navigateBack(); }
     };
 });

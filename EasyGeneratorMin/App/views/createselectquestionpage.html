@@ -2,6 +2,7 @@
     <div>
         Create single select question
     </div>
+    <button data-bind="click: back">Back</button>
     <form data-bind="submit: createSingleSelectQuestion">
         <input type="text" data-bind="value: singleSelectQuestionTitle, valueUpdate: 'afterkeydown'"/>
         <span data-bind="visible: singleSelectQuestionTitle.hasError, text: singleSelectQuestionTitle.validationMessage"></span>

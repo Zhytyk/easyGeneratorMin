@@ -71,5 +71,6 @@
         updateAnswer: function(answerId, questionId){
             router.navigate("update/question/" + questionId + "/answer/" + answerId);
         },
+        back: function () { router.navigateBack(); }
     };
 })

@@ -10,7 +10,7 @@
             courseRepository.createCourse(this.title, this.description).then(function() {
                 router.navigateBack();
             });
-        }
-
+        },
+        back: function () { router.navigateBack(); }
     };
 })

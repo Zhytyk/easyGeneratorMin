@@ -24,6 +24,7 @@
                 alert(result);
                 router.navigateBack();
             });
-        }
+        },
+        back: function () { router.navigateBack(); }
     };
 });

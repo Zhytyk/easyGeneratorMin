@@ -2,6 +2,7 @@
     <div>
         Update Section
     </div>
+    <button data-bind="click: back">Back</button>
     <form data-bind="submit: updateSection">
         <input type="text" data-bind="value: sectionTitle, valueUpdate: 'afterkeydown'" />
         <span data-bind="visible: sectionTitle.hasError, text: sectionTitle.validationMessage"></span>
