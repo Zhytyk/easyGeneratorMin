@@ -1,19 +1,11 @@
-﻿define(['data/answerRepository', 'data/selectQuestionRepository', 'data/sectionRepository', 'plugins/router', 'extenders/validationExtenders', 'mapping/viewMapper'],
-    function (answerRepository, selectQuestionRepository, sectionRepository, router, validationExtenders, viewMapper) {
+﻿define(['data/answerRepository', 'data/selectQuestionRepository', 'data/sectionRepository', 'plugins/router', 'extenders/validationExtenders', 'service/dataService', 'mapping/viewMapper'],
+    function (answerRepository, selectQuestionRepository, sectionRepository, router, validationExtenders, dataService, viewMapper) {
 
     function initializeForm(courseId, sectionId, self) {
          return sectionRepository.getSectionById(courseId, sectionId)
             .then(function(section) {
                 self.sectionTitle(section.title);
             });
-    };
-
-    function filterSelectQuestionBySectionId(sectionId) {
-        var filteredSelectQuestions = viewMapper.selectQuestionsMapper().filter(function (selectQuestion) {
-            return sectionId == selectQuestion.sectionId;
-        });
-
-        return filteredSelectQuestions;
     };
 
     return {
@@ -28,7 +20,10 @@
                     self.courseId = courseId;
                     self.sectionId = sectionId;
                     initializeForm(self.courseId, self.sectionId, self);
-                    self.selectQuestions(filterSelectQuestionBySectionId(sectionId));
+                    dataService.filterSelectQuestionBySectionId(sectionId)
+                        .then(function (selectQuestions) {
+                            self.selectQuestions(viewMapper.selectQuestionsMapper(selectQuestions));
+                        });
                 });
         },
         updateSection: function () {

@@ -1,7 +1,10 @@
-﻿define(['durandal/app', 'plugins/router', 'data/dataContext', 'data/courseRepository', 'data/sectionRepository', 'mapping/viewMapper'], function (app, router, dataContext, courseRepository, sectionRepository, viewMapper) {
+﻿define(['durandal/app', 'plugins/router', 'data/dataContext', 'data/courseRepository', 'data/sectionRepository', 'mapping/viewMapper', 'data/previewRepository'],
+    function (app, router, dataContext, courseRepository, sectionRepository, viewMapper, previewRepository) {
+
     return {
         courses: ko.observableArray([]),
         activate: function () {
+            previewRepository.resetPassingPoint();
             this.courses(viewMapper.coursesMapper());
         },
         createCourse: function () {

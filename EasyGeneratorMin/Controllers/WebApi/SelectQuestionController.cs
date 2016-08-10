@@ -20,15 +20,6 @@ namespace EasyGeneratorMin.Web.Controllers
             _selectQuestionRepository = selectQuestionRepository;
         }
 
-        [HttpGet]
-        [Route("get/selectquestions")]
-        public IEnumerable<SelectQuestionModel> GetSelectQuestions()
-        {
-            var selectQuestions = _selectQuestionRepository.GetCollection();
-
-            return selectQuestions.Select(item => _mapper.Map<SelectQuestionModel>(item)).ToList();
-        }
-
         [HttpPut]
         [Route("update/selectquestion")]
         public SelectQuestionModel UpdateSelectQuestion([ModelBinder(typeof(EntityModelBinder<SelectQuestion>))]SelectQuestion selectQuestion, Dictionary<string, string> spec)

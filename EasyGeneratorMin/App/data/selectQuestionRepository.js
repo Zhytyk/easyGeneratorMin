@@ -14,6 +14,15 @@
         });
     };
 
+    function getSelectQuestions() {
+        return new Promise(function (resolve, reject) {
+            tryInitializeSelectQuestions()
+                .then(function () {
+                     resolve(dataContext.selectQuestions);
+                });
+        });
+    };
+
     function getSelectQuestionById(id) {
         return new Promise(function (resolve, reject) {
             tryInitializeSelectQuestions()
@@ -82,6 +91,7 @@
 
     return {
         tryInitializeSelectQuestions: tryInitializeSelectQuestions,
+        getSelectQuestions: getSelectQuestions,
         getSelectQuestionById: getSelectQuestionById,
         createSingleSelectQuestion : createSingleSelectQuestion,
         createMultipleSelectQuestion: createMultipleSelectQuestion,

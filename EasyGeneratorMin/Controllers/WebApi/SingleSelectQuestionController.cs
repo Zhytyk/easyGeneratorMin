@@ -20,7 +20,16 @@ namespace EasyGeneratorMin.Web
             _singleSelectQuestionRepository = singleSelectQuestionRepository;
         }
 
-      
+        [HttpGet]
+        [Route("get/singleselectquestions")]
+        public IEnumerable<SingleSelectQuestionModel> GetSelectQuestions()
+        {
+            var selectQuestions = _singleSelectQuestionRepository.GetCollection();
+
+            return selectQuestions.Select(item => _mapper.Map<SingleSelectQuestionModel>(item)).ToList();
+        }
+
+
 
         [HttpPost]
         [Route("create/singleselectquestion")]

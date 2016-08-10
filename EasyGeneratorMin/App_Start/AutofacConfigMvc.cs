@@ -20,14 +20,6 @@ namespace EasyGeneratorMin.Web
                 .As<IDatabaseContext>()
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<PreviewRepository>()
-                .As<IPreviewRepository>()
-                .InstancePerLifetimeScope();
-
-            builder.RegisterType<SelectQuestionRepository<SelectQuestion>>()
-                .As<IRepository<SelectQuestion>>()
-                .InstancePerLifetimeScope();
-
             builder.Register(c => Mapper.Instance).As<IMapper>();
 
             var container = builder.Build();

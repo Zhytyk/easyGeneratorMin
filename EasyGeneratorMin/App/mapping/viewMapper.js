@@ -16,9 +16,9 @@
         return mapCourses;
     };
 
-    function selectQuestionsMapper() {
+    function selectQuestionsMapper(selectQuestions) {
 
-        var mapSelectQuestions = dataContext.selectQuestions.map(function (selectQuestion) {
+        var mapSelectQuestions = selectQuestions.map(function (selectQuestion) {
             var newSelectQuestion = {
                 id: selectQuestion.id,
                 title: selectQuestion.title,
@@ -27,7 +27,6 @@
                 createdDate: selectQuestion.createdDate,
                 lastUpdatedDate: selectQuestion.lastUpdatedDate,
                 sectionId: selectQuestion.sectionId,
-                type: selectQuestion.type,
                 answers: ko.observableArray()
             }
             newSelectQuestion.answers(selectQuestion.answers);
@@ -36,14 +35,14 @@
         return mapSelectQuestions;
     };
 
-    function previewSelectQuestionMapper() {
+    function previewSelectQuestionMapper(selectQuestions) {
 
-        var mapSelectQuestions = dataContext.selectQuestions.map(function (selectQuestion) {
+        var mapSelectQuestions = selectQuestions.map(function (selectQuestion) {
             var newSelectQuestion = {
                 id: selectQuestion.id,
                 title: selectQuestion.title,
-                sectionId: selectQuestion.sectionId,
                 type: selectQuestion.type,
+                sectionId: selectQuestion.sectionId,
                 answers: ko.observableArray()
             };
 

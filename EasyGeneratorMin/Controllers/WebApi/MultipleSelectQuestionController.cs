@@ -20,6 +20,15 @@ namespace EasyGeneratorMin.Web
             _multipleSelectQuestionRepository = multipleSelectQuestionRepository;
         }
 
+        [HttpGet]
+        [Route("get/multipleselectquestions")]
+        public IEnumerable<SelectQuestionModel> GetSelectQuestions()
+        {
+            var selectQuestions = _multipleSelectQuestionRepository.GetCollection();
+
+            return selectQuestions.Select(item => _mapper.Map<MultipleSelectQuestionModel>(item)).ToList();
+        }
+
         [HttpPost]
         [Route("create/multipleselectquestion")]
         public MultipleSelectQuestionModel CreateSingleSelectQuestion([ModelBinder(typeof(EntityModelBinder<Section>))]Section section, Dictionary<string, string> spec)

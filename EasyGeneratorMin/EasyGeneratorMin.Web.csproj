@@ -173,6 +173,7 @@
   <ItemGroup>
     <Content Include="App\data\courseRepository.js" />
     <Content Include="App\data\dataContext.js" />
+    <Content Include="App\data\previewContext.js" />
     <Content Include="App\data\previewRepository.js" />
     <Content Include="App\data\sectionRepository.js" />
     <Content Include="App\data\answerRepository.js" />
@@ -182,13 +183,16 @@
     <Content Include="App\http\httpWrapper.js" />
     <Content Include="App\main.js" />
     <Content Include="App\mapping\modelMapper.js" />
-    <Content Include="App\mapping\previewMapper.js" />
     <Content Include="App\mapping\viewMapper.js" />
     <Content Include="App\models\course.js" />
     <Content Include="App\models\entity.js" />
+    <Content Include="App\models\multipleselectquestion.js" />
     <Content Include="App\models\section.js" />
     <Content Include="App\models\answer.js" />
     <Content Include="App\models\selectQuestion.js" />
+    <Content Include="App\models\singleselectquestion.js" />
+    <Content Include="App\service\dataService.js" />
+    <Content Include="App\service\previewService.js" />
     <Content Include="App\viewmodels\createcoursepage.js" />
     <Content Include="App\viewmodels\createselectquestionpage.js" />
     <Content Include="App\viewmodels\previewmainpage.js" />
@@ -262,13 +266,11 @@
     <Compile Include="Controllers\WebApi\MultipleSelectQuestionController.cs" />
     <Compile Include="Controllers\Mvc\OverviewController.cs" />
     <Compile Include="Controllers\Mvc\HomeController.cs" />
-    <Compile Include="Controllers\Mvc\PreviewController.cs" />
     <Compile Include="Controllers\WebApi\SectionController.cs" />
     <Compile Include="Controllers\WebApi\AnswerController.cs" />
     <Compile Include="Controllers\WebApi\SelectQuestionController.cs" />
     <Compile Include="Controllers\WebApi\SingleSelectQuestionController.cs" />
     <Compile Include="Filters\WebApi\NullWebApiExceptionFilter.cs" />
-    <Compile Include="Filters\Mvc\NullMvcExceptionFilter.cs" />
     <Compile Include="Filters\WebApi\OutOfRangeWebApiExceptionFilter.cs" />
     <Compile Include="Filters\WebApi\ResetSingleAnswersWebApiActionFilter.cs" />
     <Compile Include="Filters\WebApi\SaveUnitOfWorkWebApiActionFilter.cs" />
@@ -304,6 +306,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Filters\Mvc\" />
     <Folder Include="Views\Preview\" />
   </ItemGroup>
   <ItemGroup>

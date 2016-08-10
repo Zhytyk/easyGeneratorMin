@@ -12,12 +12,17 @@
 
     function initializeSelectQuestions() {
         var self = this;
-        return http.get('get/selectquestions')
-            .then(function (selectQuestions) {
-                console.log(self.courses);
-                selectQuestions.forEach(function (selectQuestion) {
-                    self.selectQuestions.push(modelMapper.mapSelectQuestion(selectQuestion));
+        return http.get('get/singleselectquestions')
+            .then(function (singleSelectQuestions) {
+                singleSelectQuestions.forEach(function (singleSelectQuestion) {
+                    self.selectQuestions.push(modelMapper.mapSingleSelectQuestion(singleSelectQuestion));
                 });
+                return http.get('get/multipleselectquestions')
+                    .then(function (multipleSelectQuestions) {
+                        multipleSelectQuestions.forEach(function (multipleSelectQuestion) {
+                            self.selectQuestions.push(modelMapper.mapMultipleSelectQuestion(multipleSelectQuestion));
+                        });
+                    });
             });
     };
 

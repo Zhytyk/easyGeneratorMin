@@ -1,27 +1,24 @@
-﻿define(['data/previewRepository', 'data/selectQuestionRepository', 'plugins/router', 'mapping/viewMapper', 'mapping/previewMapper'],
-    function (previewRepository, selectQuestionRepository, router, viewMapper, previewMapper) {
-
-    function filterSelectQuestionBySectionId(sectionId) {
-        var filteredSelectQuestions = viewMapper.previewSelectQuestionMapper().filter(function (selectQuestion) {
-            return sectionId == selectQuestion.sectionId;
-        });
-
-        return filteredSelectQuestions;
-    };
+﻿define(['service/previewService', 'data/selectQuestionRepository', 'plugins/router', 'mapping/viewMapper', 'service/dataService', 'service/previewService'],
+    function (previewRepository, selectQuestionRepository, router, viewMapper, dataService, previewService) {
 
     return {
         selectQuestions: ko.observableArray(),
+        sectionId: '',
         activate: function (courseId, sectionId) {
             var self = this;
-            return selectQuestionRepository.tryInitializeSelectQuestions().then(function () {
-                self.selectQuestions(filterSelectQuestionBySectionId(sectionId));
-            });
+            this.sectionId = sectionId;
+            return selectQuestionRepository.tryInitializeSelectQuestions()
+                .then(function () {
+                    dataService.filterSelectQuestionBySectionId(sectionId)
+                        .then(function (selectQuestions) {
+                            self.selectQuestions(viewMapper.previewSelectQuestionMapper(selectQuestions));
+                        });
+                });
         },
         answersHandler: function () {
-            console.log(this.selectQuestions());
 
-            previewRepository.getPreviewResult(previewMapper.previewSelectQuestionsMapper(this.selectQuestions())).then(function (result) {
-                alert(result);
+            previewService.getPreviewSectionResult(this.selectQuestions(), this.sectionId).then(function (result) {
+                alert("You have " + result.usersPoint + " from " + result.maxPoint + " points.");
                 router.navigateBack();
             });
         },

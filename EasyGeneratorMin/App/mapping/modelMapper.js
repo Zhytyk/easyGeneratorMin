@@ -1,4 +1,6 @@
-﻿define(['models/course', 'models/section', 'models/selectQuestion', 'models/answer'], function (Course, Section, SelectQuestion, Answer) {
+﻿define(['models/course', 'models/section', 'models/singleselectquestion', 'models/multipleselectquestion', 'models/answer'],
+    function (Course, Section, SingleSelectQuestion, MultipleSelectQuestion, Answer) {
+
     function mapCourse(course) {
         var sections = [];
         if (course.Sections) {
@@ -27,20 +29,39 @@
         });
     };
 
-    function mapSelectQuestion(selectQuestion) {
+    function mapSingleSelectQuestion(selectQuestion) {
         var answers = [];
         if (selectQuestion.Answers) {
             selectQuestion.Answers.forEach(function (answer) {
                 answers.push(mapAnswer(answer));
             });
         }
-        return new SelectQuestion({
+        return new SingleSelectQuestion({
             id: selectQuestion.Id,
             title: selectQuestion.Title,
             creater: selectQuestion.Creater,
+            type: selectQuestion.Type,
             createdDate: new Date(selectQuestion.CreatedDate).toLocaleString(),
             lastUpdatedDate: new Date(selectQuestion.LastUpdatedDate).toLocaleString(),
-            type : selectQuestion.Type,
+            sectionId: selectQuestion.SectionId,
+            answers: answers,
+        })
+    };
+
+    function mapMultipleSelectQuestion(selectQuestion) {
+        var answers = [];
+        if (selectQuestion.Answers) {
+            selectQuestion.Answers.forEach(function (answer) {
+                answers.push(mapAnswer(answer));
+            });
+        }
+        return new MultipleSelectQuestion({
+            id: selectQuestion.Id,
+            title: selectQuestion.Title,
+            creater: selectQuestion.Creater,
+            type: selectQuestion.Type,
+            createdDate: new Date(selectQuestion.CreatedDate).toLocaleString(),
+            lastUpdatedDate: new Date(selectQuestion.LastUpdatedDate).toLocaleString(),
             sectionId: selectQuestion.SectionId,
             answers: answers,
         })
@@ -60,7 +81,8 @@
     return {
         mapCourse: mapCourse,
         mapSection: mapSection,
-        mapSelectQuestion: mapSelectQuestion,
+        mapSingleSelectQuestion: mapSingleSelectQuestion,
+        mapMultipleSelectQuestion: mapMultipleSelectQuestion,
         mapAnswer: mapAnswer
     };
 });
