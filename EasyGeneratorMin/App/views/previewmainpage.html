@@ -1,0 +1,12 @@
+﻿<section>
+    <div>
+        Preview mode
+    </div>
+    <button data-bind="click: back">Back</button>
+    <div data-bind="foreach: sections">
+        <div>
+            <span data-bind="text: title"></span>
+            <button data-bind="click: function() { $root.previewSection($data.id) }">Preview</button>
+        </div>
+    </div>
+</section>

@@ -31,8 +31,8 @@
                     course.sections.valueHasMutated();
                 });
         },
-        previewSection: function (sectionId, courseId) {
-            router.navigate("#preview/course/" + courseId + "/section/" + sectionId);
+        previewCourse: function (courseId) {
+            router.navigate("#preview/course/" + courseId);
         },
     };
 })

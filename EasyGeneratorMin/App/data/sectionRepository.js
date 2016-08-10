@@ -1,7 +1,6 @@
 ﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/modelMapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, modelMapper, httpErrorHandlers) {
 
     function getSectionById(courseId, sectionId) {
-        console.log(dataContext);
         return new Promise(function (resolve) {
             var course = dataContext.courses.find(function (course) {
                 return course.id == courseId;
@@ -15,7 +14,6 @@
             }
 
             resolve(section);
-            console.log(dataContext);
         })
     };
 
@@ -25,7 +23,6 @@
                 if (!createdSection) {
                     throw httpErrorHandlers.dataIsNotFoundHandler();
                 }
-
 
                 var course = dataContext.courses.find(function (course) {
                     return course.id === courseId;
@@ -38,8 +35,6 @@
     function removeSection(sectionId, courseId) {
         return http.remove('remove/section', { id: sectionId })
             .then(function () {
-
-
                 var course = dataContext.courses.find(function (course) {
                     return courseId == course.id;
                 });
@@ -57,7 +52,6 @@
                 if (!updatedSection) {
                     throw httpErrorHandlers.dataIsNotFoundHandler();
                 }
-
 
                 var course = dataContext.courses.find(function (course) {
                     return courseId == course.id;
