@@ -183,6 +183,7 @@
     <Content Include="App\http\httpWrapper.js" />
     <Content Include="App\main.js" />
     <Content Include="App\mapping\modelMapper.js" />
+    <Content Include="App\mapping\previewMapper.js" />
     <Content Include="App\mapping\viewMapper.js" />
     <Content Include="App\models\course.js" />
     <Content Include="App\models\entity.js" />

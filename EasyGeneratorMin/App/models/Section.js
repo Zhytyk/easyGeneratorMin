@@ -2,6 +2,7 @@
 
     function Section(spec) {
         Entity.call(this, spec);
+        this.hasPreview = false;
     };
 
     return Section;

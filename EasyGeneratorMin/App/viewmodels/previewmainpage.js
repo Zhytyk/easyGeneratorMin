@@ -9,13 +9,14 @@
             var self = this;
             this.courseId = courseId;
             this.passingCoursePoint(previewRepository.getPassingCoursePoint());
-            return courseRepository.getCourseById(this.courseId).then(function (course) {
-                self.sections(course.sections);
-                self.totalPassingCoursePoint = course.sections.length;
-                self.progressPassingCourse = ko.computed(function () {
-                    return "You have " + self.passingCoursePoint() + " from " + self.totalPassingCoursePoint + " progress point of passing preview course.";
+            previewRepository.getPreviewSections(courseId)
+                .then(function (sections) {
+                    self.sections(sections);
+                    self.totalPassingCoursePoint = sections.length;
+                    self.progressPassingCourse = ko.computed(function () {
+                        return "You have " + self.passingCoursePoint() + " from " + self.totalPassingCoursePoint + " progress point of passing preview course.";
+                    });
                 });
-            });
         },
         previewSection: function (sectionId) {
             router.navigate('preview/course/' + this.courseId + '/section/' + sectionId);
