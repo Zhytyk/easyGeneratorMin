@@ -1,5 +1,6 @@
 ﻿define(function () {
     function mapSections(sections) {
+
         return sections.map(function (section) {
 
             return {

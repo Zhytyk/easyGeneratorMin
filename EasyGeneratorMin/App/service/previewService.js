@@ -1,7 +1,8 @@
 ﻿define(['data/previewRepository', 'data/selectQuestionRepository', 'service/dataService'], function (previewRepository, selectQuestionsRepository, dataService) {
-    function increasePassingCourseResult(newSectionProgressPoint, currentSectionProgressPoint) {
-        if (newSectionProgressPoint > currentSectionProgressPoint) {
-            previewRepository.changePassingCoursePoint(newSectionProgressPoint, currentSectionProgressPoint);
+    function changePassingCourseResult(newSectionProgressPoint, section) {
+        if (newSectionProgressPoint > section.progressPreview) {
+            previewRepository.changePassingCoursePoint(newSectionProgressPoint, section.progressPreview);
+            section.progressPreview = newSectionProgressPoint;
         }
     };
 
@@ -30,10 +31,10 @@
                 
                 var maxPoint = correctSelectQuestions.length;
 
-                return previewRepository.getProgressPreviewSectionPoint(courseId, sectionId)
-                        .then(function (previewProgress) {
+                return previewRepository.getPreviewSectionById(courseId, sectionId)
+                        .then(function (section) {
 
-                            changePassingCourseResult(usersPoint / maxPoint, previewProgress);
+                            changePassingCourseResult(usersPoint / maxPoint, section);
 
                             return {
                                 usersPoint: usersPoint,

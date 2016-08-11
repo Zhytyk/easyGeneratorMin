@@ -18,9 +18,10 @@
         return new Promise(function (resolve, reject) {
             return getPreviewSections(courseId)
                       .then(function (sections) {
-                          return sections.find(function (section) {
+                          var section = sections.find(function (section) {
                               return section.id === sectionId;
                           });
+                          resolve(section);
                       });
 
         });
@@ -34,16 +35,9 @@
         previewContext.passingCoursePoint += newSectionProgressPoint -= currentSectionProgressPoint;
     };
 
-    function resetPassingPoint() {
+    function resetPreviewMode() {
         previewContext.passingCoursePoint = 0;
-    };
-
-    function getProgressPreviewSectionPoint(courseId, sectionId) {
-
-        return getPreviewSectionById(courseId, sectionId)
-            .then(function (section) {
-                return section.progressPreview;
-            });
+        previewContext.sections = undefined;
     };
 
     return {
@@ -51,7 +45,6 @@
         getPreviewSectionById: getPreviewSectionById,
         getPassingCoursePoint: getPassingCoursePoint,
         changePassingCoursePoint: changePassingCoursePoint,
-        resetPassingPoint: resetPassingPoint,
-        getProgressPreviewSectionPoint: getProgressPreviewSectionPoint
+        resetPreviewMode: resetPreviewMode,
     };
 });

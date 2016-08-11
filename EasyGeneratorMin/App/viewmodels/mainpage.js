@@ -4,7 +4,7 @@
     return {
         courses: ko.observableArray([]),
         activate: function () {
-            previewRepository.resetPassingPoint();
+            previewRepository.resetPreviewMode();
             this.courses(viewMapper.coursesMapper());
         },
         createCourse: function () {

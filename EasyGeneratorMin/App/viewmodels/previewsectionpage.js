@@ -21,7 +21,7 @@
 
             previewService.getPreviewSectionResult(this.selectQuestions(), this.sectionId, this.courseId)
                 .then(function (result) {
-                    alert("You have " + result.usersPoint + " from " + result.maxPoint + " points.");
+                    alert("You have " + result.usersPoint.toFixed(3) + " from " + result.maxPoint + " points.");
                     router.navigateBack();
                 });
         },
