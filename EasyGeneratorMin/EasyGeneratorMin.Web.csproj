@@ -244,11 +244,15 @@
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="scripts\knockout-3.4.0.debug.js" />
     <Content Include="scripts\knockout-3.4.0.js" />
+    <Content Include="scripts\q.js" />
+    <Content Include="scripts\q.min.js" />
     <Content Include="scripts\r.js" />
     <Content Include="scripts\require.js" />
     <Content Include="scripts\sammy-0.7.4.js" />
     <Content Include="scripts\sammy-0.7.4.min.js" />
     <Content Include="scripts\text.js" />
+    <Content Include="scripts\underscore.js" />
+    <Content Include="scripts\underscore.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -298,6 +302,7 @@
     </Content>
     <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Overview\Index.cshtml" />
+    <Content Include="scripts\underscore.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

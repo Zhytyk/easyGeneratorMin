@@ -9,9 +9,9 @@
     function getUsersPoint(usersSelectQuestions, correctSelectQuestions) {
         var correctUserAnswers = 0;
 
-        correctSelectQuestions.forEach(function (correctSelectQuestion) {
+        _.each(correctSelectQuestions, function (correctSelectQuestion) {
 
-            usersSelectQuestion = usersSelectQuestions.find(function (usersSelectQuestion) {
+            usersSelectQuestion = _.find(usersSelectQuestions, function (usersSelectQuestion) {
                 return usersSelectQuestion.id === correctSelectQuestion.id;
             });
 

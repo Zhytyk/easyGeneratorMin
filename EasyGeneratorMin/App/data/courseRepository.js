@@ -1,13 +1,13 @@
 ﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/modelMapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, modelMapper, httpErrorHandlers) {
 
     function getCourses() {
-        return new Promise(function (resolve) {
-            resolve(dataContext.courses);
+        return Q.fcall(function () {
+            return dataContext.courses
         });
     };
 
     function getCourseById(id) {
-        return new Promise(function (resolve) {
+        return Q.fcall(function () {
             var course = dataContext.courses.find(function (course) {
                 return course.id == id;
             });
@@ -15,7 +15,7 @@
             if (!course) {
                 throw httpErrorHandlers.dataIsNotFoundHandler();
             }
-            resolve(course);
+            return course;
         });
     };
 
@@ -34,8 +34,8 @@
     function removeCourse(courseId) {
         return http.remove('remove/course', { id: courseId })
             .then(function () {
-                var index = dataContext.courses.findIndex(function (course, index) {
-                    return course.id == courseId;
+                var index = _.findIndex(dataContext.courses, function (course) {
+                    return course.id == courseId ;
                 });
 
                 dataContext.courses.splice(index, 1);
@@ -52,11 +52,12 @@
                 }
 
 
-                var course = dataContext.courses.find(function (course) {
+                var course = _.find(dataContext.courses, function (course) {
                     return course.id === updatedCourse.Id;
                 });
 
                 course.title = updatedCourse.Title;
+                course.description = updatedCourse.Description;
                 course.lastUpdatedDate = new Date(updatedCourse.LastUpdatedDate).toLocaleString();
             });
     };

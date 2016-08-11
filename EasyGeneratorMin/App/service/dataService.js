@@ -2,7 +2,7 @@
     function filterSelectQuestionBySectionId(sectionId) {
         return selectQuestionRepository.getSelectQuestions()
             .then(function (selectQuestions) {
-                return selectQuestions.filter(function (selectQuestion) {
+                return _.filter(selectQuestions, function (selectQuestion) {
                     return sectionId == selectQuestion.sectionId;
                 });
         });

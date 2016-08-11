@@ -4,7 +4,7 @@
     function mapCourse(course) {
         var sections = [];
         if (course.Sections) {
-            course.Sections.forEach(function (section) {
+            _.each(course.Sections, function (section) {
                 sections.push(mapSection(section));
             });
         }
@@ -32,7 +32,7 @@
     function mapSingleSelectQuestion(selectQuestion) {
         var answers = [];
         if (selectQuestion.Answers) {
-            selectQuestion.Answers.forEach(function (answer) {
+            _.each(selectQuestion.Answers, function (answer) {
                 answers.push(mapAnswer(answer));
             });
         }
@@ -51,7 +51,7 @@
     function mapMultipleSelectQuestion(selectQuestion) {
         var answers = [];
         if (selectQuestion.Answers) {
-            selectQuestion.Answers.forEach(function (answer) {
+            _.each(selectQuestion.Answers, function (answer) {
                 answers.push(mapAnswer(answer));
             });
         }

@@ -1,33 +1,29 @@
 ﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/modelMapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, modelMapper, httpErrorHandler) {
     
     function tryInitializeSelectQuestions() {
-        return new Promise(function (resolve, reject) {
+        return Q.fcall(function () {
             if (!dataContext.selectQuestions) {
                 dataContext.selectQuestions = [];
 
-                dataContext.initializeSelectQuestions().then(function () {
-                    resolve();
-                });
-            } else {
-                resolve();
+                return dataContext.initializeSelectQuestions();
             }
         });
     };
 
     function getSelectQuestions() {
-        return new Promise(function (resolve, reject) {
-            tryInitializeSelectQuestions()
+        return Q.fcall(function () {
+            return tryInitializeSelectQuestions()
                 .then(function () {
-                     resolve(dataContext.selectQuestions);
+                     return dataContext.selectQuestions;
                 });
         });
     };
 
     function getSelectQuestionById(id) {
-        return new Promise(function (resolve, reject) {
-            tryInitializeSelectQuestions()
+        return Q.fcall(function () {
+            return tryInitializeSelectQuestions()
                 .then(function () {
-                    var selectQuestion = dataContext.selectQuestions.find(function (selectQuestion) {
+                    var selectQuestion = _.find(dataContext.selectQuestions, function (selectQuestion) {
                         return selectQuestion.id == id;
                     });
 
@@ -35,7 +31,7 @@
                         throw httpErrorHandler.dataIsNotFoundHandler();
                     }
 
-                    resolve(selectQuestion);
+                    return selectQuestion;
                 });
         });
     };
@@ -47,7 +43,7 @@
                     throw httpErrorHandler.dataIsNotFoundHandler();
                 }
 
-                dataContext.selectQuestions.push(modelMapper.mapSelectQuestion(singleSelectQuestion));
+                dataContext.selectQuestions.push(modelMapper.mapSingleSelectQuestion(singleSelectQuestion));
             });
     };
 
@@ -58,14 +54,14 @@
                     throw httpErrorHandler.dataIsNotFoundHandler();
                 }
 
-                dataContext.selectQuestions.push(modelMapper.mapSelectQuestion(multipleSelectQuestion));
+                dataContext.selectQuestions.push(modelMapper.mapMultipleSelectQuestion(multipleSelectQuestion));
             });
     };
 
     function removeSelectQuestion(id) {
         return http.remove('remove/selectquestion', { id: id })
             .then(function () {
-                var index = dataContext.selectQuestions.findIndex(function (selectQuestion) {
+                var index = _.findIndex(dataContext.selectQuestions, function (selectQuestion) {
                     return selectQuestion.id == id;
                 });
 
@@ -80,7 +76,7 @@
                     throw httpErrorHandler.dataIsNotFoundHandler();
                 }
 
-                var selectQuestion = dataContext.selectQuestions.find(function (selectQuestion) {
+                var selectQuestion = _.find(dataContext.selectQuestions, function (selectQuestion) {
                     return selectQuestion.id == id;
                 });
 

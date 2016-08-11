@@ -4,8 +4,12 @@
     return {
         courses: ko.observableArray([]),
         activate: function () {
+            var self = this;
             previewRepository.resetPreviewMode();
-            this.courses(viewMapper.coursesMapper());
+            return viewMapper.coursesMapper()
+                .then(function (courses) {
+                    self.courses(courses);
+                });
         },
         createCourse: function () {
             router.navigate("#create/course");

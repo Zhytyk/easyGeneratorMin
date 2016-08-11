@@ -11,6 +11,8 @@ namespace EasyGeneratorMin.Web
                 .Include("~/Scripts/jquery-{version}.js")
                 .Include("~/Scripts/knockout-{version}.js")
                 .Include("~/Scripts/sammy-{version}.js")
+                .Include("~/Scripts/q.js")
+                .Include("~/Scripts/underscore.js")
                 );
 
             bundles.Add(

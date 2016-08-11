@@ -1,11 +1,11 @@
 ﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/modelMapper', 'errorhandlers/httperrorhandlers'], function (dataContext, http, modelMapper, httpErrorHandlers) {
 
     function getSectionById(courseId, sectionId) {
-        return new Promise(function (resolve) {
-            var course = dataContext.courses.find(function (course) {
+        return Q.fcall(function () {
+            var course = _.find(dataContext.courses, function (course) {
                 return course.id == courseId;
             });
-            var section = course.sections.find(function (section) {
+            var section = _.find(course.sections, function (section) {
                 return section.id == sectionId;
             });
 
@@ -13,7 +13,7 @@
                 throw httpErrorHandlers.dataIsNotFoundHandler();
             }
 
-            resolve(section);
+            return section;
         })
     };
 
@@ -24,7 +24,7 @@
                     throw httpErrorHandlers.dataIsNotFoundHandler();
                 }
 
-                var course = dataContext.courses.find(function (course) {
+                var course = _.find(dataContext.courses, function (course) {
                     return course.id === courseId;
                 });
 
@@ -35,10 +35,10 @@
     function removeSection(sectionId, courseId) {
         return http.remove('remove/section', { id: sectionId })
             .then(function () {
-                var course = dataContext.courses.find(function (course) {
+                var course = _.find(dataContext.courses, function (course) {
                     return courseId == course.id;
                 });
-                var indexSection = course.sections.findIndex(function (section) {
+                var indexSection = _.findIndex(course.sections, function (section) {
                     return sectionId == section.id;
                 });
 
@@ -53,10 +53,10 @@
                     throw httpErrorHandlers.dataIsNotFoundHandler();
                 }
 
-                var course = dataContext.courses.find(function (course) {
+                var course = _.find(dataContext.courses, function (course) {
                     return courseId == course.id;
                 });
-                var section = course.sections.find(function (section) {
+                var section = _.find(course.sections, function (section) {
                     return sectionId == section.id;
                 });
 

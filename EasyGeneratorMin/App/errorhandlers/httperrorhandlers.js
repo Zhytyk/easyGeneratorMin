@@ -5,8 +5,8 @@
     });
 
     function dataIsNotFoundHandler() {
-        return new Promise(function(resolve, reject) {
-                reject("Data is not found!");
+        return Q.fcall(function() {
+                throw "Data is not found!";
             })
             .catch(function (errorMessage) {
                 alert(errorMessage);

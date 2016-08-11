@@ -3,11 +3,11 @@
     function getAnswerById(questionId, answerId) {
         return selectQuestionRepository.tryInitializeSelectQuestions().then(function () {
 
-            var question = dataContext.selectQuestions.find(function (selectQuestion) {
+            var question = _.find(dataContext.selectQuestions, function (selectQuestion) {
                 return selectQuestion.id == questionId;
             });
 
-            var answer = question.answers.find(function (answer) {
+            var answer = _.find(question.answers, function (answer) {
                 return answer.id == answerId;
             });
 
@@ -26,7 +26,7 @@
                     throw httpErrorHandlers.dataIsNotFoundHandler();
                 }
 
-                var selectQuestion = dataContext.selectQuestions.find(function (selectQuestion) {
+                var selectQuestion = _.find(dataContext.selectQuestions, function (selectQuestion) {
                     return selectQuestion.id == questionId;
                 });
 
@@ -41,11 +41,11 @@
                         throw httpErrorHandlers.dataIsNotFoundHandler();
                     }
 
-                    var selectQuestion = dataContext.selectQuestions.find(function (selectQuestion) {
+                    var selectQuestion = _.find(dataContext.selectQuestions, function (selectQuestion) {
                         return selectQuestion.id == questionId;
                     });
 
-                    var answer = selectQuestion.answers.find(function (answer) {
+                    var answer = _.find( selectQuestion.answers, function (answer) {
                         return answer.id == answerId;
                     });
 
@@ -63,7 +63,7 @@
             return undefined;
         }
 
-        var correctAnswer = selectQuestion.answers.find(function (answer) {
+        var correctAnswer = _.find(selectQuestion.answers, function (answer) {
             return answer.isCorrectly == true;
         });
 
@@ -75,11 +75,11 @@
     function removeAnswer(questionId, answerId) {
         return http.remove('remove/answer', { id: answerId })
                 .then(function () {
-                    var selectQuestion = dataContext.selectQuestions.find(function (selectQuestion) {
+                    var selectQuestion = _.find(dataContext.selectQuestions, function (selectQuestion) {
                         return selectQuestion.id == questionId;
                     });
 
-                    var answerIndex = selectQuestion.answers.findIndex(function (answer) {
+                    var answerIndex = _.findIndex(selectQuestion.answers, function (answer) {
                         return answer.id == answerId;
                     });
 

@@ -1,27 +1,26 @@
 ﻿define(['data/previewContext', 'data/dataContext', 'data/sectionRepository'], function (previewContext, dataContext, sectionRepository) {
     function getPreviewSections(courseId) {
-        return new Promise(function (resolve, reject) {
+        return Q.fcall(function () {
             if (!previewContext.sections) {
                 previewContext.sections = [];
 
-                previewContext.initializeSections(courseId)
+                return previewContext.initializeSections(courseId)
                     .then(function () {
-                        resolve(previewContext.sections);
+                        return previewContext.sections;
                     })
             } else {
-                resolve(previewContext.sections);
+               return previewContext.sections;
             }
         });
     };
 
     function getPreviewSectionById(courseId, sectionId) {
-        return new Promise(function (resolve, reject) {
+        return Q.fcall(function () {
             return getPreviewSections(courseId)
                       .then(function (sections) {
-                          var section = sections.find(function (section) {
+                          return _.find(sections, function (section) {
                               return section.id === sectionId;
                           });
-                          resolve(section);
                       });
 
         });

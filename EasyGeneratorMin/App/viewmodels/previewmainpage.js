@@ -9,12 +9,12 @@
             var self = this;
             this.courseId = courseId;
             this.passingCoursePoint(previewRepository.getPassingCoursePoint());
-            previewRepository.getPreviewSections(courseId)
+            return previewRepository.getPreviewSections(courseId)
                 .then(function (sections) {
                     self.sections(sections);
                     self.totalPassingCoursePoint = sections.length;
                     self.progressPassingCourse = ko.computed(function () {
-                        return "You have " + self.passingCoursePoint() + " from " + self.totalPassingCoursePoint + " progress point of passing preview course.";
+                        return "You have " + self.passingCoursePoint().toFixed(3) + " from " + self.totalPassingCoursePoint + " progress point of passing preview course.";
                     });
                 });
         },

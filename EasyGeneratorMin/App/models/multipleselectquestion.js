@@ -6,9 +6,9 @@
     MultipleSelectQuestion.prototype.calculateUsersCorrectAnswer = function (usersAnswers) {
         var usersCorrectAnswers = 0;
 
-        this.answers.forEach(function (answer) {
+        _.each(this.answers, function (answer) {
 
-            usersAnswer = usersAnswers.find(function (usersAnswer) {
+            usersAnswer = _.find(usersAnswers, function (usersAnswer) {
                 return usersAnswer.id == answer.id;
             });
 
