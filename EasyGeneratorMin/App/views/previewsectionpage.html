@@ -10,7 +10,7 @@
                 <br />
                 <div data-bind="foreach: answers">
                     <div style="margin-left: 30px">
-                        <input value="true" data-bind="attr: { name: $parent.id, type: ($parent.type == 'Single') ? 'radio' : 'checkbox' }, checked: $data.isCorrectly" />
+                        <input data-bind="attr: { name: $parent.id, type: ($parent.type == 'Single') ? 'radio' : 'checkbox' }, checked: $data.isCorrectly, value: 'true'" />
                         <span data-bind="text: title"></span>
                     </div>
                 </div>

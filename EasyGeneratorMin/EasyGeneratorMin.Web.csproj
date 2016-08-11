@@ -273,7 +273,6 @@
     <Compile Include="Controllers\WebApi\SingleSelectQuestionController.cs" />
     <Compile Include="Filters\WebApi\NullWebApiExceptionFilter.cs" />
     <Compile Include="Filters\WebApi\OutOfRangeWebApiExceptionFilter.cs" />
-    <Compile Include="Filters\WebApi\ResetSingleAnswersWebApiActionFilter.cs" />
     <Compile Include="Filters\WebApi\SaveUnitOfWorkWebApiActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

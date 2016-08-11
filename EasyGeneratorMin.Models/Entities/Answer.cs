@@ -26,6 +26,8 @@ namespace EasyGeneratorMin.Models
             Update(title);
 
             IsCorrectly = bool.Parse(isCorrectly);
+
+
         }
     }
 }

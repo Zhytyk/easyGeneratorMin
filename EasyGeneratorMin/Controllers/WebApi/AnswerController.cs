@@ -14,10 +14,12 @@ namespace EasyGeneratorMin.Web.Controllers
     public class AnswerController : MainWebApiController
     {
         private readonly IRepository<Answer> _answerRepository;
+        private readonly IRepository<SingleSelectQuestion> _singleSelectQuestion;
 
-        public AnswerController(IRepository<Answer> answerRepository, IMapper mapper) : base(mapper)
+        public AnswerController(IRepository<Answer> answerRepository, IRepository<SingleSelectQuestion> singleSelectQuestion, IMapper mapper) : base(mapper)
         {
             _answerRepository = answerRepository;
+            _singleSelectQuestion = singleSelectQuestion;
         }
 
         [HttpPost]
@@ -36,11 +38,15 @@ namespace EasyGeneratorMin.Web.Controllers
 
         [HttpPut]
         [Route("update/answer")]
-        [ResetSingleAnswersWebApiActionFilter]
         public AnswerModel UpdateAnswer([ModelBinder(typeof(EntityModelBinder<Answer>))]Answer answer, Dictionary<string, string> spec)
         {
             if (answer == null)
                 throw new ArgumentNullException();
+
+            var question = _singleSelectQuestion.GetValueById(answer.SelectQuestion.Id);
+
+            if (question != null)
+                question.ResetIfAnswerIsSingle(spec["isCorrectly"]);
 
             answer.Update(spec["title"], spec["isCorrectly"]);
 

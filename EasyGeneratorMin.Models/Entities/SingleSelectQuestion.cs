@@ -16,5 +16,13 @@ namespace EasyGeneratorMin.Models
             Type = "Single";
         }
 
+        public void ResetIfAnswerIsSingle(string isCorrectly)
+        {
+            var answer = Answers.FirstOrDefault(c => c.IsCorrectly == true);
+
+            if (answer != null && bool.Parse(isCorrectly) != false)
+                answer.IsCorrectly = false;
+        }
+
     }
 }
