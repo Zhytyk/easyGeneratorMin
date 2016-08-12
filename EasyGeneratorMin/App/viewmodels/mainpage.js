@@ -14,32 +14,32 @@
         createCourse: function () {
             router.navigate("#create/course");
         },
-        updateCourse: function (id) {
-            router.navigate("#update/course/" + id);
+        updateCourse: function (course) {
+            router.navigate("#update/course/" + course.id);
         },
-        updateSection: function(sectionId, courseId) {
-            router.navigate("#update/course/" + courseId + "/section/" + sectionId);
+        updateSection: function(section) {
+            router.navigate("#update/course/" + section.courseId + "/section/" + section.id);
         },
-        removeCourse: function (id) {
+        removeCourse: function (course) {
             var self = this;
-            courseRepository.removeCourse(id)
+            courseRepository.removeCourse(course.id)
                 .then(function (index) {
                     self.courses.splice(index, 1);
                 });
         },
-        removeSection: function (sectionId, courseId) {
+        removeSection: function (section) {
             var self = this;
-            sectionRepository.removeSection(sectionId, courseId)
+            sectionRepository.removeSection(section.id, section.courseId)
                 .then(function () {
                     var course = self.courses().find(function (course) {
-                        return course.id == courseId;
+                        return course.id == section.courseId;
                     });
 
                     course.sections.valueHasMutated();
                 });
         },
-        previewCourse: function (courseId) {
-            router.navigate("#preview/course/" + courseId);
+        previewCourse: function (course) {
+            router.navigate("#preview/course/" + course.id);
         },
     };
 })

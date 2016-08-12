@@ -18,8 +18,8 @@
                     });
                 });
         },
-        previewSection: function (sectionId) {
-            router.navigate('preview/course/' + this.courseId + '/section/' + sectionId);
+        previewSection: function (section) {
+            router.navigate('preview/course/' + section.courseId + '/section/' + section.id);
         },
         back: function () { router.navigateBack();}
     };

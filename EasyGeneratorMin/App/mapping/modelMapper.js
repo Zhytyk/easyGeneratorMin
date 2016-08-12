@@ -17,7 +17,7 @@
             lastUpdatedDate: new Date(course.LastUpdatedDate).toLocaleString(),
             sections: sections
         });
-    };
+    }
 
     function mapSection(section) {
         return new Section({
@@ -26,8 +26,9 @@
             creater: section.Creater,
             createdDate: new Date(section.CreatedDate).toLocaleString(),
             lastUpdatedDate: new Date(section.LastUpdatedDate).toLocaleString(),
+            courseId: section.CourseId,
         });
-    };
+    }
 
     function mapSingleSelectQuestion(selectQuestion) {
         var answers = [];
@@ -46,7 +47,7 @@
             sectionId: selectQuestion.SectionId,
             answers: answers,
         })
-    };
+    }
 
     function mapMultipleSelectQuestion(selectQuestion) {
         var answers = [];
@@ -65,7 +66,7 @@
             sectionId: selectQuestion.SectionId,
             answers: answers,
         })
-    };
+    }
 
     function mapAnswer(answer) {
         return new Answer({
@@ -74,9 +75,10 @@
             creater: answer.Creater,
             createdDate: new Date(answer.CreatedDate).toLocaleString(),
             lastUpdatedDate: new Date(answer.LastUpdatedDate).toLocaleString(),
-            isCorrectly: answer.IsCorrectly
+            isCorrectly: answer.IsCorrectly,
+            selectQuestionId: answer.SelectQuestionId,
         });
-    };
+    }
 
     return {
         mapCourse: mapCourse,

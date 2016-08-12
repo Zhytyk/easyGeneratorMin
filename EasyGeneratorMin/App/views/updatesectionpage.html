@@ -19,8 +19,8 @@
                 <span data-bind="text: creater"></span>
                 <span data-bind="text: lastUpdatedDate"></span>
                 <span data-bind="text: createdDate"></span>
-                <button data-bind="click: function() { $root.updateSelectQuestion($data.id) }">Update</button>
-                <button data-bind="click: function() { $root.removeSelectQuestion($data.id) }">Delete</button>
+                <button data-bind="click: $root.updateSelectQuestion">Update</button>
+                <button data-bind="click: $root.removeSelectQuestion.bind($root) ">Delete</button>
                 <br />
                 <div data-bind="foreach: answers">
                     <div style="margin-left: 30px">
@@ -29,8 +29,8 @@
                         <span data-bind="text: lastUpdatedDate"></span>
                         <span data-bind="text: createdDate"></span>
                         <span data-bind="text: isCorrectly"></span>
-                        <button data-bind="click: function() { $root.updateAnswer($data.id, $parent.id) }">Update</button>
-                        <button data-bind="click: function() { $root.removeAnswer($data.id, $parent.id) }">Delete</button>
+                        <button data-bind="click: $root.updateAnswer ">Update</button>
+                        <button data-bind="click: $root.removeAnswer.bind($root) ">Delete</button>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,9 @@
 ﻿define(['data/selectQuestionRepository', 'data/answerRepository', 'extenders/validationExtenders', 'plugins/router'], function (selectQuestionRepository, answerRepository, validationExtenders, router) {
     function initializeForm(id, self) {
-        return selectQuestionRepository.getSelectQuestionById(id).then(function (selectQuestion) {
-            self.selectQuestionTitle(selectQuestion.title);
-        });
+        return selectQuestionRepository.getSelectQuestionById(id)
+            .then(function (selectQuestion) {
+                self.selectQuestionTitle(selectQuestion.title);
+            });
     };
 
     return {

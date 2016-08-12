@@ -1,22 +1,23 @@
 ﻿define(['data/dataContext', 'http/httpWrapper', 'mapping/modelMapper', 'errorhandlers/httperrorhandlers', 'data/selectQuestionRepository'], function (dataContext, http, modelMapper, httpErrorHandlers, selectQuestionRepository) {
 
     function getAnswerById(questionId, answerId) {
-        return selectQuestionRepository.tryInitializeSelectQuestions().then(function () {
+        return selectQuestionRepository.tryInitializeSelectQuestions()
+            .then(function () {
 
-            var question = _.find(dataContext.selectQuestions, function (selectQuestion) {
-                return selectQuestion.id == questionId;
+                var question = _.find(dataContext.selectQuestions, function (selectQuestion) {
+                    return selectQuestion.id == questionId;
+                });
+
+                var answer = _.find(question.answers, function (answer) {
+                    return answer.id == answerId;
+                });
+
+                if (!answer) {
+                    throw httpErrorHandlers.dataIsNotFoundHandler();
+                }
+
+                return answer;
             });
-
-            var answer = _.find(question.answers, function (answer) {
-                return answer.id == answerId;
-            });
-
-            if (!answer) {
-                throw httpErrorHandlers.dataIsNotFoundHandler();
-            }
-
-            return answer;
-        });
     };
 
     function createAnswer(questionId, title) {

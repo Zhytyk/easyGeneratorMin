@@ -34,37 +34,37 @@
         createSelectQuestion: function () {
             router.navigate("#course/" + this.courseId + "/section/" + this.sectionId + "/create/selectquestion");
         },
-        removeSelectQuestion: function (id) {
+        removeSelectQuestion: function (question) {
             var self = this;
-            selectQuestionRepository.removeSelectQuestion(id)
+            selectQuestionRepository.removeSelectQuestion(question.id)
                 .then(function () {
                     var selectQuestion = self.selectQuestions().find(function (selectQuestion) {
-                        return selectQuestion.id == id;
+                        return selectQuestion.id == question.id;
                     });
 
                     self.selectQuestions.remove(selectQuestion);
                 });
         },
-        removeAnswer: function(answerId, questionId){
+        removeAnswer: function(answer){
             var self = this;
-            answerRepository.removeAnswer(questionId, answerId)
+            answerRepository.removeAnswer(answer.selectQuestionId, answer.id)
                 .then(function () {
                     var question = self.selectQuestions().find(function (selectQuestion) {
-                        return selectQuestion.id == questionId;
+                        return selectQuestion.id == answer.selectQuestionId;
                     });
 
-                    var indexAnswer = question.answers().findIndex(function (answer) {
-                        return answer.id == answerId;
+                    var indexAnswer = question.answers().findIndex(function (currentAnswer) {
+                        return currentAnswer.id == answer.id;
                     });
 
                     question.answers.valueHasMutated();
                 });
         },
-        updateSelectQuestion: function (id) {
-            router.navigate("update/selectquestion/" + id);
+        updateSelectQuestion: function (selectQuestion) {
+            router.navigate("update/selectquestion/" + selectQuestion.id);
         },
-        updateAnswer: function(answerId, questionId){
-            router.navigate("update/question/" + questionId + "/answer/" + answerId);
+        updateAnswer: function(answer){
+            router.navigate("update/question/" + answer.selectQuestionId + "/answer/" + answer.id);
         },
         back: function () { router.navigateBack(); }
     };

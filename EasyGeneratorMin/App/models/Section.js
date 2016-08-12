@@ -2,7 +2,7 @@
 
     function Section(spec) {
         Entity.call(this, spec);
-        this.hasPreview = false;
+        this.courseId = spec.courseId;
     };
 
     return Section;

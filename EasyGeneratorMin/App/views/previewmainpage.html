@@ -9,7 +9,7 @@
     <div data-bind="foreach: sections">
         <div>
             <span data-bind="text: title"></span>
-            <button data-bind="click: function() { $root.previewSection($data.id) }">Preview</button>
+            <button data-bind="click: $root.previewSection">Preview</button>
         </div>
     </div>
 </section>

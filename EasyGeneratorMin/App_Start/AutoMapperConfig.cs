@@ -21,6 +21,7 @@ namespace EasyGeneratorMin.Web
 
                 config.CreateMap<Section, SectionModel>()
                     .ForMember(opt => opt.SelectQuestions, opt => opt.MapFrom(src => src.SelectQuestions))
+                    .ForMember(opt => opt.CourseId, opt => opt.MapFrom(src => src.Course.Id))
                     .ForMember(opt => opt.CreatedDate, opt => opt.MapFrom(src => (ToMillis(src.CreatedDate.Ticks))))
                     .ForMember(opt => opt.LastUpdatedDate, opt => opt.MapFrom(src => (ToMillis(src.LastUpdatedDate.Ticks))));
 
