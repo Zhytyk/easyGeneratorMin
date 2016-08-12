@@ -1,4 +1,4 @@
-﻿define(['data/previewContext', 'data/dataContext', 'data/sectionRepository'], function (previewContext, dataContext, sectionRepository) {
+﻿define(['preview/data/previewContext', 'data/dataContext', 'data/sectionRepository'], function (previewContext, dataContext, sectionRepository) {
     function getPreviewSections(courseId) {
         return Q.fcall(function () {
             if (!previewContext.sections) {

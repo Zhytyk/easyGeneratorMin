@@ -173,8 +173,8 @@
   <ItemGroup>
     <Content Include="App\data\courseRepository.js" />
     <Content Include="App\data\dataContext.js" />
-    <Content Include="App\data\previewContext.js" />
-    <Content Include="App\data\previewRepository.js" />
+    <Content Include="App\preview\data\previewContext.js" />
+    <Content Include="App\preview\data\previewRepository.js" />
     <Content Include="App\data\sectionRepository.js" />
     <Content Include="App\data\answerRepository.js" />
     <Content Include="App\data\selectQuestionRepository.js" />
@@ -183,7 +183,7 @@
     <Content Include="App\http\httpWrapper.js" />
     <Content Include="App\main.js" />
     <Content Include="App\mapping\modelMapper.js" />
-    <Content Include="App\mapping\previewMapper.js" />
+    <Content Include="App\preview\mapping\previewMapper.js" />
     <Content Include="App\mapping\viewMapper.js" />
     <Content Include="App\models\course.js" />
     <Content Include="App\models\entity.js" />
@@ -193,11 +193,11 @@
     <Content Include="App\models\selectQuestion.js" />
     <Content Include="App\models\singleselectquestion.js" />
     <Content Include="App\service\dataService.js" />
-    <Content Include="App\service\previewService.js" />
+    <Content Include="App\preview\service\previewService.js" />
     <Content Include="App\viewmodels\createcoursepage.js" />
     <Content Include="App\viewmodels\createselectquestionpage.js" />
-    <Content Include="App\viewmodels\previewmainpage.js" />
-    <Content Include="App\viewmodels\previewsectionpage.js" />
+    <Content Include="App\preview\viewmodels\previewmainpage.js" />
+    <Content Include="App\preview\viewmodels\previewsectionpage.js" />
     <Content Include="App\viewmodels\updateanswer.js" />
     <Content Include="App\viewmodels\updatecoursepage.js" />
     <Content Include="App\viewmodels\mainpage.js" />
@@ -206,8 +206,8 @@
     <Content Include="App\viewmodels\updateselectquestionpage.js" />
     <Content Include="App\views\createcoursepage.html" />
     <Content Include="App\views\createselectquestionpage.html" />
-    <Content Include="App\views\previewmainpage.html" />
-    <Content Include="App\views\previewsectionpage.html" />
+    <Content Include="App\preview\views\previewmainpage.html" />
+    <Content Include="App\preview\views\previewsectionpage.html" />
     <Content Include="App\views\updateanswer.html" />
     <Content Include="App\views\updatecoursepage.html" />
     <Content Include="App\views\mainpage.html" />

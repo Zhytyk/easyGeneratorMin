@@ -1,4 +1,4 @@
-﻿define(['durandal/app', 'plugins/router', 'data/dataContext', 'data/courseRepository', 'data/sectionRepository', 'mapping/viewMapper', 'data/previewRepository'],
+﻿define(['durandal/app', 'plugins/router', 'data/dataContext', 'data/courseRepository', 'data/sectionRepository', 'mapping/viewMapper', 'preview/data/previewRepository'],
     function (app, router, dataContext, courseRepository, sectionRepository, viewMapper, previewRepository) {
 
     return {

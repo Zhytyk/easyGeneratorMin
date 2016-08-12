@@ -1,4 +1,4 @@
-﻿define(['data/courseRepository', 'mapping/previewMapper'], function (courseRepository, previewMapper) {
+﻿define(['data/courseRepository', 'preview/mapping/previewMapper'], function (courseRepository, previewMapper) {
     function initializeSections(courseId) {
         var self = this;
         return courseRepository.getCourseById(courseId)

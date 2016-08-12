@@ -1,5 +1,5 @@
-﻿define(['service/previewService', 'data/selectQuestionRepository', 'plugins/router', 'mapping/viewMapper', 'service/dataService', 'service/previewService'],
-    function (previewRepository, selectQuestionRepository, router, viewMapper, dataService, previewService) {
+﻿define(['data/selectQuestionRepository', 'plugins/router', 'mapping/viewMapper', 'service/dataService', 'preview/service/previewService'],
+    function (selectQuestionRepository, router, viewMapper, dataService, previewService) {
 
     return {
         selectQuestions: ko.observableArray(),

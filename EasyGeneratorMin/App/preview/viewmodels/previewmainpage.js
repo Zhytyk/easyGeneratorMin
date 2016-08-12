@@ -1,4 +1,4 @@
-﻿define(['plugins/router', 'data/courseRepository', 'data/previewRepository'], function (router, courseRepository, previewRepository) {
+﻿define(['plugins/router', 'data/courseRepository', 'preview/data/previewRepository'], function (router, courseRepository, previewRepository) {
     return {
         sections: ko.observableArray(),
         courseId: '',
