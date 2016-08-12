@@ -19,9 +19,9 @@ namespace EasyGeneratorMin.Web
 
         [HttpPost]
         [Route("create/section")]
-        public SectionModel CreateSection([ModelBinder(typeof(EntityModelBinder<Course>))]Course course, Dictionary<string,string> spec)
+        public SectionModel CreateSection([ModelBinder(typeof(EntityModelBinderProvider))]Course course, Dictionary<string,string> spec)
         {
-            if (course == null)
+            if (course == null && !spec.ContainsKey("title"))
                 throw new ArgumentNullException();
 
             var section = new Section(spec["title"], course);
@@ -33,9 +33,9 @@ namespace EasyGeneratorMin.Web
 
         [HttpPut]
         [Route("update/section")]
-        public SectionModel UpdateSection([ModelBinder(typeof(EntityModelBinder<Section>))]Section section, Dictionary<string, string> spec)
+        public SectionModel UpdateSection([ModelBinder(typeof(EntityModelBinderProvider))]Section section, Dictionary<string, string> spec)
         {
-            if (section == null)
+            if (section == null && !spec.ContainsKey("title"))
                 throw new ArgumentNullException();
 
             section.Update(spec["title"]);
@@ -45,7 +45,7 @@ namespace EasyGeneratorMin.Web
 
         [HttpDelete]
         [Route("remove/section")]
-        public void RemoveSection([ModelBinder(typeof(EntityModelBinder<Section>))]Section section)
+        public void RemoveSection([ModelBinder(typeof(EntityModelBinderProvider))]Section section)
         {
             if (section == null)
                 throw new ArgumentNullException();

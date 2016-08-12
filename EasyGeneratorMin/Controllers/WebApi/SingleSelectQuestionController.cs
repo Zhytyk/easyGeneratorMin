@@ -33,9 +33,9 @@ namespace EasyGeneratorMin.Web
 
         [HttpPost]
         [Route("create/singleselectquestion")]
-        public SingleSelectQuestionModel CreateSingleSelectQuestion([ModelBinder(typeof(EntityModelBinder<Section>))]Section section, Dictionary<string, string> spec)
+        public SingleSelectQuestionModel CreateSingleSelectQuestion([ModelBinder(typeof(EntityModelBinderProvider))]Section section, Dictionary<string, string> spec)
         {
-            if (section == null)
+            if (section == null && !spec.ContainsKey("title"))
                 throw new ArgumentNullException();
 
             var singleSelectQuestion = new SingleSelectQuestion(spec["title"], section);

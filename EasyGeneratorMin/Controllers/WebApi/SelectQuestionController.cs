@@ -22,9 +22,9 @@ namespace EasyGeneratorMin.Web.Controllers
 
         [HttpPut]
         [Route("update/selectquestion")]
-        public SelectQuestionModel UpdateSelectQuestion([ModelBinder(typeof(EntityModelBinder<SelectQuestion>))]SelectQuestion selectQuestion, Dictionary<string, string> spec)
+        public SelectQuestionModel UpdateSelectQuestion([ModelBinder(typeof(EntityModelBinderProvider))]SelectQuestion selectQuestion, Dictionary<string, string> spec)
         {
-            if (selectQuestion == null)
+            if (selectQuestion == null && !spec.ContainsKey("title"))
                 throw new ArgumentNullException();
 
             selectQuestion.Update(spec["title"]);
@@ -34,7 +34,7 @@ namespace EasyGeneratorMin.Web.Controllers
 
         [HttpDelete]
         [Route("remove/selectquestion")]
-        public void RemoveSelectQuestion([ModelBinder(typeof(EntityModelBinder<SelectQuestion>))]SelectQuestion selectQuestion)
+        public void RemoveSelectQuestion([ModelBinder(typeof(EntityModelBinderProvider))]SelectQuestion selectQuestion)
         {
             if (selectQuestion == null)
                 throw new ArgumentNullException();

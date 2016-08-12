@@ -24,9 +24,9 @@ namespace EasyGeneratorMin.Web.Controllers
 
         [HttpPost]
         [Route("create/answer")]
-        public AnswerModel CreateAnswer([ModelBinder(typeof(EntityModelBinder<SelectQuestion>))]SelectQuestion selectQuestion, Dictionary<string, string> spec)
+        public AnswerModel CreateAnswer([ModelBinder(typeof(EntityModelBinderProvider))]SelectQuestion selectQuestion, Dictionary<string, string> spec)
         {
-            if (selectQuestion == null)
+            if (selectQuestion == null && !spec.ContainsKey("title"))
                 throw new ArgumentNullException();
 
             var answer = new Answer(spec["title"], selectQuestion);
@@ -38,9 +38,9 @@ namespace EasyGeneratorMin.Web.Controllers
 
         [HttpPut]
         [Route("update/answer")]
-        public AnswerModel UpdateAnswer([ModelBinder(typeof(EntityModelBinder<Answer>))]Answer answer, Dictionary<string, string> spec)
+        public AnswerModel UpdateAnswer([ModelBinder(typeof(EntityModelBinderProvider))]Answer answer, Dictionary<string, string> spec)
         {
-            if (answer == null)
+            if (answer == null && !spec.ContainsKey("title") && !spec.ContainsKey("isCorrectly"))
                 throw new ArgumentNullException();
 
             var question = _singleSelectQuestion.GetValueById(answer.SelectQuestion.Id);
@@ -56,7 +56,7 @@ namespace EasyGeneratorMin.Web.Controllers
 
         [HttpDelete]
         [Route("remove/answer")]
-        public void RemoveAnswer([ModelBinder(typeof(EntityModelBinder<Answer>))]Answer answer)
+        public void RemoveAnswer([ModelBinder(typeof(EntityModelBinderProvider))]Answer answer)
         {
             if (answer == null)
                 throw new ArgumentNullException();

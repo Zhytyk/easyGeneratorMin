@@ -7,12 +7,12 @@
                 return previewContext.initializeSections(courseId)
                     .then(function () {
                         return previewContext.sections;
-                    })
+                    });
             } else {
                return previewContext.sections;
             }
         });
-    };
+    }
 
     function getPreviewSectionById(courseId, sectionId) {
         return Q.fcall(function () {
@@ -22,22 +22,21 @@
                               return section.id === sectionId;
                           });
                       });
-
         });
-    };
+    }
 
     function getPassingCoursePoint() {
         return previewContext.passingCoursePoint;
-    };
+    }
 
     function changePassingCoursePoint(newSectionProgressPoint, currentSectionProgressPoint) {
         previewContext.passingCoursePoint += newSectionProgressPoint -= currentSectionProgressPoint;
-    };
+    }
 
     function resetPreviewMode() {
         previewContext.passingCoursePoint = 0;
         previewContext.sections = undefined;
-    };
+    }
 
     return {
         getPreviewSections: getPreviewSections,

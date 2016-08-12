@@ -36,6 +36,9 @@ namespace EasyGeneratorMin.Web
         [Route("create/course")]
         public CourseModel CreateCourse(Dictionary<string, string> spec)
         {
+            if (!spec.ContainsKey("title") && !spec.ContainsKey("description"))
+                throw new ArgumentNullException();
+
             var course = new Course(spec["title"], spec["description"]);
 
             _courseRepository.Insert(course);
@@ -45,9 +48,9 @@ namespace EasyGeneratorMin.Web
 
         [HttpPut]
         [Route("update/course")]
-        public CourseModel UpdateCourse([ModelBinder(typeof(EntityModelBinder<Course>))]Course course, Dictionary<string, string> spec)
+        public CourseModel UpdateCourse([ModelBinder(typeof(EntityModelBinderProvider))]Course course, Dictionary<string, string> spec)
         {
-            if (course == null)
+            if (course == null && !spec.ContainsKey("title") && !spec.ContainsKey("description")) 
                 throw new ArgumentNullException();
 
             course.Update(spec["title"], spec["description"]); 
@@ -57,7 +60,7 @@ namespace EasyGeneratorMin.Web
 
         [HttpDelete]
         [Route("remove/course")]
-        public void RemoveCourse([ModelBinder(typeof(EntityModelBinder<Course>))]Course course)
+        public void RemoveCourse([ModelBinder(typeof(EntityModelBinderProvider))]Course course)
         {
             if (course == null)
                 throw new ArgumentNullException();

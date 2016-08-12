@@ -1,7 +1,7 @@
 ﻿define(['models/selectQuestion'], function (SelectQuestion) {
     function MultipleSelectQuestion(spec) {
         SelectQuestion.call(this, spec);
-    };
+    }
 
     MultipleSelectQuestion.prototype.calculateUsersCorrectAnswer = function (usersAnswers) {
         var usersCorrectAnswers = 0;
