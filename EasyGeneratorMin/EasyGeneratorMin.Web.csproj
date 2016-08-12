@@ -289,8 +289,6 @@
     <Compile Include="Models\AnswerModel.cs" />
     <Compile Include="Models\SelectQuestionModel.cs" />
     <Compile Include="Models\SingleSelectQuestionModel.cs" />
-    <Compile Include="Models\Preview\AnswerPreviewModel.cs" />
-    <Compile Include="Models\Preview\SelectQuestionPreviewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
