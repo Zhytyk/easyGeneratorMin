@@ -1,4 +1,4 @@
-﻿define(['plugins/router', 'data/courseRepository', 'preview/data/previewRepository'], function (router, courseRepository, previewRepository) {
+﻿define(['plugins/router', 'data/courseRepository', 'preview/data/previewRepository', 'errorhandlers/httperrorhandlers'], function (router, courseRepository, previewRepository, httpErrorHandler) {
     return {
         sections: ko.observableArray(),
         courseId: '',
@@ -14,12 +14,23 @@
                     self.sections(sections);
                     self.totalPassingCoursePoint = sections.length;
                     self.progressPassingCourse = ko.computed(function () {
+                        if (!isFinite(self.passingCoursePoint())) {
+                            throw httpErrorHandler.dataIsNotFoundHandler();
+                        }
+
                         return "You have " + self.passingCoursePoint().toFixed(3) + " from " + self.totalPassingCoursePoint + " progress point of passing preview course.";
                     });
                 });
         },
         previewSection: function (section) {
-            router.navigate('preview/course/' + section.courseId + '/section/' + section.id);
+            console.log(section);
+            if (section.progressPreview == 1) {
+                alert("You have already passed this preview section!");
+                return undefined;
+            }
+
+
+            router.navigate('preview/course/' + this.courseId + '/section/' + section.id);
         },
         back: function () { router.navigateBack();}
     };

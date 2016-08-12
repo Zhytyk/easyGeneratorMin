@@ -12,7 +12,7 @@
                 return usersAnswer.id == answer.id;
             });
 
-            usersCorrectAnswer = (usersAnswer.isCorrectly == "true" && Boolean(usersAnswer.isCorrectly) == answer.isCorrectly) ? 1 : 0;
+            usersCorrectAnswer += (usersAnswer.isCorrectly == "true" && Boolean(usersAnswer.isCorrectly) == answer.isCorrectly) ? 1 : 0;
         });
 
         return usersCorrectAnswer;
