@@ -10,11 +10,11 @@
         validate(target());
         target.subscribe(validate);
         return target;
-    };
+    }
     
 
     var rangeRequired = ko.extenders.rangeRequired = function (target, overrideMessage) {
-        target.hasError = ko.observable(true);
+        target.hasError = ko.observable();
         target.validationMessage = ko.observable();
         function validate(newValue) {
             var check = newValue ? target.hasError(!(newValue.length <= 255)) : target.hasError(true); 
@@ -23,10 +23,25 @@
         validate(target());
         target.subscribe(validate);
         return target;
-    };
+    }
+
+    var dateFormat = ko.extenders.dateFormat = function (target, overrideMessage) {
+        target.hasError = ko.observable();
+        target.validationMessage = ko.observable();
+
+        var exp = /^\d{4}(-\d\d(-\d\d(T\d\d:\d\d(:\d\d)?(\.\d+)?(([+-]\d\d:\d\d)|Z)?)?)?)?$/i;
+        function validate(newValue) {
+            target.hasError(!exp.test(newValue));
+            target.validationMessage(target.hasError() !== true ? "" : overrideMessage || "The date must be matched to format ####-##-## !");
+        }
+        validate(target());
+        target.subscribe(validate);
+        return target;
+    }
 
     return {
         required: required,
-        rangeRequired: rangeRequired
+        rangeRequired: rangeRequired,
+        dateFormat: dateFormat,
     };
 })

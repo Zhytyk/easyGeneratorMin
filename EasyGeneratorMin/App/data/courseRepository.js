@@ -39,8 +39,6 @@
                 });
 
                 dataContext.courses.splice(index, 1);
-
-                return index;
             });
     };
 
@@ -58,7 +56,7 @@
 
                 course.title = updatedCourse.Title;
                 course.description = updatedCourse.Description;
-                course.lastUpdatedDate = new Date(updatedCourse.LastUpdatedDate).toLocaleString();
+                course.lastUpdatedDate = new Date(updatedCourse.LastUpdatedDate);
             });
     };
 

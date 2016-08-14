@@ -1,21 +1,28 @@
 ﻿define(['data/courseRepository'], function (courseRepository) {
-    function coursesMapper() {
-        return courseRepository.getCourses()
-            .then(function (courses) {
-                return courses.map(function (course) {
-                    var newCourse = {
-                        id: course.id,
-                        title: course.title,
-                        description: course.description,
-                        creater: course.creater,
-                        createdDate: course.createdDate,
-                        lastUpdatedDate: course.lastUpdatedDate,
-                        sections: ko.observableArray()
-                    }
-                    newCourse.sections(course.sections);
-                    return newCourse;
-                });
-            });
+    function coursesMapper(courses) {
+
+        return courses.map(function (course) {
+            var newCourse = {
+                id: course.id,
+                title: course.title,
+                description: course.description,
+                creater: course.creater,
+                createdDate: course.createdDate.toLocaleString(),
+                lastUpdatedDate: course.lastUpdatedDate.toLocaleString(),
+                sections: ko.observableArray()
+            }
+            newCourse.sections(course.sections.map(function(section){
+                return {
+                    id: section.id,
+                    title: section.title,
+                    creater: section.creater,
+                    createdDate: section.createdDate.toLocaleString(),
+                    lastUpdatedDate: section.lastUpdatedDate.toLocaleString(),
+                    courseId: section.courseId,
+                };
+            }));
+            return newCourse;
+        });
     }
 
     function selectQuestionsMapper(selectQuestions) {
@@ -24,14 +31,23 @@
             var newSelectQuestion = {
                 id: selectQuestion.id,
                 title: selectQuestion.title,
-                description: selectQuestion.description,
                 creater: selectQuestion.creater,
-                createdDate: selectQuestion.createdDate,
-                lastUpdatedDate: selectQuestion.lastUpdatedDate,
+                createdDate: selectQuestion.createdDate.toLocaleString(),
+                lastUpdatedDate: selectQuestion.lastUpdatedDate.toLocaleString(),
                 sectionId: selectQuestion.sectionId,
                 answers: ko.observableArray()
             }
-            newSelectQuestion.answers(selectQuestion.answers);
+            newSelectQuestion.answers(selectQuestion.answers.map(function (answer) {
+                return {
+                    id: answer.id,
+                    title: answer.title,
+                    creater: answer.creater,
+                    createdDate: answer.createdDate.toLocaleString(),
+                    lastUpdatedDate: answer.lastUpdatedDate.toLocaleString(),
+                    isCorrectly: answer.isCorrectly,
+                    selectQuestionId: answer.selectQuestionId,
+                };
+            }));
             return newSelectQuestion;
         });
         return mapSelectQuestions;

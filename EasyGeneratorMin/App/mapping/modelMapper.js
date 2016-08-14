@@ -13,8 +13,8 @@
             title: course.Title,
             description: course.Description,
             creater: course.Creater,
-            createdDate: new Date(course.CreatedDate).toLocaleString(),
-            lastUpdatedDate: new Date(course.LastUpdatedDate).toLocaleString(),
+            createdDate: new Date(course.CreatedDate),
+            lastUpdatedDate: new Date(course.LastUpdatedDate),
             sections: sections
         });
     }
@@ -24,8 +24,8 @@
             id: section.Id,
             title: section.Title,
             creater: section.Creater,
-            createdDate: new Date(section.CreatedDate).toLocaleString(),
-            lastUpdatedDate: new Date(section.LastUpdatedDate).toLocaleString(),
+            createdDate: new Date(section.CreatedDate),
+            lastUpdatedDate: new Date(section.LastUpdatedDate),
             courseId: section.CourseId,
         });
     }
@@ -42,8 +42,8 @@
             title: selectQuestion.Title,
             creater: selectQuestion.Creater,
             type: selectQuestion.Type,
-            createdDate: new Date(selectQuestion.CreatedDate).toLocaleString(),
-            lastUpdatedDate: new Date(selectQuestion.LastUpdatedDate).toLocaleString(),
+            createdDate: new Date(selectQuestion.CreatedDate),
+            lastUpdatedDate: new Date(selectQuestion.LastUpdatedDate),
             sectionId: selectQuestion.SectionId,
             answers: answers,
         })
@@ -61,8 +61,8 @@
             title: selectQuestion.Title,
             creater: selectQuestion.Creater,
             type: selectQuestion.Type,
-            createdDate: new Date(selectQuestion.CreatedDate).toLocaleString(),
-            lastUpdatedDate: new Date(selectQuestion.LastUpdatedDate).toLocaleString(),
+            createdDate: new Date(selectQuestion.CreatedDate),
+            lastUpdatedDate: new Date(selectQuestion.LastUpdatedDate),
             sectionId: selectQuestion.SectionId,
             answers: answers,
         })
@@ -73,8 +73,8 @@
             id: answer.Id,
             title: answer.Title,
             creater: answer.Creater,
-            createdDate: new Date(answer.CreatedDate).toLocaleString(),
-            lastUpdatedDate: new Date(answer.LastUpdatedDate).toLocaleString(),
+            createdDate: new Date(answer.CreatedDate),
+            lastUpdatedDate: new Date(answer.LastUpdatedDate),
             isCorrectly: answer.IsCorrectly,
             selectQuestionId: answer.SelectQuestionId,
         });

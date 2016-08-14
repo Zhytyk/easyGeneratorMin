@@ -1,14 +1,28 @@
-﻿define(['durandal/app', 'plugins/router', 'data/dataContext', 'data/courseRepository', 'data/sectionRepository', 'mapping/viewMapper', 'preview/data/previewRepository'],
-    function (app, router, dataContext, courseRepository, sectionRepository, viewMapper, previewRepository) {
+﻿define(['durandal/app', 'plugins/router', 'data/dataContext', 'data/courseRepository', 'data/sectionRepository', 'mapping/viewMapper', 'preview/data/previewRepository', 'service/dataService', 'extenders/validationExtenders'],
+    function (app, router, dataContext, courseRepository, sectionRepository, viewMapper, previewRepository, dataService, validationExtenders) {
 
     return {
         courses: ko.observableArray([]),
+        searchTitle: ko.observable(),
+        searchDateFrom: ko.observable().extend({ dateFormat: '' }),
+        searchDateTo: ko.observable().extend({ dateFormat: '' }),
+        searchedCoursesTitles: ko.observableArray([]),
         activate: function () {
             var self = this;
             previewRepository.resetPreviewMode();
-            return viewMapper.coursesMapper()
+            this.searchTitle('');
+            this.searchDateFrom('2016-08-01');
+            this.searchDateTo(new Date().toISOString());
+            return courseRepository.getCourses()
                 .then(function (courses) {
-                    self.courses(courses);
+
+                    self.isDisabledSearcher = ko.computed(function () {
+                        console.log(self.searchDateFrom);
+                        return self.searchDateFrom.hasError() == true || self.searchDateTo.hasError() == true;
+                    });
+
+                    self.courses(viewMapper.coursesMapper(courses));
+                    return self.searchDataList();
                 });
         },
         createCourse: function () {
@@ -23,8 +37,8 @@
         removeCourse: function (course) {
             var self = this;
             courseRepository.removeCourse(course.id)
-                .then(function (index) {
-                    self.courses.splice(index, 1);
+                .then(function () {
+                    self.courses.remove(course);
                 });
         },
         removeSection: function (section) {
@@ -41,5 +55,23 @@
         previewCourse: function (course) {
             router.navigate("#preview/course/" + course.id);
         },
+        search: function (elem) {
+            var self = this;
+
+            dataService.searchCoursesByTitleAndIntervalDate(this.searchTitle(), this.searchDateFrom(), this.searchDateTo())
+                .then(function (searchedCourses) {
+                    self.courses(viewMapper.coursesMapper(searchedCourses));
+                });
+        },
+        searchDataList: function () {
+            var self = this;
+            return dataService.searchDataListCoursesByTitle(this.searchTitle())
+                .then(function (courses) {
+                    self.searchedCoursesTitles(courses.map(function (course) {
+                        return course.title;
+                    }));
+                });
+        },
+        isDisabledSearcher: '',
     };
 })

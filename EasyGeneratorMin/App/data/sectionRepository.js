@@ -61,7 +61,7 @@
                 });
 
                 section.title = updatedSection.Title;
-                section.lastUpdatedDate = new Date(updatedSection.LastUpdatedDate).toLocaleString();
+                section.lastUpdatedDate = new Date(updatedSection.LastUpdatedDate);
             });
     };
 

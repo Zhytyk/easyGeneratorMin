@@ -81,7 +81,7 @@
                 });
 
                 selectQuestion.title = updatedSelectQuestion.Title;
-                selectQuestion.lastUpdatedDate = new Date(updatedSelectQuestion.LastUpdatedDate).toLocaleString();
+                selectQuestion.lastUpdatedDate = new Date(updatedSelectQuestion.LastUpdatedDate);
             });
     };
 

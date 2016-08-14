@@ -54,7 +54,7 @@
 
                     answer.title = updatedAnswer.Title;
                     answer.isCorrectly = updatedAnswer.IsCorrectly;
-                    answer.lastUpdatedDate = new Date(updatedAnswer.LastUpdatedDate).toLocaleString();
+                    answer.lastUpdatedDate = new Date(updatedAnswer.LastUpdatedDate);
                 });
     };
 

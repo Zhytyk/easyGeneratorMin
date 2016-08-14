@@ -4,7 +4,21 @@
         <button data-bind="click: createCourse">
             Create course
         </button>
-        <div data-bind="foreach: courses">
+        <div>
+            Searcher!!!
+            <form data-bind="submit: search">
+                <label>Title </label><input type="text" data-bind="value: searchTitle, valueUpdate: 'afterkeydown', attr: {name: 'searchTitle', list: 'searchTitle'}, event: { keyup: searchDataList} " />
+                <datalist id="searchTitle" data-bind="foreach: searchedCoursesTitles">
+                    <option data-bind="value: $data"></option>
+                </datalist>
+                <label>From </label><input type="text" data-bind="attr: {name: 'searchDateFrom'}, value: searchDateFrom, valueUpdate: 'afterkeydown'" />
+                <span data-bind="visible: searchDateFrom.hasError, text: searchDateFrom.validationMessage"></span>
+                <label>To </label><input type="text" data-bind="attr: {name: 'searchDateTo'}, value: searchDateTo, valueUpdate: 'afterkeydown' "/>
+                <span data-bind="visible: searchDateTo.hasError, text: searchDateTo.validationMessage"></span>
+                <input type="submit" data-bind="disable: isDisabledSearcher"/>
+            </form>
+        </div>
+        <div data-bind="foreach: courses" style="margin-top: 30px">
             <div>
                 <span data-bind="text: title"></span>
                 <span data-bind="text: description"></span>
