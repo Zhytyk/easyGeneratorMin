@@ -192,8 +192,9 @@
     <Content Include="App\models\answer.js" />
     <Content Include="App\models\selectQuestion.js" />
     <Content Include="App\models\singleselectquestion.js" />
-    <Content Include="App\service\dataService.js" />
-    <Content Include="App\preview\service\previewService.js" />
+    <Content Include="App\services\dataService.js" />
+    <Content Include="App\preview\services\previewService.js" />
+    <Content Include="App\services\searchService.js" />
     <Content Include="App\viewmodels\createcoursepage.js" />
     <Content Include="App\viewmodels\createselectquestionpage.js" />
     <Content Include="App\preview\viewmodels\previewmainpage.js" />

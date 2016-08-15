@@ -1,12 +1,4 @@
-﻿define(['data/selectQuestionRepository', 'data/courseRepository'], function (selectQuestionRepository, courseRepository) {
-    function filterSelectQuestionBySectionId(sectionId) {
-        return selectQuestionRepository.getSelectQuestions()
-            .then(function (selectQuestions) {
-                return _.filter(selectQuestions, function (selectQuestion) {
-                    return sectionId == selectQuestion.sectionId;
-                });
-        });
-    }
+﻿define(['data/courseRepository'], function (courseRepository) {
 
     function searchCoursesByTitleAndIntervalDate(title, dateFrom, dateTo) {
         return courseRepository.getCourses()
@@ -93,7 +85,6 @@
     }
 
     return {
-        filterSelectQuestionBySectionId: filterSelectQuestionBySectionId,
         searchCoursesByTitleAndIntervalDate: searchCoursesByTitleAndIntervalDate,
         searchDataListCoursesByTitle: searchDataListCoursesByTitle,
     };

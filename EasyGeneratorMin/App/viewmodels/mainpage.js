@@ -1,5 +1,5 @@
-﻿define(['durandal/app', 'plugins/router', 'data/dataContext', 'data/courseRepository', 'data/sectionRepository', 'mapping/viewMapper', 'preview/data/previewRepository', 'service/dataService', 'extenders/validationExtenders'],
-    function (app, router, dataContext, courseRepository, sectionRepository, viewMapper, previewRepository, dataService, validationExtenders) {
+﻿define(['durandal/app', 'plugins/router', 'data/dataContext', 'data/courseRepository', 'data/sectionRepository', 'mapping/viewMapper', 'preview/data/previewRepository', 'services/dataService', 'services/searchService', 'extenders/validationExtenders'],
+    function (app, router, dataContext, courseRepository, sectionRepository, viewMapper, previewRepository, dataService, searchService, validationExtenders) {
 
     return {
         courses: ko.observableArray([]),
@@ -10,14 +10,15 @@
         activate: function () {
             var self = this;
             previewRepository.resetPreviewMode();
+
             this.searchTitle('');
             this.searchDateFrom('2016-08-01');
             this.searchDateTo(new Date().toISOString());
+
             return courseRepository.getCourses()
                 .then(function (courses) {
 
                     self.isDisabledSearcher = ko.computed(function () {
-                        console.log(self.searchDateFrom);
                         return self.searchDateFrom.hasError() == true || self.searchDateTo.hasError() == true;
                     });
 
@@ -58,14 +59,14 @@
         search: function (elem) {
             var self = this;
 
-            dataService.searchCoursesByTitleAndIntervalDate(this.searchTitle(), this.searchDateFrom(), this.searchDateTo())
+            searchService.searchCoursesByTitleAndIntervalDate(this.searchTitle(), this.searchDateFrom(), this.searchDateTo())
                 .then(function (searchedCourses) {
                     self.courses(viewMapper.coursesMapper(searchedCourses));
                 });
         },
         searchDataList: function () {
             var self = this;
-            return dataService.searchDataListCoursesByTitle(this.searchTitle())
+            return searchService.searchDataListCoursesByTitle(this.searchTitle())
                 .then(function (courses) {
                     self.searchedCoursesTitles(courses.map(function (course) {
                         return course.title;

@@ -1,4 +1,4 @@
-﻿define(['data/answerRepository', 'data/selectQuestionRepository', 'data/sectionRepository', 'plugins/router', 'extenders/validationExtenders', 'service/dataService', 'mapping/viewMapper'],
+﻿define(['data/answerRepository', 'data/selectQuestionRepository', 'data/sectionRepository', 'plugins/router', 'extenders/validationExtenders', 'services/dataService', 'mapping/viewMapper'],
     function (answerRepository, selectQuestionRepository, sectionRepository, router, validationExtenders, dataService, viewMapper) {
 
     function initializeForm(courseId, sectionId, self) {

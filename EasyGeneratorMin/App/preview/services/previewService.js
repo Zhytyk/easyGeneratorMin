@@ -1,4 +1,4 @@
-﻿define(['preview/data/previewRepository', 'data/selectQuestionRepository', 'service/dataService'], function (previewRepository, selectQuestionsRepository, dataService) {
+﻿define(['preview/data/previewRepository', 'data/selectQuestionRepository', 'services/dataService'], function (previewRepository, selectQuestionsRepository, dataService) {
     function changePassingCourseResult(newSectionProgressPoint, section) {
         if (newSectionProgressPoint > section.progressPreview) {
             previewRepository.changePassingCoursePoint(newSectionProgressPoint, section.progressPreview);

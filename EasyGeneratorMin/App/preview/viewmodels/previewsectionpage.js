@@ -1,4 +1,4 @@
-﻿define(['data/selectQuestionRepository', 'plugins/router', 'mapping/viewMapper', 'service/dataService', 'preview/service/previewService'],
+﻿define(['data/selectQuestionRepository', 'plugins/router', 'mapping/viewMapper', 'services/dataService', 'preview/services/previewService'],
     function (selectQuestionRepository, router, viewMapper, dataService, previewService) {
 
     return {
