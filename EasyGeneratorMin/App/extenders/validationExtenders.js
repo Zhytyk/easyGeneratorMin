@@ -29,7 +29,7 @@
         target.hasError = ko.observable();
         target.validationMessage = ko.observable();
 
-        var exp = /^\d{4}(-\d\d(-\d\d(T\d\d:\d\d(:\d\d)?(\.\d+)?(([+-]\d\d:\d\d)|Z)?)?)?)?$/i;
+        var exp = /\d{4}-(0\d|1[0-2])-([0-2]\d|3[0-1])/i;
         function validate(newValue) {
             target.hasError(!exp.test(newValue));
             target.validationMessage(target.hasError() !== true ? "" : overrideMessage || "The date must be matched to format ####-##-## !");

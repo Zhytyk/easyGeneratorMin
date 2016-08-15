@@ -4,21 +4,14 @@
         return courseRepository.getCourses()
             .then(function (courses) {
 
-                return searchByDateTo(dateTo,
-                    searchByDateFrom(dateFrom,
-                    searchByTitle(title, courses)));
-            });
-    }
-
-    function searchDataListCoursesByTitle(title) {
-        return courseRepository.getCourses()
-            .then(function (courses) {
-                return searchByTitle(title, courses);
+                return searchByTitle(title, 
+                       searchByDateFrom(dateFrom,
+                       searchByDateTo(dateTo, courses)));
             });
     }
 
     function searchByTitle(title, courses) {
-        if (title === "") {
+        if (title === "" || typeof(title) === undefined) {
             return courses;
         }
 
@@ -48,7 +41,7 @@
     }
 
     function searchByDateFrom(dateFrom, courses) {
-        if (dateFrom === "") {
+        if (dateFrom === "" || typeof (dateFrom) === undefined) {
             return courses;
         }
 
@@ -66,7 +59,7 @@
     }
 
     function searchByDateTo(dateTo, courses) {
-        if (dateTo === "") {
+        if (dateTo === "" || typeof(dateTo) === undefined) {
             return courses;
         }
 
@@ -86,6 +79,5 @@
 
     return {
         searchCoursesByTitleAndIntervalDate: searchCoursesByTitleAndIntervalDate,
-        searchDataListCoursesByTitle: searchDataListCoursesByTitle,
     };
 });

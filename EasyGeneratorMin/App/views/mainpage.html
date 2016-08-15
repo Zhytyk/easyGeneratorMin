@@ -6,16 +6,16 @@
         </button>
         <div>
             Searcher!!!
-            <form data-bind="submit: search">
-                <label>Title </label><input type="text" data-bind="value: searchTitle, valueUpdate: 'afterkeydown', attr: {name: 'searchTitle', list: 'searchTitle'}, event: { keyup: searchDataList} " />
+            <form data-bind="submit: searchByTitleAndIntervalDate">
+                <label>Title </label><input type="text" data-bind="value: searchTitle, valueUpdate: 'input', attr: {list: 'searchTitle'}, event: { keyup: searchByTitleAndIntervalDate } " />
                 <datalist id="searchTitle" data-bind="foreach: searchedCoursesTitles">
                     <option data-bind="value: $data"></option>
                 </datalist>
-                <label>From </label><input type="text" data-bind="attr: {name: 'searchDateFrom'}, value: searchDateFrom, valueUpdate: 'afterkeydown'" />
+                <label>From </label><input type="text" data-bind="value: searchDateFrom, valueUpdate: 'afterkeydown', event: { keyup: searchByTitleAndIntervalDate }" />
                 <span data-bind="visible: searchDateFrom.hasError, text: searchDateFrom.validationMessage"></span>
-                <label>To </label><input type="text" data-bind="attr: {name: 'searchDateTo'}, value: searchDateTo, valueUpdate: 'afterkeydown' "/>
+                <label>To </label><input type="text" data-bind="value: searchDateTo, valueUpdate: 'afterkeydown', event: { keyup: searchByTitleAndIntervalDate }"/>
                 <span data-bind="visible: searchDateTo.hasError, text: searchDateTo.validationMessage"></span>
-                <input type="submit" data-bind="disable: isDisabledSearcher"/>
+                <input type="submit" />
             </form>
         </div>
         <div data-bind="foreach: courses" style="margin-top: 30px">
